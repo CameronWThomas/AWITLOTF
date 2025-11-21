@@ -1,16 +1,30 @@
-using UnityEngine;
+using System.Collections.Generic;
 
-public class GoalWave : MonoBehaviour
+//TODO remove this. eventually Combined wave will be the thing that does all this
+public class GoalWave : Wave
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private const int ComponentWavesCount = 3;
+
+    private readonly ComponentWave[] _componentWaves = new ComponentWave[ComponentWavesCount] { null, null, null };
+    private readonly int[] _goalVariableValueIndexes = new int[ComponentWavesCount] { 0, 0, 0 };
+
+    public override IReadOnlyList<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
     {
-        
+        var data = new List<(WaveInfo, float)>();
+        for (var i = 0; i < ComponentWavesCount; i++)
+            data.Add((_componentWaves[i].WaveInfo, _goalVariableValueIndexes[i]));
+
+        return data.ToArray();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize(ComponentWave componentWave1, ComponentWave componentWave2, ComponentWave componentWave3)
     {
-        
+        _componentWaves[0] = componentWave1;
+        _componentWaves[1] = componentWave2;
+        _componentWaves[2] = componentWave3;
+
+        _goalVariableValueIndexes[0] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount);
+        _goalVariableValueIndexes[1] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount);
+        _goalVariableValueIndexes[2] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount);
     }
 }

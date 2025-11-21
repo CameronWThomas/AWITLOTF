@@ -17,16 +17,11 @@ public class WaveManager : MonoBehaviour
         ComponentWave2.SetWaveInfo(waveInfos[1]);
         ComponentWave3.SetWaveInfo(waveInfos[2]);
 
-        //if (CombinedWave != null)
-        //    CombinedWave.SetWaveInfos(waveInfos[0], waveInfos[1], waveInfos[2]);
+        if (CombinedWave != null)
+            CombinedWave.Initialize(ComponentWave1, ComponentWave2, ComponentWave3);
 
-        //if (GoalWave != null)
-        //{
-        //    var waveInfoCopies = waveInfos.Select(x => x.Copy()).ToArray();
-        //    foreach (var waveInfoCopy in waveInfoCopies)
-        //        waveInfoCopy.VariableValue = RandomHelper.Between(0.1f, 5f);
-
-        //    GoalWave.SetWaveInfos(waveInfoCopies[0], waveInfoCopies[1], waveInfoCopies[2]);
-        //}
+        //TODO eventually there will no longer be a goal wave
+        if (GoalWave != null)
+            GoalWave.Initialize(ComponentWave1, ComponentWave2, ComponentWave3);
     }
 }

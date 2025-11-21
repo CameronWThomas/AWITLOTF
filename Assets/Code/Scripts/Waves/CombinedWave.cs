@@ -1,16 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class CombinedWave : MonoBehaviour
+public class CombinedWave : Wave
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private readonly ComponentWave[] _componentWaves = new ComponentWave[3] { null, null, null };
 
-    // Update is called once per frame
-    void Update()
+    public override IReadOnlyList<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
     {
-        
+        return _componentWaves
+            .Where(x => x != null)
+            .SelectMany(x => x.GetWaveInfosAndDisplayVariableValues())
+            .ToArray();
+    }
+    
+    public void Initialize(ComponentWave componentWave1, ComponentWave componentWave2, ComponentWave componentWave3)
+    {
+        _componentWaves[0] = componentWave1;
+        _componentWaves[1] = componentWave2;
+        _componentWaves[2] = componentWave3;
     }
 }

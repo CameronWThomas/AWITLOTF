@@ -3,7 +3,8 @@ using System.Linq;
 
 public class WaveInfo
 {
-    private static readonly float[] _variableValues = new float[]
+    public const int VariableValueIndexCount = 5;
+    private static readonly float[] _variableValues = new float[VariableValueIndexCount]
     {
         -5f, -2f, 1f, 3f, 7.3f
     };

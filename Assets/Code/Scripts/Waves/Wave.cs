@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+// TODO a lot of stuff is here is really only used by the component wave. It will need to be adjusted eventually
 public class Wave : MonoBehaviour
 {
     [Header("Display Attributes")]
@@ -12,7 +13,7 @@ public class Wave : MonoBehaviour
 
     private readonly Dictionary<WaveInfo, WaveUpdatingInfo> _registeredWaveInfos = new();
 
-    public IReadOnlyList<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues() => _registeredWaveInfos.Select(x => (x.Key, x.Value.DisplayVariableValue)).ToArray();
+    public virtual IReadOnlyList<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues() => _registeredWaveInfos.Select(x => (x.Key, x.Value.DisplayVariableValue)).ToArray();
 
     protected void RegisterWaveInfo(WaveInfo waveInfo)
     {

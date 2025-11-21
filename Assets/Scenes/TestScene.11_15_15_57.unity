@@ -276,6 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7834d86e1422a744ab33c125e033a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugWaveType: 4
+  DebugVariableValue: 3.01
 --- !u!64 &212346118
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -609,6 +611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7834d86e1422a744ab33c125e033a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugWaveType: 1
+  DebugVariableValue: -3.72
 --- !u!114 &264748988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,6 +675,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7834d86e1422a744ab33c125e033a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugWaveType: 1
+  DebugVariableValue: 3.59
 --- !u!64 &337540096
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -772,7 +778,7 @@ GameObject:
   - component: {fileID: 429176035}
   - component: {fileID: 429176034}
   - component: {fileID: 429176033}
-  - component: {fileID: 429176032}
+  - component: {fileID: 429176036}
   - component: {fileID: 429176031}
   m_Layer: 0
   m_Name: Combined
@@ -808,19 +814,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7834d86e1422a744ab33c125e033a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &429176032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429176029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892de5b746a9dfa4bad7dfa1d55bfc2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaveUpdateDuration: 1
+  DebugWaveType: 1
+  DebugVariableValue: -2.57
 --- !u!64 &429176033
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -896,6 +891,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429176029}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &429176036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429176029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a91bc3135eefc44881df81125f27ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaveUpdateDuration: 1
 --- !u!1 &475539602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7834d86e1422a744ab33c125e033a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugWaveType: 1
+  DebugVariableValue: 3
 --- !u!114 &475539608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,13 +1041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d8fa1376bae644b827d39f7e3e2c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveType: 3
-  WaveTypes: 
-  WaveUpdateDuration: 1
-  Increase: 0
-  Decrease: 0
-  SetVariableValue: 2
-  TriggerSetValue: 0
 --- !u!21 &511996532
 Material:
   serializedVersion: 8
@@ -1159,8 +1162,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaveTypes: {r: 0, g: 0, b: 0, a: 0}
-    - _WaveVariableValues: {r: 0, g: 0, b: 0, a: 0}
+    - _WaveTypes: {r: 4, g: 0, b: 0, a: 0}
+    - _WaveVariableValues: {r: 3.01, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!1 &860138595
@@ -1421,8 +1424,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaveTypes: {r: 0, g: 0, b: 0, a: 0}
-    - _WaveVariableValues: {r: 0, g: 0, b: 0, a: 0}
+    - _WaveTypes: {r: 1, g: 0, b: 0, a: 0}
+    - _WaveVariableValues: {r: 3.59, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!21 &1435688774
@@ -1546,8 +1549,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaveTypes: {r: 0, g: 0, b: 0, a: 0}
-    - _WaveVariableValues: {r: 0, g: 0, b: 0, a: 0}
+    - _WaveTypes: {r: 1, g: 0, b: 0, a: 0}
+    - _WaveVariableValues: {r: -2.57, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!1 &1703063666
@@ -1562,7 +1565,7 @@ GameObject:
   - component: {fileID: 1703063672}
   - component: {fileID: 1703063671}
   - component: {fileID: 1703063670}
-  - component: {fileID: 1703063669}
+  - component: {fileID: 1703063673}
   - component: {fileID: 1703063668}
   m_Layer: 0
   m_Name: Goal
@@ -1598,19 +1601,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7834d86e1422a744ab33c125e033a579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1703063669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703063666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892de5b746a9dfa4bad7dfa1d55bfc2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaveUpdateDuration: 1
+  DebugWaveType: 1
+  DebugVariableValue: -3.52
 --- !u!64 &1703063670
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1686,6 +1678,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703063666}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1703063673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703063666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d4e5c82b7607543b00407ef433f55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaveUpdateDuration: 1
 --- !u!1 &1735092508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,8 +2064,8 @@ MonoBehaviour:
   ComponentWave1: {fileID: 264748988}
   ComponentWave2: {fileID: 212346121}
   ComponentWave3: {fileID: 337540099}
-  CombinedWave: {fileID: 0}
-  GoalWave: {fileID: 0}
+  CombinedWave: {fileID: 429176036}
+  GoalWave: {fileID: 1703063673}
 --- !u!21 &1749063913
 Material:
   serializedVersion: 8
