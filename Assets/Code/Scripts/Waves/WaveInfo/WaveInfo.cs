@@ -3,10 +3,10 @@ using System.Linq;
 
 public class WaveInfo
 {
-    public const int VariableValueIndexCount = 5;
+    public const int VariableValueIndexCount = 3;
     private static readonly float[] _variableValues = new float[VariableValueIndexCount]
     {
-        -5f, -2f, 1f, 3f, 7.3f
+        .5f, 2f, 7.3f
     };
 
     public WaveInfo(int startingVariableValueIndex, params WaveType[] waveTypes)
@@ -22,7 +22,7 @@ public class WaveInfo
         if (count < 0 || count > maxCount)
             throw new ArgumentException($"{nameof(count)} must be between [0, {maxCount}] ", nameof(count));
 
-        return waveTypes.Take(count).Select(x => new WaveInfo(2, x)).ToArray();
+        return waveTypes.Take(count).Select(x => new WaveInfo(1, x)).ToArray();
     }
 
     public int VariableValueIndex { get; private set; }

@@ -12,7 +12,11 @@ public class GoalWave : Wave
     {
         var data = new List<(WaveInfo, float)>();
         for (var i = 0; i < ComponentWavesCount; i++)
-            data.Add((_componentWaves[i].WaveInfo, _goalVariableValueIndexes[i]));
+        {
+            var waveInfo = _componentWaves[i].WaveInfo;
+            waveInfo.TryGetVariableValue(_goalVariableValueIndexes[i], out var value);
+            data.Add((waveInfo, value));
+        }
 
         return data.ToArray();
     }
@@ -23,8 +27,8 @@ public class GoalWave : Wave
         _componentWaves[1] = componentWave2;
         _componentWaves[2] = componentWave3;
 
-        _goalVariableValueIndexes[0] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount);
-        _goalVariableValueIndexes[1] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount);
-        _goalVariableValueIndexes[2] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount);
+        _goalVariableValueIndexes[0] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount - 1);
+        _goalVariableValueIndexes[1] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount - 1);
+        _goalVariableValueIndexes[2] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount - 1);
     }
 }

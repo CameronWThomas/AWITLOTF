@@ -1,34 +1,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class WaveDisplay : MonoBehaviour
 {
     const string WaveTypesName = "_WaveTypes";
     const string WaveVariableValuesName = "_WaveVariableValues";
-
-    const string VariableValueName = "_VariableValue";
-    const string WaveTypeName = "_WaveType";
+    const string GoalVariableValues = "_GoalVariableValues";
+    const string DisplayGoalVariableValues = "_DisplayGoalVariableValues";
 
     [Header("Debug")]
     public WaveType DebugWaveType = WaveType.Sin;
     [Range(-5f, 5f)] public float DebugVariableValue = 1f;
+    [Range(-5f, 5f)] public float DebugGoalVariableValue = 1f;
 
     // Update is called once per frame
     void Update()
     {
         var material = GetMaterial();
-        var wave = GetComponent<Wave>();
-        
-        Vector3 waveTypes;
-        Vector3 variableValues;
-        if (Application.isPlaying)
-            GetWaveTypesAndVariableValues(wave, out waveTypes, out variableValues);
-        else
-            GetDebugWaveTypesAndVariableValues(wave, out waveTypes, out variableValues);
 
+        // TODO Ehhh
+        Vector3 waveTypes = Vector3.zero, variableValues = Vector3.zero, goalVariableValues = Vector3.zero;
+        var hasGoalWave = false;
+        foreach (var wave in GetComponents<Wave>())
+        {
+            if (wave is GoalWave)
+            {
+                GetWaveTypesAndVariableValues(wave, out waveTypes, out goalVariableValues);
+                hasGoalWave = true;
+            }
+            else
+                GetWaveTypesAndVariableValues(wave, out waveTypes, out variableValues);
+        }
+        
         material.SetVector(WaveTypesName, waveTypes);
         material.SetVector(WaveVariableValuesName, variableValues);
+        material.SetVector(GoalVariableValues, goalVariableValues);
+        material.SetInt(DisplayGoalVariableValues, hasGoalWave ? 1 : 0);
     }
 
     private void GetWaveTypesAndVariableValues(Wave wave, out Vector3 waveTypes, out Vector3 variableValues)
@@ -57,10 +65,11 @@ public class WaveDisplay : MonoBehaviour
         variableValues = new Vector3(values[0].Item2, values[1].Item2, values[2].Item2);
     }
 
-    private void GetDebugWaveTypesAndVariableValues(Wave wave, out Vector3 waveTypes, out Vector3 variableValues)
+    private void GetDebugWaveTypesAndVariableValues(out Vector3 waveTypes, out Vector3 variableValues, out Vector3 goalVariableValues)
     {
         waveTypes = new Vector3Int((int)DebugWaveType, 0, 0);
         variableValues = new Vector3(DebugVariableValue, 0f, 0f);
+        goalVariableValues = new Vector3(DebugGoalVariableValue, 0f, 0f);
     }
 
     private Material GetMaterial()

@@ -10,40 +10,62 @@
 #define CosMask 1 << 1
 #define SawMask 1 << 2
 
+float CalcWaveYValue(float x, int3 waveTypes, float3 variableValues, out int waveCount);
 float MapTo0To2Pi(int waveType, float x, float v);
+bool CheckMask(int waveType, int mask);
+float Saw(float x, float v);
 
-void MapTo0To2Pi_float(int waveType, float x, float variableValue, out float Out)
+void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, out float Out)
 {
-    Out = MapTo0To2Pi(waveType, x, variableValue);
+    // Taking the x texture value ([0, 1]) and mapping it to [0, 2 pi]
+    float x = uV_x * 2.0 * PI;
+    
+    // Get the y value for the wave
+    int waveCount;
+    float waveY = CalcWaveYValue(x, waveTypes, variableValues, waveCount);
+    
+    // Each wave will give values between [-1, 1], so average the number of waves so the output stays in that range
+    if (waveCount > 1)
+        waveY /= waveCount;
+    
+    // We will decrease the range by a bit so we don't cut off at the top
+    waveY *= 0.8;
+    
+    // Figure out what the UV coordinate for this y would be (Mapping from from [-1, 1] to [0, 1])
+    float waveUV_y = (waveY / 2.0) + 0.5;
+    
+    float uVDiff = waveUV_y - uV_y;
+    uVDiff = abs(uVDiff);
+    
+    if (uVDiff < width)
+        Out = 1.0;
+    else
+        Out = 0.0;
 }
 
-void MapTo0To2Pi_float(float x, int3 waveTypes, float3 variableValues, out float Out)
+float CalcWaveYValue(float x, int3 waveTypes, float3 variableValues, out int waveCount)
 {
-    Out = 0.0;
+    float y = 0.0;
     
-    int count = 0;
+    waveCount = 0;
     if (waveTypes.r != 0)
     {
-        Out += MapTo0To2Pi(waveTypes.r, x, variableValues.r);
-        count++;
+        y += MapTo0To2Pi(waveTypes.r, x, variableValues.r);
+        waveCount++;
     }
     if (waveTypes.g != 0)
     {
-        Out += MapTo0To2Pi(waveTypes.g, x, variableValues.g);
-        count++;
+        y += MapTo0To2Pi(waveTypes.g, x, variableValues.g);
+        waveCount++;
     }
     if (waveTypes.b != 0)
     {
-        Out += MapTo0To2Pi(waveTypes.b, x, variableValues.b);
-        count++;
+        y += MapTo0To2Pi(waveTypes.b, x, variableValues.b);
+        waveCount++;
     }
     
-    if (count > 0)
-        Out = Out / count;
+    return y;
 }
-
-bool CheckMask(int waveType, int mask);
-float Saw(float x, float v);
 
 float MapTo0To2Pi(int waveType, float x, float v)
 {
