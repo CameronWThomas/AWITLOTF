@@ -1,12 +1,16 @@
 using System;
 using System.Linq;
 
-public delegate float WaveFunction(float x, float v);
-
 public class WaveInfo
 {
-    public WaveInfo(params WaveType[] waveTypes)
+    private static readonly float[] _variableValues = new float[]
     {
+        -5f, -2f, 1f, 3f, 7.3f
+    };
+
+    public WaveInfo(int startingVariableValueIndex, params WaveType[] waveTypes)
+    {
+        VariableValueIndex = startingVariableValueIndex;
         WaveTypes = waveTypes ?? Array.Empty<WaveType>();
     }
 
@@ -17,26 +21,32 @@ public class WaveInfo
         if (count < 0 || count > maxCount)
             throw new ArgumentException($"{nameof(count)} must be between [0, {maxCount}] ", nameof(count));
 
-        return waveTypes.Take(count).Select(x => new WaveInfo(x)).ToArray();
+        return waveTypes.Take(count).Select(x => new WaveInfo(2, x)).ToArray();
     }
 
-    public float VariableValue { get; set; } = 1f;
+    public int VariableValueIndex { get; private set; }
+    public float VariableValue => _variableValues[VariableValueIndex];
     public WaveType[] WaveTypes { get; }
 
-    public WaveInfo Copy() => new WaveInfo(WaveTypes) { VariableValue = VariableValue };
-}
-
-public class OLD_WaveInfo
-{
-    private const float DefaultVariableValue = 1f;
-
-    public OLD_WaveInfo(WaveType waveType, WaveFunction waveFunction)
+    public bool TryGetVariableValue(int index, out float value)
     {
-        WaveType = waveType;
-        WaveFunction = waveFunction;
+        value = float.NaN;
+        if (IsIndexValid(index))
+            value = _variableValues[index];
+
+        return float.IsNaN(value);
     }
 
-    public WaveType WaveType { get; }
-    public WaveFunction WaveFunction { get; }
-    public float VariableValue { get; set; } = DefaultVariableValue;
+    public bool TryUpdateVariableValue(int newIndex)
+    {
+        if (!IsIndexValid(newIndex))
+            return false;
+
+        VariableValueIndex = newIndex;
+        return true;
+    }
+
+    public WaveInfo Copy() => new WaveInfo(VariableValueIndex, WaveTypes);
+
+    private bool IsIndexValid(int index) => index >= 0 && index < _variableValues.Length;
 }

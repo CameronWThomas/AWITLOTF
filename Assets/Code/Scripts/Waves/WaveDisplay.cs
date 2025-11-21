@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -10,6 +11,9 @@ public class WaveDisplay : MonoBehaviour
     const string VariableValueName = "_VariableValue";
     const string WaveTypeName = "_WaveType";
 
+    [Header("Debug")]
+    public WaveType DebugWaveType = WaveType.Sin;
+    [Range(-5f, 5f)] public float DebugVariableValue = 1f;
 
     // Update is called once per frame
     void Update()
@@ -33,17 +37,21 @@ public class WaveDisplay : MonoBehaviour
         waveTypes = Vector3Int.zero;
         variableValues = Vector3.zero;
 
-        var values = new List<(int, float)>();
-        foreach (var waveInfo in wave.WaveInfos)
-        {
-            if (waveInfo == null)
-            {
-                values.Add((0, 0f));
-                continue;
-            }
+        var waveInfoAndDisplayVariableValues = wave.GetWaveInfosAndDisplayVariableValues();
 
-            var mask = waveInfo.WaveTypes.GetMask();
-            values.Add((mask, waveInfo.VariableValue));
+        var values = new List<(int, float)>();
+        for (var i = 0; i < 3; i++)
+        {
+            var displayVariableValue = 0f;
+            var mask = 0;
+            if (waveInfoAndDisplayVariableValues.Count > i)
+            {
+                WaveInfo waveInfo;
+                (waveInfo, displayVariableValue) = waveInfoAndDisplayVariableValues[i];
+                mask = waveInfo.WaveTypes.GetMask();
+            }
+            
+            values.Add((mask, displayVariableValue));
         }
 
         waveTypes = new Vector3Int(values[0].Item1, values[1].Item1, values[2].Item1);
@@ -52,8 +60,8 @@ public class WaveDisplay : MonoBehaviour
 
     private void GetDebugWaveTypesAndVariableValues(Wave wave, out Vector3 waveTypes, out Vector3 variableValues)
     {
-        waveTypes = new Vector3Int((int)wave.WaveTypeDebug, 0, 0);
-        variableValues = new Vector3(wave.VariableValueDebug, 0f, 0f);
+        waveTypes = new Vector3Int((int)DebugWaveType, 0, 0);
+        variableValues = new Vector3(DebugVariableValue, 0f, 0f);
     }
 
     private Material GetMaterial()

@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 212346121}
   - component: {fileID: 212346116}
   m_Layer: 0
-  m_Name: Wave2
+  m_Name: Wave3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,12 +360,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 212346114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892de5b746a9dfa4bad7dfa1d55bfc2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3532864ec56d9bc4ba9d4dc9586d1f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WaveUpdateDuration: 1
-  _waveType: 2
-  _variableValue: 3.49
+  WaveNum: 3
 --- !u!1 &257627933
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +501,7 @@ GameObject:
   - component: {fileID: 264748988}
   - component: {fileID: 264748987}
   m_Layer: 0
-  m_Name: Wave1
+  m_Name: Wave2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,12 +618,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 264748981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892de5b746a9dfa4bad7dfa1d55bfc2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3532864ec56d9bc4ba9d4dc9586d1f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WaveUpdateDuration: 1
-  _waveType: 4
-  _variableValue: 1.09
+  WaveNum: 2
 --- !u!1 &337540092
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +638,7 @@ GameObject:
   - component: {fileID: 337540099}
   - component: {fileID: 337540094}
   m_Layer: 0
-  m_Name: Wave3
+  m_Name: Wave1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,12 +755,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 337540092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892de5b746a9dfa4bad7dfa1d55bfc2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3532864ec56d9bc4ba9d4dc9586d1f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WaveUpdateDuration: 1
-  _waveType: 4
-  _variableValue: 1.36
+  WaveNum: 1
 --- !u!1 &429176029
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,8 +821,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveUpdateDuration: 1
-  _waveType: 4
-  _variableValue: 1.09
 --- !u!64 &429176033
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1164,8 +1159,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaveTypes: {r: 2, g: 0, b: 0, a: 0}
-    - _WaveVariableValues: {r: 3.49, g: 0, b: 0, a: 0}
+    - _WaveTypes: {r: 0, g: 0, b: 0, a: 0}
+    - _WaveVariableValues: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!1 &860138595
@@ -1426,8 +1421,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaveTypes: {r: 4, g: 0, b: 0, a: 0}
-    - _WaveVariableValues: {r: 1.36, g: 0, b: 0, a: 0}
+    - _WaveTypes: {r: 0, g: 0, b: 0, a: 0}
+    - _WaveVariableValues: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!21 &1435688774
@@ -1551,8 +1546,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaveTypes: {r: 4, g: 0, b: 0, a: 0}
-    - _WaveVariableValues: {r: 1.09, g: 0, b: 0, a: 0}
+    - _WaveTypes: {r: 0, g: 0, b: 0, a: 0}
+    - _WaveVariableValues: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!1 &1703063666
@@ -1616,8 +1611,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveUpdateDuration: 1
-  _waveType: 4
-  _variableValue: 1.09
 --- !u!64 &1703063670
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2044,9 +2037,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 337540093}
   - {fileID: 264748982}
   - {fileID: 212346115}
-  - {fileID: 337540093}
   - {fileID: 429176030}
   - {fileID: 1703063667}
   m_Father: {fileID: 0}
@@ -2066,8 +2059,8 @@ MonoBehaviour:
   ComponentWave1: {fileID: 264748988}
   ComponentWave2: {fileID: 212346121}
   ComponentWave3: {fileID: 337540099}
-  CombinedWave: {fileID: 429176032}
-  GoalWave: {fileID: 1703063669}
+  CombinedWave: {fileID: 0}
+  GoalWave: {fileID: 0}
 --- !u!21 &1749063913
 Material:
   serializedVersion: 8
