@@ -368,6 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveUpdateDuration: 1
   WaveNum: 3
+  PercentageChangeFactor: 0.25
 --- !u!1 &257627933
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveUpdateDuration: 1
   WaveNum: 2
+  PercentageChangeFactor: 0.25
 --- !u!1 &337540092
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveUpdateDuration: 1
   WaveNum: 1
+  PercentageChangeFactor: 0.25
 --- !u!1 &429176029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,6 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9327c1307e2a60448ea0d9ba584eeef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseDiscreteWaves: 0
   ComponentWave1: {fileID: 264748988}
   ComponentWave2: {fileID: 212346121}
   ComponentWave3: {fileID: 337540099}

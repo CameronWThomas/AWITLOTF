@@ -1,34 +1,35 @@
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 
 //TODO remove this. eventually Combined wave will be the thing that does all this
 public class GoalWave : Wave
 {
     private const int ComponentWavesCount = 3;
 
-    private readonly ComponentWave[] _componentWaves = new ComponentWave[ComponentWavesCount] { null, null, null };
-    private readonly int[] _goalVariableValueIndexes = new int[ComponentWavesCount] { 0, 0, 0 };
+    private readonly WaveInfo[] _goalWaveInfos = new WaveInfo[ComponentWavesCount] { null, null, null };
 
-    public override IReadOnlyList<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
+    public override IEnumerable<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
     {
-        var data = new List<(WaveInfo, float)>();
-        for (var i = 0; i < ComponentWavesCount; i++)
-        {
-            var waveInfo = _componentWaves[i].WaveInfo;
-            waveInfo.TryGetVariableValue(_goalVariableValueIndexes[i], out var value);
-            data.Add((waveInfo, value));
-        }
-
-        return data.ToArray();
+        foreach (var waveInfo in _goalWaveInfos)
+            yield return (waveInfo, waveInfo.VariableValue);
     }
 
     public void Initialize(ComponentWave componentWave1, ComponentWave componentWave2, ComponentWave componentWave3)
     {
-        _componentWaves[0] = componentWave1;
-        _componentWaves[1] = componentWave2;
-        _componentWaves[2] = componentWave3;
+        _goalWaveInfos[0] = componentWave1.WaveInfo.Copy();
+        _goalWaveInfos[1] = componentWave2.WaveInfo.Copy();
+        _goalWaveInfos[2] = componentWave3.WaveInfo.Copy();
+        foreach (var goalWaveInfo in _goalWaveInfos)
+            goalWaveInfo.SetRandomVariableValue();
+    }
 
-        _goalVariableValueIndexes[0] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount - 1);
-        _goalVariableValueIndexes[1] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount - 1);
-        _goalVariableValueIndexes[2] = RandomHelper.Between(0, WaveInfo.VariableValueIndexCount - 1);
+    protected override IEnumerable<WaveInfo> GetWaveInfos()
+    {
+        foreach (var waveInfo in _goalWaveInfos.Where(x => x != null))
+            yield return waveInfo;
     }
 }
+
+[CustomEditor(typeof(GoalWave))]
+public class GoalWaveEditor : WaveEditor { }

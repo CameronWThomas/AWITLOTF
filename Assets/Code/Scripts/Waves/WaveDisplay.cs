@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //[ExecuteInEditMode]
@@ -10,7 +11,7 @@ public class WaveDisplay : MonoBehaviour
     const string DisplayGoalVariableValues = "_DisplayGoalVariableValues";
 
     [Header("Debug")]
-    public WaveType DebugWaveType = WaveType.Sin;
+    public WaveType DebugWaveType = WaveType.Wave1;
     [Range(-5f, 5f)] public float DebugVariableValue = 1f;
     [Range(-5f, 5f)] public float DebugGoalVariableValue = 1f;
 
@@ -44,18 +45,18 @@ public class WaveDisplay : MonoBehaviour
         waveTypes = Vector3Int.zero;
         variableValues = Vector3.zero;
 
-        var waveInfoAndDisplayVariableValues = wave.GetWaveInfosAndDisplayVariableValues();
+        var waveInfoAndDisplayVariableValues = wave.GetWaveInfosAndDisplayVariableValues().ToArray();
 
         var values = new List<(int, float)>();
         for (var i = 0; i < 3; i++)
         {
             var displayVariableValue = 0f;
             var mask = 0;
-            if (waveInfoAndDisplayVariableValues.Count > i)
+            if (waveInfoAndDisplayVariableValues.Length > i)
             {
                 WaveInfo waveInfo;
                 (waveInfo, displayVariableValue) = waveInfoAndDisplayVariableValues[i];
-                mask = waveInfo.WaveTypes.GetMask();
+                mask = waveInfo.WaveType.GetMask();
             }
             
             values.Add((mask, displayVariableValue));

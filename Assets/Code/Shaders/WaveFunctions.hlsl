@@ -6,9 +6,9 @@
 #define PI 3.141592654
 
 // Masks used to check which waves to add together
-#define SinMask 1
-#define CosMask 1 << 1
-#define SawMask 1 << 2
+#define Wave1Mask 1
+#define Wave2Mask 1 << 1
+#define Wave3Mask 1 << 2
 
 float CalcWaveYValue(float x, int3 waveTypes, float3 variableValues, out int waveCount);
 float MapTo0To2Pi(int waveType, float x, float v);
@@ -72,19 +72,22 @@ float MapTo0To2Pi(int waveType, float x, float v)
     int wavesApplied = 0;
     float returnValue = 0.0;
     
-    if (CheckMask(waveType, SinMask))
+    if (CheckMask(waveType, Wave1Mask))
     {
         returnValue += sin(x * v);
         wavesApplied++;
     }
-    if (CheckMask(waveType, CosMask))
+    if (CheckMask(waveType, Wave2Mask))
     {
-        returnValue += cos(x * v);
+        returnValue += cos(pow(x, v));
         wavesApplied++;
     }
-    if (CheckMask(waveType, SawMask))
+    if (CheckMask(waveType, Wave3Mask))
     {
-        returnValue += Saw(x, v);
+        float cosinePart = cos(2.0 * x * v);
+        float otherPart = pow(v, 2.0) * x;
+        returnValue += sin(otherPart + cosinePart);
+        //returnValue += Saw(x, v);
         wavesApplied++;
     }
     

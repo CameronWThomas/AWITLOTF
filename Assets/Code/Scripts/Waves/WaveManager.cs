@@ -1,8 +1,10 @@
-using System.Linq;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    public bool UseDiscreteWaves = false;
+
+    [Header("Wave Objects")]
     public ComponentWave ComponentWave1;
     public ComponentWave ComponentWave2;
     public ComponentWave ComponentWave3;
@@ -12,7 +14,10 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        var waveInfos = WaveInfo.GetRandoms(3);
+        WaveInfo[] waveInfos = UseDiscreteWaves
+            ? DiscreteWaveInfo.GetRandoms(3)
+            : ContinuousWaveInfo.GetRandoms(3);
+
         ComponentWave1.SetWaveInfo(waveInfos[0]);
         ComponentWave2.SetWaveInfo(waveInfos[1]);
         ComponentWave3.SetWaveInfo(waveInfos[2]);
