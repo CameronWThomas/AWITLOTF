@@ -10,12 +10,48 @@
 #define Wave2Mask 1 << 1
 #define Wave3Mask 1 << 2
 
+float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise);
+float GetYWaveValue(float uV_x, int3 waveTypes, float3 variableValues);
+
+
 float CalcWaveYValue(float x, int3 waveTypes, float3 variableValues, out int waveCount);
 float MapTo0To2Pi(int waveType, float x, float v);
 bool CheckMask(int waveType, int mask);
 float Saw(float x, float v);
 
 void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, out float Out)
+{
+    Out = IsCoordinateInWave(uV_x, uV_y, width, waveTypes, variableValues, 0.0, 0.0);
+}
+
+void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise, out float Out)
+{
+    Out = IsCoordinateInWave(uV_x, uV_y, width, waveTypes, variableValues, distortionFactor, noise);
+}
+
+float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise)
+{
+    distortionFactor = pow(clamp(distortionFactor, 0, 1.0), 2) * -1.2;
+
+    float waveY = GetYWaveValue(uV_x, waveTypes, variableValues);
+    float extraDistortion = waveY * noise * distortionFactor;
+    waveY += extraDistortion;
+    
+    // Figure out what the UV coordinate for this y would be (Mapping from from [-1, 1] to [0, 1])
+    float waveUV_y = (waveY / 2.0) + 0.5;
+    
+    // Find distance between actual y uv value and the one we created
+    // TODO this has issues because of sampling intervals. I need to figure out a new solution
+    float uVDiff = waveUV_y - uV_y;
+    uVDiff = abs(uVDiff);
+    
+    if (uVDiff < width)
+        return 1.0;
+    else
+        return 0.0;
+}
+
+float GetYWaveValue(float uV_x, int3 waveTypes, float3 variableValues)
 {
     // Taking the x texture value ([0, 1]) and mapping it to [0, 2 pi]
     float x = uV_x * 2.0 * PI;
@@ -29,19 +65,9 @@ void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveType
         waveY /= waveCount;
     
     // We will decrease the range by a bit so we don't cut off at the top
-    waveY *= 0.8;
-    
-    // Figure out what the UV coordinate for this y would be (Mapping from from [-1, 1] to [0, 1])
-    float waveUV_y = (waveY / 2.0) + 0.5;
-    
-    float uVDiff = waveUV_y - uV_y;
-    uVDiff = abs(uVDiff);
-    
-    if (uVDiff < width)
-        Out = 1.0;
-    else
-        Out = 0.0;
+    return waveY * 0.8;
 }
+
 
 float CalcWaveYValue(float x, int3 waveTypes, float3 variableValues, out int waveCount)
 {

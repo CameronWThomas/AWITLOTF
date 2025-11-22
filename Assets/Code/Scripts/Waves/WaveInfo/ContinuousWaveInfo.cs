@@ -32,6 +32,8 @@ public class ContinuousWaveInfo : WaveInfo
     /// </summary>
     public float Percentage { get; private set; }
 
+    public float OverallPercentageChanges { get; private set; } = 0f;
+
     public override float VariableValue => GetPercentageValue(Percentage);
 
     public override void SetRandomVariableValue() => SetPercentage(RandomHelper.Between(0f, 100f));
@@ -40,7 +42,10 @@ public class ContinuousWaveInfo : WaveInfo
 
     public void SetPercentage(float percentage)
     {
+        var lastPercentage = Percentage;
         Percentage = Mathf.Clamp(percentage, 0f, 100f);
+
+        OverallPercentageChanges += Mathf.Abs(Percentage - lastPercentage);
     }
 
     public void ChangePercentage(float delta)
