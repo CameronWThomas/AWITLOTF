@@ -268,8 +268,260 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BaseGob
+        weight: 1
+      - path: BaseGob/arm.control.l
+        weight: 1
+      - path: BaseGob/arm.control.l/arm.control.l_end
+        weight: 1
+      - path: BaseGob/arm.control.r
+        weight: 1
+      - path: BaseGob/arm.control.r/arm.control.r_end
+        weight: 1
+      - path: BaseGob/leg.control.l
+        weight: 1
+      - path: BaseGob/leg.control.l/leg.control.l_end
+        weight: 1
+      - path: BaseGob/leg.control.r
+        weight: 1
+      - path: BaseGob/leg.control.r/leg.control.r_end
+        weight: 1
+      - path: BaseGob/root
+        weight: 1
+      - path: BaseGob/root/elbow.point.l
+        weight: 1
+      - path: BaseGob/root/elbow.point.l/elbow.point.l_end
+        weight: 1
+      - path: BaseGob/root/elbow.point.r
+        weight: 1
+      - path: BaseGob/root/elbow.point.r/elbow.point.r_end
+        weight: 1
+      - path: BaseGob/root/knee.point.l
+        weight: 1
+      - path: BaseGob/root/knee.point.l/knee.point.l_end
+        weight: 1
+      - path: BaseGob/root/knee.point.r
+        weight: 1
+      - path: BaseGob/root/knee.point.r/knee.point.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis
+        weight: 1
+      - path: BaseGob/root/pelvis/core
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest
+        weight: 1
+      - path: 'BaseGob/root/pelvis/core/abdomen/chest/neck '
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/ear-1.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/ear-1.l/ear-1.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/ear-1.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/ear-1.r/ear-1.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eye.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eye.l/eye.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eye.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eye.r/eye.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eyelid-lower.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eyelid-lower.l/eyelid-lower.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eyelid-lower.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eyelid-lower.r/eyelid-lower.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eyelid-upper.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eyelid-upper.l/eyelid-upper.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eyelid-upper.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/eyelid-upper.r/eyelid-upper.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/lower-jaw
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/lower-jaw/lower-jaw_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/Schnoz
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/Schnoz/Schnoz_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/upper-jaw
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/neck /head/upper-jaw/upper-jaw_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/holdPoint.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/holdPoint.l/holdPoint.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/pointer.prox.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/pointer.prox.l/pointer.dist.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/pointer.prox.l/pointer.dist.l/pointer.dist.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/ring.prox.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/ring.prox.l/ring.dist.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/ring.prox.l/ring.dist.l/ring.dist.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/thumb.prox.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/thumb.prox.l/thumb.dist.l
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.l/bicep.l/forearm.l/hand.l/thumb.prox.l/thumb.dist.l/thumb.dist.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/holdPoint.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/holdPoint.r/holdPoint.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/pointer.prox.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/pointer.prox.r/pointer.dist.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/pointer.prox.r/pointer.dist.r/pointer.dist.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/ring.prox.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/ring.prox.r/ring.dist.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/ring.prox.r/ring.dist.r/ring.dist.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/thumb.prox.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/thumb.prox.r/thumb.dist.r
+        weight: 1
+      - path: BaseGob/root/pelvis/core/abdomen/chest/shoulder.r/bicep.r/forearm.r/hand.r/thumb.prox.r/thumb.dist.r/thumb.dist.r_end
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.l
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.l/thigh.l
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.l/thigh.l/calf.l
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.l/thigh.l/calf.l/foot.1.l
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.l/thigh.l/calf.l/foot.1.l/foot.2.l
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.l/thigh.l/calf.l/foot.1.l/foot.2.l/foot.2.l_end
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.r
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.r/thigh.r
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.r/thigh.r/calf.r
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.r/thigh.r/calf.r/foot.1.r
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.r/thigh.r/calf.r/foot.1.r/foot.2.r
+        weight: 1
+      - path: BaseGob/root/pelvis/hips.r/thigh.r/calf.r/foot.1.r/foot.2.r/foot.2.r_end
+        weight: 1
+      - path: CellPhone
+        weight: 1
+      - path: DB-2-Fishnet
+        weight: 1
+      - path: DB-2-Hair-Nrml
+        weight: 1
+      - path: DB-2-Head
+        weight: 1
+      - path: DB-2-Jeans
+        weight: 1
+      - path: DB-2-Shirt
+        weight: 1
+      - path: DB-3
+        weight: 1
+      - path: DB-3-BucketHat
+        weight: 1
+      - path: DB-3-Pants
+        weight: 1
+      - path: DB-3-T-Shirt
+        weight: 1
+      - path: DB-Beanie
+        weight: 1
+      - path: DB-BomberJacket
+        weight: 1
+      - path: DB-Jeans
+        weight: 1
+      - path: DB-Remainder
+        weight: 1
+      - path: F-Arms
+        weight: 1
+      - path: F-Hands
+        weight: 1
+      - path: F-Head
+        weight: 1
+      - path: F-LongPants-Skirt
+        weight: 1
+      - path: F-LongPants-Std
+        weight: 1
+      - path: F-LongShirt-Business
+        weight: 1
+      - path: F-Shoes
+        weight: 1
+      - path: F-ShortShirt-Fancy
+        weight: 1
+      - path: F-ShortShirt-Tshirt
+        weight: 1
+      - path: M-Arms
+        weight: 1
+      - path: M-Arms-Fishy
+        weight: 1
+      - path: M-Hands
+        weight: 1
+      - path: M-Hands-fishy
+        weight: 1
+      - path: M-Head
+        weight: 1
+      - path: M-Head-fishy
+        weight: 1
+      - path: M-LongPants-Bellbottoms
+        weight: 1
+      - path: M-LongPants-Standard
+        weight: 1
+      - path: M-LongShirt-Buisness
+        weight: 1
+      - path: M-LongShirt-Jacket&Undershirt
+        weight: 1
+      - path: M-LongShirt-Shirt&Undershirt
+        weight: 1
+      - path: M-Shoes
+        weight: 1
+      - path: M-Shoes-Fishy
+        weight: 1
+      - path: M-ShortShirt-Tshirt
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
