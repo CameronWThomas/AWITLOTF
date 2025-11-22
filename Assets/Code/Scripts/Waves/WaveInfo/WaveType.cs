@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum WaveType
@@ -9,6 +11,8 @@ public enum WaveType
     Wave2 = 1 << 1,
     Wave3 = 1 << 2,
 }
+
+public delegate float WaveFunctionDelegate(float x, float variableValue);
 
 public static class WaveTypeExtensions
 {
@@ -52,6 +56,17 @@ public static class WaveTypeExtensions
             WaveType.Wave2 => new(1f, 2.5f),
             WaveType.Wave3 => new(.75f, 1.75f),
             _ => Vector2.zero
+        };
+    }
+
+    public static WaveFunctionDelegate GetWaveFunction(this WaveType waveType)
+    {
+        return waveType switch
+        {
+            WaveType.Wave1 => (x, v) => Mathf.Sin(x * v),
+            WaveType.Wave2 => (x, v) => Mathf.Cos(Mathf.Pow(x, v)),
+            WaveType.Wave3 => (x, v) => Mathf.Sin(Mathf.Cos(2f * x * v) + Mathf.Pow(v, 2f) * x),
+            _ => throw new NotImplementedException()
         };
     }
 }

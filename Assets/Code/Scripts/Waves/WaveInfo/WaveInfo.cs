@@ -13,6 +13,12 @@ public abstract class WaveInfo
 
     public abstract void SetRandomVariableValue();
     public abstract WaveInfo Copy();
+
+    public float Calculate(float x)
+    {
+        var waveFunction = WaveType.GetWaveFunction();
+        return waveFunction(x, VariableValue);
+    }
 }
 
 public class DiscreteWaveInfo : WaveInfo
