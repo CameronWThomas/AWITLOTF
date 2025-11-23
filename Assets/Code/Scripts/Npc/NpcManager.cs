@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace AWITLOTF.Assets.Code.Scripts.Npc
@@ -14,10 +17,20 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public List<NpcTarget> pedestrianQueues;
         public List<NpcTarget> tsaPositions;
 
+        [Header("Dialogue Stuff")]
+        public TextMeshPro dialogueText;
+
+        public List<TextAsset> randomDialogueAssets;
+
+        public String dialogueString;
+        public int currentDialogueLineIndex = 0;
+        public string currentDialogueLine;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             SetUpInitialTargets();
+            dialogueText.text = "";
 
         }
 
@@ -35,27 +48,66 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         }
 
-    public void AdvanceQueue()
-    {
-        if (currentPedestrianIndex < pedestrians.Count)
+        public void AdvanceQueue()
         {
-            pedestrians[currentPedestrianIndex].SetTarget(teleporterPosition);
-            currentPedestrianIndex++;
-
-            //advance everyone else in the queue
-            for (int i = currentPedestrianIndex; i < pedestrians.Count; i++)
+            if (currentPedestrianIndex < pedestrians.Count)
             {
-                pedestrians[i].SetTarget(pedestrianQueues[i - currentPedestrianIndex]);
+                pedestrians[currentPedestrianIndex].SetTarget(teleporterPosition);
+                currentPedestrianIndex++;
+
+                //advance everyone else in the queue
+                for (int i = currentPedestrianIndex; i < pedestrians.Count; i++)
+                {
+                    pedestrians[i].SetTarget(pedestrianQueues[i - currentPedestrianIndex]);
+                }
+                LoadRandomDialogueAsset();
+
+                StartCoroutine(WaitAndAdvanceDialogue(-1f));
+
             }
+        }    
 
-        }
-        else
+        public IEnumerator WaitAndAdvanceDialogue(float waitTime)
         {
-            Debug.Log("All pedestrians have been advanced.");
+            if(waitTime <= 0f)
+            {
+                waitTime = UnityEngine.Random.Range(2f, 10f);
+            }
+            yield return new WaitForSeconds(waitTime);
+            AdvanceDialogueLine();
+        }
 
+        public void AdvanceDialogueLine()
+        {
+            string[] dialogueLines = dialogueString.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            if (currentDialogueLineIndex < dialogueLines.Length)
+            {
+                currentDialogueLine = dialogueLines[currentDialogueLineIndex];
+                currentDialogueLineIndex++;
+
+                dialogueText.text = currentDialogueLine;
+
+                StartCoroutine(WaitAndAdvanceDialogue(-1f));
+            }
+            else
+            {
+                //Reset dialogue
+                currentDialogueLineIndex++;
+                dialogueText.text = "";
+            }
+        }
+
+        public void LoadRandomDialogueAsset()
+        {
+            int randomIndex = UnityEngine.Random.Range(0, randomDialogueAssets.Count);
+            TextAsset selectedDialogue = randomDialogueAssets[randomIndex];
+            dialogueString = selectedDialogue.text;
 
         }
-    }        // Update is called once per frame
+
+
+        
+
         void Update()
         {
 
