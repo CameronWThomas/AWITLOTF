@@ -1,42 +1,54 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 public class Wave : MonoBehaviour
 {
-    [Range(.1f, 2f)] public float WaveUpdateDuration = 1f;
-    public bool IsGoalWave = false;
+    [Header("Display Attributes")]
+    [Range(.1f, 2f)] public float WaveUpdateDuration = .25f;
 
-    [Header("Debug)")]
-    public WaveType WaveTypeDebug = WaveType.Sin;
-    [Range(0f, 5f)] public float VariableValueDebug = 1f;
-    public bool PrintWaveInfo = false;
+    public virtual IEnumerable<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues() => Array.Empty<(WaveInfo, float)>();
 
-    readonly WaveInfo[] _waveInfos = new WaveInfo[3];
-
-    public WaveInfo[] WaveInfos => _waveInfos;
-
-    public void SetWaveInfos(WaveInfo waveInfo1, WaveInfo waveInfo2 = null, WaveInfo waveInfo3 = null)
+    public string GetWaveInfoString()
     {
-        if (waveInfo1 != null) _waveInfos[0] = waveInfo1;
-        if (waveInfo2 != null) _waveInfos[1] = waveInfo2;
-        if (waveInfo3 != null) _waveInfos[2] = waveInfo3;
+        var waveInfos = GetWaveInfos().Where(x => x != null).ToArray();
+        var stringBuilder = new StringBuilder();
+
+        stringBuilder.AppendLine($"{name} {nameof(WaveInfo)}s ({waveInfos.Length})");
+        foreach (var waveInfo in waveInfos)
+            stringBuilder.AppendLine($"x{waveInfo.VariableValue}: {waveInfo.WaveType.DisplayString()}");
+
+        return stringBuilder.ToString();
     }
 
-    private void Update()
+    protected virtual IEnumerable<WaveInfo> GetWaveInfos() => Array.Empty<WaveInfo>();
+
+    protected void PrintWaveInfo(params WaveInfo[] waveInfos)
     {
-        if (PrintWaveInfo)
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine($"{name} {nameof(WaveInfo)}s ({waveInfos.Length})");
+        foreach (var waveInfo in waveInfos)
+            stringBuilder.AppendLine($"x{waveInfo.VariableValue}: {waveInfo.WaveType.DisplayString()}");
+
+        Debug.Log(stringBuilder);
+    }
+}
+
+[CustomEditor(typeof(Wave))]
+public class WaveEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        if (target is Wave wave)
         {
-            PrintWaveInfo = false;
-            foreach (var waveInfo in _waveInfos.Where(x => x != null))
-                Debug.Log($"{string.Join(",", waveInfo.WaveTypes)} - {waveInfo.VariableValue}");
+            var waveInfoString = wave.GetWaveInfoString();
+            foreach (var line in waveInfoString.Split(Environment.NewLine))
+                EditorGUILayout.LabelField(line);
         }
-
-        if (IsGoalWave)
-            return;
-
-        // probably will remove this. We shall see
-        foreach (var waveInfo in _waveInfos.Where(x => x != null))
-            waveInfo.VariableValue = VariableValueDebug;
     }
 }
