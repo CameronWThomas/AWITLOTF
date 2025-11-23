@@ -8,7 +8,7 @@ using UnityEngine;
 public class ComponentWave : Wave
 {
     [Header("Component Wave")]
-    [Range(1, 3)] public int WaveNum = 1;
+    public WaveTrait WaveTrait = WaveTrait.Body;
 
     [Header("Continuous Wave Settings")]
     [Range(.001f, 1f)]public float PercentageChangeFactor = .25f;
@@ -17,6 +17,7 @@ public class ComponentWave : Wave
     private float _discreteDisplayVariableValue = 0f;
 
     public WaveInfo WaveInfo { get; private set; }
+    public WaveType WaveType => WaveTrait.ToWaveType();
 
     public override IEnumerable<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
     {
@@ -118,14 +119,14 @@ public class ComponentWave : Wave
 
     private int GetInputChange()
     {
-        if (!InputDict.ContainsKey(WaveNum))
+        if (!InputDict.ContainsKey((int)WaveTrait))
         {
-            Debug.LogError($"{name} - Bad wave num ({WaveNum})");
+            Debug.LogError($"{name} - Bad wave num ({WaveTrait})");
             enabled = false;
             return 0;
         }
 
-        var (upKey, downKey) = InputDict[WaveNum];
+        var (upKey, downKey) = InputDict[(int)WaveTrait];
 
         var change = 0;
         if (Input.GetKey(upKey))

@@ -17,6 +17,9 @@ public class ContinuousWaveInfo : WaveInfo
         _valueRange = minMax.y - minMax.x;
     }
 
+    public static ContinuousWaveInfo[] Create(params WaveType[] waveTypes)
+        => waveTypes.Select(x => new ContinuousWaveInfo(50f, x)).ToArray();
+
     public static ContinuousWaveInfo[] GetRandoms(int count)
     {
         var waveTypes = EnumHelper.GetValues<WaveType>().Randomize();
@@ -24,7 +27,7 @@ public class ContinuousWaveInfo : WaveInfo
         if (count < 0 || count > maxCount)
             throw new ArgumentException($"{nameof(count)} must be between [0, {maxCount}] ", nameof(count));
 
-        return waveTypes.Take(count).Select(x => new ContinuousWaveInfo(50f, x)).ToArray();
+        return Create(waveTypes.Take(count).ToArray());
     }
 
     /// <summary>

@@ -8,8 +8,6 @@ public class WaveManager : MonoBehaviour
     private const string DistortionFactor = "_DistortionFactor";
     private const string TimeValueName = "_TimeValue";
 
-    public bool UseDiscreteWaves = false;
-
     [Header("Wave Objects")]
     public ComponentWave ComponentWave1;
     public ComponentWave ComponentWave2;
@@ -66,9 +64,7 @@ public class WaveManager : MonoBehaviour
 
     private void ReinitializeWaves()
     {
-        WaveInfo[] waveInfos = UseDiscreteWaves
-            ? DiscreteWaveInfo.GetRandoms(3)
-            : ContinuousWaveInfo.GetRandoms(3);
+        var waveInfos = ContinuousWaveInfo.Create(ComponentWave1.WaveType, ComponentWave2.WaveType, ComponentWave3.WaveType);
 
         ComponentWave1.SetWaveInfo(waveInfos[0]);
         ComponentWave2.SetWaveInfo(waveInfos[1]);
