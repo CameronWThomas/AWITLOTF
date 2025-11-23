@@ -13,6 +13,10 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         public NpcTarget currentTarget;
 
+        [Header("Face Camera Stuff")]
+        public Transform headTransform;
+        public Transform camSpotTransform;
+
         [Header("Animation Settings")]
         public AnimationType animationType = AnimationType.Normal;
         public enum AnimationType
@@ -373,6 +377,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
                 }
             }
+        }
+
+        public void SetTalking(bool isTalking)
+        {
+            anim.SetBool("talking", isTalking);   
         }
 
     }
