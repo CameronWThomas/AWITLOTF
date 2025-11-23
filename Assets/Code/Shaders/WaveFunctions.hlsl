@@ -10,8 +10,8 @@
 #define Wave2Mask 1 << 1
 #define Wave3Mask 1 << 2
 
-float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise);
-float GetYWaveValue(float uV_x, int3 waveTypes, float3 variableValues);
+float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise, float timeValue);
+float GetYWaveValue(float uV_x, int3 waveTypes, float3 variableValues, out float x);
 
 
 float CalcWaveYValue(float x, int3 waveTypes, float3 variableValues, out int waveCount);
@@ -21,19 +21,20 @@ float Saw(float x, float v);
 
 void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, out float Out)
 {
-    Out = IsCoordinateInWave(uV_x, uV_y, width, waveTypes, variableValues, 0.0, 0.0);
+    Out = IsCoordinateInWave(uV_x, uV_y, width, waveTypes, variableValues, 0.0, 0.0, 0.0);
 }
 
-void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise, out float Out)
+void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise, float timeValue, out float Out)
 {
-    Out = IsCoordinateInWave(uV_x, uV_y, width, waveTypes, variableValues, distortionFactor, noise);
+    Out = IsCoordinateInWave(uV_x, uV_y, width, waveTypes, variableValues, distortionFactor, noise, timeValue);
 }
 
-float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise)
+float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise, float timeValue)
 {
     distortionFactor = pow(clamp(distortionFactor, 0, 1.0), 2) * -1.2;
 
-    float waveY = GetYWaveValue(uV_x, waveTypes, variableValues);
+    float x;
+    float waveY = GetYWaveValue(uV_x, waveTypes, variableValues, x);
     float extraDistortion = waveY * noise * distortionFactor;
     waveY += extraDistortion;
     
@@ -45,16 +46,27 @@ float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, fl
     float uVDiff = waveUV_y - uV_y;
     uVDiff = abs(uVDiff);
     
+    float xTime = timeValue % (2.0 * PI);    
+    float xDiff = xTime - x;
+    
+    float modifier = 1.0;
+    if (timeValue < 2.0 * PI && xDiff < 0.0)
+        modifier = 0.0;
+    else if (xDiff > 0.0 && xDiff < .25f)
+        modifier = 1.0;
+    else
+        modifier = .5;
+    
     if (uVDiff < width)
-        return 1.0;
+        return 1.0 * modifier;
     else
         return 0.0;
 }
 
-float GetYWaveValue(float uV_x, int3 waveTypes, float3 variableValues)
+float GetYWaveValue(float uV_x, int3 waveTypes, float3 variableValues, out float x)
 {
     // Taking the x texture value ([0, 1]) and mapping it to [0, 2 pi]
-    float x = uV_x * 2.0 * PI;
+    x = uV_x * 2.0 * PI;
     
     // Get the y value for the wave
     int waveCount;

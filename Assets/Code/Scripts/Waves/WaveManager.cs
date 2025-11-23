@@ -6,6 +6,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     private const string DistortionFactor = "_DistortionFactor";
+    private const string TimeValueName = "_TimeValue";
 
     public bool UseDiscreteWaves = false;
 
@@ -19,6 +20,9 @@ public class WaveManager : MonoBehaviour
 
     [Header("Distoration related")]
     [Range(1f, 1200f)] public float PercentageChangeMaxDistoration = 300f;
+
+    [Header("Moving wave stuff")]
+    [Range(0f, 50f)] public float WaveSpeedModifier = .5f;
 
     [Header("Goal checking")]
     [Range(0f, 2f)] public float SuccessDistance = .4f;
@@ -41,6 +45,7 @@ public class WaveManager : MonoBehaviour
         return change;
     }
 
+    private float time = -1f;
     private void Update()
     {
         // For now, just pressing space submits the waves
@@ -48,6 +53,12 @@ public class WaveManager : MonoBehaviour
         {
             SubmitWaves();
         }
+
+        if (time < 0f)
+            time = Time.time;
+
+        time += Time.deltaTime * WaveSpeedModifier;
+        Shader.SetGlobalFloat(TimeValueName, time);
 
         var percentage = GetPercentageChange() / PercentageChangeMaxDistoration;
         SetDistortionPercentage(percentage);

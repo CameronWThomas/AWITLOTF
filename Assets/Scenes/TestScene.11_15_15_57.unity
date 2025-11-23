@@ -1438,6 +1438,10 @@ MonoBehaviour:
   CombinedWave: {fileID: 429176036}
   GoalWave: {fileID: 429176037}
   PercentageChangeMaxDistoration: 800
+  WaveSpeedModifier: 15
+  SuccessDistance: 0.05
+  SuccessIntervals: 11
+  NeededSuccessPercentage: 0.75
 --- !u!43 &2063746913
 Mesh:
   m_ObjectHideFlags: 0
