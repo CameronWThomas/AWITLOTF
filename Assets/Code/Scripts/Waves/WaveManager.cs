@@ -58,7 +58,7 @@ public class WaveManager : MonoBehaviour
         Shader.SetGlobalFloat(TimeValueName, time);
 
         var percentage = GetPercentageChange() / PercentageChangeMaxDistoration;
-        SetDistortionPercentage(percentage);
+        SetDistortionPercentage(Mathf.Clamp01(percentage));
     }    
 
     private void ReinitializeWaves()

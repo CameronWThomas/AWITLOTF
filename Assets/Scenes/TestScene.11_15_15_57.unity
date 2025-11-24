@@ -1640,7 +1640,7 @@ MonoBehaviour:
   CombinedWave: {fileID: 429176036}
   GoalWave: {fileID: 429176037}
   PercentageChangeMaxDistoration: 800
-  EnableDistoration: 0
+  EnableDistoration: 1
   WaveSpeedModifier: 5
 --- !u!114 &1735092516
 MonoBehaviour:

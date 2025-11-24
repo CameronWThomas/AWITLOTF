@@ -62,9 +62,14 @@ public class WaveSuccessChecker : MonoBehaviour
             resultOutput.AppendLine($"({successChar})|{intervalPoint:F2}: g={goalValue:F2} u={userValue:F2} ({Mathf.Abs(diff):F2})");
         }
 
-        resultOutput.AppendLine($"Successes: {successCount}/{intervalPoints.Length}");
-
         Debug.Log(resultOutput.ToString());
+        resultOutput.Clear();
+
+        var overallSuccess = successCount >= intervalPoints.Length * NeededSuccessPercentage;
+        var overallSuccessChar = overallSuccess ? '+' : '-';
+        resultOutput.AppendLine($"({overallSuccessChar})|Successes: {successCount}/{intervalPoints.Length}");
+        Debug.Log(resultOutput.ToString());
+
     }
 
     private IEnumerable<float> GetIntervalPoint()

@@ -54,9 +54,9 @@ public class WaveInput : MonoBehaviour
         var (upKey, downKey) = InputDict[(int)componentWave.WaveTrait];
 
         if (Input.GetKey(upKey))
-            inputChange++;
-        if (Input.GetKey(downKey))
             inputChange--;
+        if (Input.GetKey(downKey))
+            inputChange++;
 
         return inputChange != 0;
     }

@@ -113,7 +113,7 @@ float2 CalculateWaveCoordinate(float x, float3 variableValues, int3 waveTypes)
 
 //TODO save the last variable values so we can use that to show the last drawn wave
 
-void IsInWave_float(float4 uV, int3 waveTypes, float3 variableValues, float width, float distortionFactor, float noise, float timeValue, out float Out)
+void IsInWave_float(float4 uV, int3 waveTypes, float3 variableValues, float distortionPercent, float noise, float timeValue, out float Out)
 {
     // Get the coordinate x:[0, 2pi] y:[-1, 1]
     float2 coordinate = ConvertUVToCoordinate(uV.xy);    
@@ -124,6 +124,10 @@ void IsInWave_float(float4 uV, int3 waveTypes, float3 variableValues, float widt
     // Get the coordinate of the wave with our current x
     float2 waveCoordinate = CalculateWaveCoordinate(coordinate.x, variableValues, waveTypes);
     
+    // Factor in noise. We are only going to factor in up to 50% noise. At 50% its pretty much impossible
+    float correctedDistorationPerecent = distortionPercent * .5;
+    waveCoordinate.y = lerp(waveCoordinate.y, noise, correctedDistorationPerecent);
+        
     // How far away are we on the y axis. This is the core factor we use to determine if we are in the wave
     float diff = abs(waveCoordinate.y - coordinate.y);
     
