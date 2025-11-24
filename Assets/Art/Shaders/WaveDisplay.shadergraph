@@ -10,9 +10,6 @@
             "m_Id": "d7fccbf956274b45a61714ebd28ca0db"
         },
         {
-            "m_Id": "6e207e04311f4b95b16fe10d79d3f027"
-        },
-        {
             "m_Id": "775dce51a7e243618c34f5166b142d57"
         },
         {
@@ -829,9 +826,6 @@
         },
         {
             "m_Id": "d7fccbf956274b45a61714ebd28ca0db"
-        },
-        {
-            "m_Id": "6e207e04311f4b95b16fe10d79d3f027"
         },
         {
             "m_Id": "775dce51a7e243618c34f5166b142d57"
@@ -2303,34 +2297,6 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
-    }
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "6e207e04311f4b95b16fe10d79d3f027",
-    "m_Guid": {
-        "m_GuidSerialized": "b0398637-5861-40a9-869d-699c08295848"
-    },
-    "m_Name": "Width",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Width",
-    "m_DefaultReferenceName": "_Width",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 0.10000000149011612,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
     }
 }
 

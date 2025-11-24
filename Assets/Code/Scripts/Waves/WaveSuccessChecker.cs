@@ -19,8 +19,6 @@ public class WaveSuccessChecker : MonoBehaviour
     private void Update()
     {
         Shader.SetGlobalFloat("_IntervalCount", SuccessIntervals);
-        Shader.SetGlobalFloat("_ShowIntervals", ShowIntevals ? 1f : 0f);
-        Shader.SetGlobalFloat("_GoalWidth", SuccessDistance);
     }
 
     public void CheckWaveSuccess(GoalWave goalWave, CombinedWave combinedWave)
