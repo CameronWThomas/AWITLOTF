@@ -17,6 +17,9 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public List<NpcTarget> pedestrianQueues;
         public List<NpcTarget> tsaPositions;
 
+        public TeleporterSphere teleporterSphere;
+        public Coroutine dialogueCoroutine;
+
         [Header("World Modifiers")]
         public bool rhotacism = false;
         public bool smoothBrained = false;
@@ -66,7 +69,9 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             {
                 GameObject currentPedestrian = pedestrians[currentPedestrianIndex - 1].gameObject;
                 if (currentPedestrian != null)
-                    Destroy(currentPedestrian, 5f); //delay destroy to allow any final animations to
+                    Destroy(currentPedestrian, 0.1f); //delay destroy to allow any final animations to
+
+                teleporterSphere.ActivateTeleporter();
             }
             if (currentPedestrianIndex < pedestrians.Count)
             {
@@ -80,7 +85,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 }
                 LoadRandomDialogueAsset();
 
-                StartCoroutine(WaitAndAdvanceDialogue(-1f));
+                if (dialogueCoroutine != null)
+                {
+                    StopCoroutine(dialogueCoroutine);
+                }
+                dialogueCoroutine = StartCoroutine(WaitAndAdvanceDialogue(-1f));
 
             }
         }
@@ -164,8 +173,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 }
 
                 dialogueText.text = ApplyWorldModifiersToDialogue(currentDialogueLine);
-
-                StartCoroutine(WaitAndAdvanceDialogue(-1f));
+                if (dialogueCoroutine != null)
+                {
+                    StopCoroutine(dialogueCoroutine);
+                }
+                dialogueCoroutine = StartCoroutine(WaitAndAdvanceDialogue(-1f));
             }
             else
             {

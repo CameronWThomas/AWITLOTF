@@ -35,6 +35,9 @@
         },
         {
             "m_Id": "a4fbea5f6205487ba6bb55a3a2cbf6a4"
+        },
+        {
+            "m_Id": "3e247bd8064f48fc86bf552566b134bb"
         }
     ],
     "m_Keywords": [],
@@ -170,6 +173,9 @@
         },
         {
             "m_Id": "0926f524fbf847f2868e75ad0c8d2f59"
+        },
+        {
+            "m_Id": "5845a400d9f447eeb7355d63c9e5c8f1"
         }
     ],
     "m_GroupDatas": [
@@ -449,6 +455,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "798366a7c0004e4283da0495fa0b3c9c"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "5845a400d9f447eeb7355d63c9e5c8f1"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "c97ab80436e64ab3b751d9547e0c5a4c"
                 },
                 "m_SlotId": 0
             }
@@ -1275,7 +1295,7 @@
     "m_Title": "Not Using Camera or Vertex Jitter",
     "m_Position": {
         "x": -2058.6669921875,
-        "y": -927.333251953125
+        "y": -927.3333129882813
     }
 }
 
@@ -1406,8 +1426,8 @@
     "m_ObjectId": "2771a9bf7d3c4d40b42adf7f07a0727b",
     "m_Title": "Camera Clipping",
     "m_Position": {
-        "x": -4198.00048828125,
-        "y": -1690.0001220703125
+        "x": -4198.0009765625,
+        "y": -1690.000244140625
     }
 }
 
@@ -1864,6 +1884,61 @@
     "m_StageCapability": 3,
     "m_Value": false,
     "m_DefaultValue": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "3c46d7192e4e420f96748fbebcf8ecb0",
+    "m_Id": 0,
+    "m_DisplayName": "HdrEmission",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "3e247bd8064f48fc86bf552566b134bb",
+    "m_Guid": {
+        "m_GuidSerialized": "4484611e-a569-4953-af96-2f3eec431a85"
+    },
+    "m_Name": "HdrEmission",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "HdrEmission",
+    "m_DefaultReferenceName": "_HdrEmission",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+    },
+    "isMainColor": false,
+    "m_ColorMode": 0
 }
 
 {
@@ -2362,6 +2437,42 @@
     "m_Value": 1.0,
     "m_DefaultValue": 1.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "5845a400d9f447eeb7355d63c9e5c8f1",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -209.33335876464845,
+            "y": 396.6666564941406,
+            "width": 143.33335876464845,
+            "height": 36.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "3c46d7192e4e420f96748fbebcf8ecb0"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "3e247bd8064f48fc86bf552566b134bb"
+    }
 }
 
 {
@@ -3584,6 +3695,9 @@
         },
         {
             "m_Id": "a4fbea5f6205487ba6bb55a3a2cbf6a4"
+        },
+        {
+            "m_Id": "3e247bd8064f48fc86bf552566b134bb"
         }
     ]
 }
@@ -3873,8 +3987,8 @@
     "m_ObjectId": "b1624d75cc4c49dd9343f0b5ae9582eb",
     "m_Title": "Using Vertex Jitter",
     "m_Position": {
-        "x": -2169.999755859375,
-        "y": -1537.3333740234375
+        "x": -2170.0,
+        "y": -1537.333740234375
     }
 }
 
@@ -4277,8 +4391,8 @@
     "m_ObjectId": "cb245ba4bf5c48f88ca5a515fd083922",
     "m_Title": "Using CameraClipping",
     "m_Position": {
-        "x": -3829.999755859375,
-        "y": -1690.0001220703125
+        "x": -3830.00048828125,
+        "y": -1690.000244140625
     }
 }
 
@@ -4611,8 +4725,8 @@
     "m_ObjectId": "e5085ea754a84def8e5f854b3cc61517",
     "m_Title": "Texture Sampling",
     "m_Position": {
-        "x": -5908.00048828125,
-        "y": 76.66668701171875
+        "x": -5908.0009765625,
+        "y": 76.66670227050781
     }
 }
 
@@ -4667,7 +4781,7 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 2,
+    "m_RenderFace": 0,
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
@@ -4834,8 +4948,8 @@
     "m_ObjectId": "f8cbb8b52f384caf840d051cb85e7f81",
     "m_Title": "Color Precision",
     "m_Position": {
-        "x": -5390.66650390625,
-        "y": -173.33334350585938
+        "x": -5390.66748046875,
+        "y": -173.33335876464845
     }
 }
 
