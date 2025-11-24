@@ -8,10 +8,10 @@
 #endif
 
 // Masks used to check which waves to add together
-#ifndef Wave1Mask1
-#define Wave1Mask1 1
-#define Wave2Mask1 1 << 1
-#define Wave3Mask1 1 << 2
+#ifndef Wave1Mask
+#define Wave1Mask 1
+#define Wave2Mask 1 << 1
+#define Wave3Mask 1 << 2
 #endif
 
 #ifndef H // We may want to set this in the function call. Probably needs a little playing around with
@@ -53,18 +53,18 @@ float CalculateWavePartValue(float x, float variableValue, int waveType)
     float y = 0.0;
     int wavesAppliedCount = 0;
     
-    if (CheckMask(waveType, Wave1Mask1))
+    if (CheckMask(waveType, Wave1Mask))
     {
         y += CalculateWave1(x, variableValue);
         wavesAppliedCount++;
     }
     
-    if (CheckMask(waveType, Wave2Mask1))
+    if (CheckMask(waveType, Wave2Mask))
     {
         y += CalculateWave2(x, variableValue);
         wavesAppliedCount++;
     }
-    if (CheckMask(waveType, Wave3Mask1))
+    if (CheckMask(waveType, Wave3Mask))
     {
         y += CalculateWave3(x, variableValue);
         wavesAppliedCount++;
@@ -125,8 +125,8 @@ void IsInWave_float(float4 uV, int3 waveTypes, float3 variableValues, float dist
     float2 waveCoordinate = CalculateWaveCoordinate(coordinate.x, variableValues, waveTypes);
     
     // Factor in noise. We are only going to factor in up to 50% noise. At 50% its pretty much impossible
-    float correctedDistorationPerecent = distortionPercent * .5;
-    waveCoordinate.y = lerp(waveCoordinate.y, noise, correctedDistorationPerecent);
+    float correctedDistorationPercent = clamp(distortionPercent * .5, .025, .5); // Keep a small amount of noise even with no distortion so we get a slight wiggle
+    waveCoordinate.y = lerp(waveCoordinate.y, noise, correctedDistorationPercent);
         
     // How far away are we on the y axis. This is the core factor we use to determine if we are in the wave
     float diff = abs(waveCoordinate.y - coordinate.y);
