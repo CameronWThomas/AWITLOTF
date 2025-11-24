@@ -1,0 +1,170 @@
+//UNITY_SHADER_NO_UPGRADE
+#ifndef OLDWAVEFUNCTIONSINCLUDE_INCLUDED
+#define OLDWAVEFUNCTIONSINCLUDE_INCLUDED
+
+// This is included in Macros.hlsl but I seem to be unable to include it. Not sure why
+#ifndef PI
+#define PI 3.141592654
+#endif
+
+// Masks used to check which waves to add together
+#ifndef Wave1Mask
+#define Wave1Mask 1
+#define Wave2Mask 1 << 1
+#define Wave3Mask 1 << 2
+#endif
+
+float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise, float timeValue);
+float GetYWaveValue(float uV_x, int3 waveTypes, float3 variableValues, out float x);
+
+
+float CalcWaveYValue(float x, int3 waveTypes, float3 variableValues, out int waveCount);
+float MapTo0To2Pi(int waveType, float x, float v);
+bool CheckMask(int waveType, int mask);
+float Saw(float x, float v);
+
+void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, out float Out)
+{
+    Out = IsCoordinateInWave(uV_x, uV_y, width, waveTypes, variableValues, 0.0, 0.0, 0.0);
+}
+
+void IsCoordinateInWave_float(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise, float timeValue, out float Out)
+{
+    Out = IsCoordinateInWave(uV_x, uV_y, width, waveTypes, variableValues, distortionFactor, noise, timeValue);
+}
+
+float IsCoordinateInWave(float uV_x, float uV_y, float width, int3 waveTypes, float3 variableValues, float distortionFactor, float noise, float timeValue)
+{
+    distortionFactor = pow(clamp(distortionFactor, 0, 1.0), 2) * -1.2;
+
+    float x;
+    float waveY = GetYWaveValue(uV_x, waveTypes, variableValues, x);
+    float extraDistortion = waveY * noise * distortionFactor;
+    waveY += extraDistortion;
+    
+    // Figure out what the UV coordinate for this y would be (Mapping from from [-1, 1] to [0, 1])
+    float waveUV_y = (waveY / 2.0) + 0.5;
+    
+    // Find distance between actual y uv value and the one we created
+    // TODO this has issues because of sampling intervals. I need to figure out a new solution
+    float uVDiff = waveUV_y - uV_y;
+    uVDiff = abs(uVDiff);
+    
+    float xTime = timeValue % (2.0 * PI);    
+    float xDiff = xTime - x;
+    
+    float modifier = 1.0;
+    if (timeValue < 2.0 * PI && xDiff < 0.0)
+        modifier = 0.0;
+    else if (xDiff > 0.0 && xDiff < .25f)
+        modifier = 1.0;
+    else
+        modifier = .5;
+    
+    if (uVDiff < width)
+        return 1.0 * modifier;
+    else
+        return 0.0;
+}
+
+float GetYWaveValue(float uV_x, int3 waveTypes, float3 variableValues, out float x)
+{
+    // Taking the x texture value ([0, 1]) and mapping it to [0, 2 pi]
+    x = uV_x * 2.0 * PI;
+    
+    // Get the y value for the wave
+    int waveCount;
+    float waveY = CalcWaveYValue(x, waveTypes, variableValues, waveCount);
+    
+    // Each wave will give values between [-1, 1], so average the number of waves so the output stays in that range
+    if (waveCount > 1)
+        waveY /= waveCount;
+    
+    // We will decrease the range by a bit so we don't cut off at the top
+    return waveY * 0.8;
+}
+
+
+float CalcWaveYValue(float x, int3 waveTypes, float3 variableValues, out int waveCount)
+{
+    float y = 0.0;
+    
+    waveCount = 0;
+    if (waveTypes.r != 0)
+    {
+        y += MapTo0To2Pi(waveTypes.r, x, variableValues.r);
+        waveCount++;
+    }
+    if (waveTypes.g != 0)
+    {
+        y += MapTo0To2Pi(waveTypes.g, x, variableValues.g);
+        waveCount++;
+    }
+    if (waveTypes.b != 0)
+    {
+        y += MapTo0To2Pi(waveTypes.b, x, variableValues.b);
+        waveCount++;
+    }
+    
+    return y;
+}
+
+float MapTo0To2Pi(int waveType, float x, float v)
+{
+    int wavesApplied = 0;
+    float returnValue = 0.0;
+    
+    if (CheckMask(waveType, Wave1Mask))
+    {
+        returnValue += sin(x * v);
+        wavesApplied++;
+    }
+    if (CheckMask(waveType, Wave2Mask))
+    {
+        returnValue += cos(pow(x, v));
+        wavesApplied++;
+    }
+    if (CheckMask(waveType, Wave3Mask))
+    {
+        float cosinePart = cos(2.0 * x * v);
+        float otherPart = pow(v, 2.0) * x;
+        returnValue += sin(otherPart + cosinePart);
+        //returnValue += Saw(x, v);
+        wavesApplied++;
+    }
+    
+    if (wavesApplied > 0)
+        return returnValue / wavesApplied;
+    
+    return 0.0;
+}
+
+bool CheckMask(int waveType, int mask)
+{
+    return (waveType & mask) != 0;
+}
+
+float Saw(float x, float v)
+{
+    float sawPeriod = (PI / 2.0) / v;
+    float sawDecayPercentage = .08;
+    float sawDecayDistance = sawPeriod * sawDecayPercentage;
+    float sawDecayPoint = sawPeriod - sawDecayDistance;
+    float sawDecayStartHeight = 2.0 * (1.0 - sawDecayPercentage);
+        
+    float sawX = x % sawPeriod;
+        
+    float sawValue;
+    if (sawX < sawDecayPoint)
+    {
+        sawValue = sawX * (2.0 / sawPeriod);
+    }
+    else
+    {
+        sawValue = -(sawX - sawPeriod) * (sawDecayStartHeight / sawDecayDistance);
+    }
+
+    return sawValue - 1.0;
+}
+
+#endif //OLDWAVEFUNCTIONSINCLUDE_INCLUDED
