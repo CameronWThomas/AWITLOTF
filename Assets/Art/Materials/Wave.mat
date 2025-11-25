@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wave
-  m_Shader: {fileID: -6465566751694194690, guid: 1f3a05c52e4dc5641a9629be722a5cd3, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d1eec677ada866a4ba9a6598ea41cc79, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4f2632be788929047933a6f88f7c8f0f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -66,6 +66,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2ab27e6bda9189c42ade560744dce3da, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -94,6 +98,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DisplayGoalVariableValues: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -114,13 +119,17 @@ Material:
     - _Surface: 0
     - _VariableValue: 1
     - _WaveType: 4
+    - _Width: 0.1
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _k: 0.2
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GoalVariableValues: {r: 2, g: 2, b: 2, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _VariableValues: {r: 1, g: 1, b: 1, a: 0}
     - _WaveTypes: {r: 0, g: 0, b: 0, a: 0}
     - _WaveVariableValues: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

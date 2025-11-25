@@ -1,0 +1,601 @@
+Using pre-set license
+Built from '6000.0/staging' branch; Version is '6000.0.54f1 (4c506e5b5cc5) revision 5001326'; Using compiler version '193933523'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) 64bit Professional' Language: 'en' Physical Memory: 31899 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+Date: 2025-11-24T19:49:08Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.0.54f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Projects/Games/AWITLOTF/AWITLOTF
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+56000
+-job-worker-count
+7
+-background-job-worker-count
+8
+-gc-helper-count
+1
+Successfully changed project path to: C:/Projects/Games/AWITLOTF/AWITLOTF
+C:/Projects/Games/AWITLOTF/AWITLOTF
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [31692]  Target information:
+
+Player connection [31692]  * "[IP] 192.168.68.54 [Port] 0 [Flags] 2 [Guid] 448689090 [EditorId] 448689090 [Version] 1048832 [Id] WindowsEditor(7,CrattleShip) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [31692] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [31692] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 7
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 1.28 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.54f1 (4c506e5b5cc5)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Projects/Games/AWITLOTF/AWITLOTF/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4080 (ID=0x2704)
+    Vendor:   NVIDIA
+    VRAM:     16050 MB
+    Driver:   32.0.15.7652
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56672
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.54f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.005822 seconds.
+- Loaded All Assemblies, in  0.271 seconds
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 136 ms
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.459 seconds
+Domain Reload Profiling: 729ms
+	BeginReloadAssembly (92ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (108ms)
+		LoadAssemblies (91ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (105ms)
+			TypeCache.Refresh (104ms)
+				TypeCache.ScanAssembly (95ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (459ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (424ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (233ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (40ms)
+			ProcessInitializeOnLoadAttributes (99ms)
+			ProcessInitializeOnLoadMethodAttributes (49ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.764 seconds
+Refreshing native plugins compatible for Editor in 1.39 ms, found 3 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-AWITLOTF
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.774 seconds
+Domain Reload Profiling: 1533ms
+	BeginReloadAssembly (163ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (40ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (39ms)
+	LoadAllAssembliesAndSetupDomain (505ms)
+		LoadAssemblies (336ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (257ms)
+			TypeCache.Refresh (185ms)
+				TypeCache.ScanAssembly (168ms)
+			BuildScriptInfoCaches (56ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (774ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (573ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (22ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (120ms)
+			ProcessInitializeOnLoadAttributes (337ms)
+			ProcessInitializeOnLoadMethodAttributes (84ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Refreshing native plugins compatible for Editor in 1.27 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6472 unused Assets / (4.1 MB). Loaded Objects now: 7201.
+Memory consumption went from 138.1 MB to 134.0 MB.
+Total: 9.828900 ms (FindLiveObjects: 0.960500 ms CreateObjectMapping: 0.412500 ms MarkObjects: 5.937000 ms  DeleteObjects: 2.518100 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 441067.413586 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cf8d85c489758b382770afd269ddbdca') in 0.0197827 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 199.983657 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b6fbf65622411843abcafe63a2b7f87b') in 0.0009364 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 168.240599 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ddff7fbd25435ba7bb083ef7cc005d17') in 0.0012445 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.764257 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6eb15d71be2be41785a99dd6860cc2ba') in 0.0009127 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.778248 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4f35951869232e30496574c21d33fe83') in 0.0011259 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 47.173138 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'de9db0152cb0cb223f0707cae5f03fc5') in 0.0009311 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 46.215259 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9c1aa3055ae58951fce256f969ee0861') in 0.0009603 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 221.691249 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '76243792179448c975ff8e0603505e27') in 0.0009923 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.534098 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9656afda9d84e246c3523262d9d35240') in 0.0012179 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.745048 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7684f5f09807a7819585c7bb427e205c') in 0.0010917 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.640046 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e3edad9e4cf5784aa3c2d8c862d4a219') in 0.0013203 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 48.148733 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b5b92b52a45b2dcda146cf9566e0cae5') in 0.0010498 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.704075 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '30668898b1e8eb28ecae96bbaf9a830e') in 0.0009086 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.303231 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ab0a7d20ef6d4f8b0ae5fbdc23902921') in 0.0010379 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.053591 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3e61786ced941b0f8b1a71b4c50b8300') in 0.0010113 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 281.058919 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4c3577b26930530430d1b7ea5192e728') in 0.0011542 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.800975 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1bd5e7ad9ab5e2d3d85a258dfacd0bff') in 0.000954 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.781826 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a71c363d2a533d291db837deb67954e1') in 0.0009784 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.140131 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6ee8842a51e134cad0099ae427342043') in 0.0009895 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.681208 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '08bcd2e29f82e392e00c85719ad944d8') in 0.0012469 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.136775 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3fb99a2045b20fb070fecc43c9740d60') in 0.0010488 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.490 seconds
+Refreshing native plugins compatible for Editor in 0.83 ms, found 3 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.520 seconds
+Domain Reload Profiling: 1009ms
+	BeginReloadAssembly (148ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (36ms)
+	RebuildCommonClasses (22ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (20ms)
+	LoadAllAssembliesAndSetupDomain (291ms)
+		LoadAssemblies (239ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (114ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (100ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (520ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (405ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (14ms)
+			SetLoadedEditorAssemblies (2ms)
+			BeforeProcessingInitializeOnLoad (79ms)
+			ProcessInitializeOnLoadAttributes (241ms)
+			ProcessInitializeOnLoadMethodAttributes (65ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Refreshing native plugins compatible for Editor in 1.42 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6468 unused Assets / (3.9 MB). Loaded Objects now: 7220.
+Memory consumption went from 149.9 MB to 145.9 MB.
+Total: 10.003400 ms (FindLiveObjects: 1.187600 ms CreateObjectMapping: 0.403900 ms MarkObjects: 5.879000 ms  DeleteObjects: 2.532000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 80.254238 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '13e9a03d7a5b26530636cb103ac3c24e') in 0.0177668 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.483 seconds
+Refreshing native plugins compatible for Editor in 0.82 ms, found 3 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.530 seconds
+Domain Reload Profiling: 1012ms
+	BeginReloadAssembly (147ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (38ms)
+	RebuildCommonClasses (22ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (18ms)
+	LoadAllAssembliesAndSetupDomain (286ms)
+		LoadAssemblies (234ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (112ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (98ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (531ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (427ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (14ms)
+			SetLoadedEditorAssemblies (2ms)
+			BeforeProcessingInitializeOnLoad (82ms)
+			ProcessInitializeOnLoadAttributes (258ms)
+			ProcessInitializeOnLoadMethodAttributes (67ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Refreshing native plugins compatible for Editor in 1.60 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6468 unused Assets / (4.0 MB). Loaded Objects now: 7223.
+Memory consumption went from 149.9 MB to 146.0 MB.
+Total: 9.915800 ms (FindLiveObjects: 1.114300 ms CreateObjectMapping: 0.524500 ms MarkObjects: 5.787300 ms  DeleteObjects: 2.488900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 40.176659 seconds.
+  path: Assets/Code/Shaders/WaveFunctions.hlsl
+  artifactKey: Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Code/Shaders/WaveFunctions.hlsl using Guid(896137a506b1ccc4d88b1761d736c0d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f06340473b1139e5798e84486f217b9b') in 0.0220346 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.495 seconds
+Refreshing native plugins compatible for Editor in 0.91 ms, found 3 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.543 seconds
+Domain Reload Profiling: 1038ms
+	BeginReloadAssembly (151ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (36ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (19ms)
+	LoadAllAssembliesAndSetupDomain (292ms)
+		LoadAssemblies (241ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (116ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (102ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (544ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (437ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (15ms)
+			SetLoadedEditorAssemblies (2ms)
+			BeforeProcessingInitializeOnLoad (84ms)
+			ProcessInitializeOnLoadAttributes (255ms)
+			ProcessInitializeOnLoadMethodAttributes (75ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Refreshing native plugins compatible for Editor in 2.05 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6468 unused Assets / (4.2 MB). Loaded Objects now: 7226.
+Memory consumption went from 150.0 MB to 145.8 MB.
+Total: 10.825100 ms (FindLiveObjects: 1.190000 ms CreateObjectMapping: 0.406100 ms MarkObjects: 6.395800 ms  DeleteObjects: 2.832400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.492 seconds
+Refreshing native plugins compatible for Editor in 0.81 ms, found 3 plugins.
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.480 seconds
+Domain Reload Profiling: 971ms
+	BeginReloadAssembly (153ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (36ms)
+	RebuildCommonClasses (22ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (18ms)
+	LoadAllAssembliesAndSetupDomain (289ms)
+		LoadAssemblies (237ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (115ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (101ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (480ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (375ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (15ms)
+			SetLoadedEditorAssemblies (2ms)
+			BeforeProcessingInitializeOnLoad (76ms)
+			ProcessInitializeOnLoadAttributes (216ms)
+			ProcessInitializeOnLoadMethodAttributes (62ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Refreshing native plugins compatible for Editor in 1.78 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6468 unused Assets / (4.2 MB). Loaded Objects now: 7229.
+Memory consumption went from 150.0 MB to 145.8 MB.
+Total: 9.755000 ms (FindLiveObjects: 1.016200 ms CreateObjectMapping: 0.402400 ms MarkObjects: 5.793200 ms  DeleteObjects: 2.542500 ms)
+
+Prepare: number of updated asset objects reloaded= 0

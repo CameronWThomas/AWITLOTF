@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum WaveType
@@ -16,6 +14,17 @@ public delegate float WaveFunctionDelegate(float x, float variableValue);
 
 public static class WaveTypeExtensions
 {
+    public static WaveTrait ToWaveType(this WaveType waveType)
+    {
+        return waveType switch
+        {
+            WaveType.Wave1 => WaveTrait.Body,
+            WaveType.Wave2 => WaveTrait.Mind,
+            WaveType.Wave3 => WaveTrait.Spirit,
+            _ => throw new NotImplementedException()
+        };
+    }
+
     public static int GetMask(this IEnumerable<WaveType> waveTypes)
     {
         var mask = 0;

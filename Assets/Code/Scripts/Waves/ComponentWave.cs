@@ -8,15 +8,13 @@ using UnityEngine;
 public class ComponentWave : Wave
 {
     [Header("Component Wave")]
-    [Range(1, 3)] public int WaveNum = 1;
-
-    [Header("Continuous Wave Settings")]
-    [Range(.001f, 1f)]public float PercentageChangeFactor = .25f;
-
+    public WaveTrait WaveTrait = WaveTrait.Body;
+    
     private bool _isDiscreteWaveUpdating = false;
     private float _discreteDisplayVariableValue = 0f;
 
     public WaveInfo WaveInfo { get; private set; }
+    public WaveType WaveType => WaveTrait.ToWaveType();
 
     public override IEnumerable<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
     {
@@ -43,20 +41,21 @@ public class ComponentWave : Wave
         if (_isDiscreteWaveUpdating)
             return;
 
-        var inputChange = GetInputChange();
+        var waveInput = GetComponent<WaveInput>();
+        var inputChange = waveInput.InputChange;
         if (inputChange == 0)
             return;
 
         if (WaveInfo is DiscreteWaveInfo discreteWaveInfo)
             TryUpdateVariableValue(discreteWaveInfo, inputChange);
         else if (WaveInfo is ContinuousWaveInfo continuousWaveInfo)
-            TryUpdateVariableValue(continuousWaveInfo, inputChange);
+            TryUpdateVariableValue(continuousWaveInfo, waveInput);
     }
 
-    private void TryUpdateVariableValue(ContinuousWaveInfo waveInfo, int percentageChange)
+    private void TryUpdateVariableValue(ContinuousWaveInfo waveInfo, WaveInput waveInput)
     {
         // TODO probably track the speed of change?
-        waveInfo.ChangePercentage(percentageChange * PercentageChangeFactor);
+        waveInfo.ChangePercentage(waveInput.PercentChange);
 
         // TODO trigger some event on a successful change?
     }
@@ -106,34 +105,6 @@ public class ComponentWave : Wave
             // Always mark the wave as no longer updating when we finish
             _isDiscreteWaveUpdating = false;
         }
-    }
-
-
-    private static readonly Dictionary<int, (KeyCode, KeyCode)> InputDict = new Dictionary<int, (KeyCode, KeyCode)>()
-    {
-        { 1, (KeyCode.Q, KeyCode.A) },
-        { 2, (KeyCode.W, KeyCode.S) },
-        { 3, (KeyCode.E, KeyCode.D) },
-    };
-
-    private int GetInputChange()
-    {
-        if (!InputDict.ContainsKey(WaveNum))
-        {
-            Debug.LogError($"{name} - Bad wave num ({WaveNum})");
-            enabled = false;
-            return 0;
-        }
-
-        var (upKey, downKey) = InputDict[WaveNum];
-
-        var change = 0;
-        if (Input.GetKey(upKey))
-            change++;
-        if (Input.GetKey(downKey))
-            change--;
-
-        return change;
     }
 }
 
