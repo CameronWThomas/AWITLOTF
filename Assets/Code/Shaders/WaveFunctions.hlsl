@@ -111,12 +111,26 @@ float2 CalculateWaveCoordinate(float x, float3 variableValues, int3 waveTypes)
     return coordinate;
 }
 
+void IsInBarrelDistortion_float(float4 uV, float k, out bool isInDisplay, out float4 distortedUV)
+{
+    float2 coordinate = float2(uV.x - .5, uV.y - .5);
+    
+    float radius = length(coordinate);
+    float newRadius = radius + k * pow(radius, 3);
+    
+    float2 distorted = normalize(coordinate) * newRadius;
+    
+    isInDisplay = abs(distorted.x) < .5 && abs(distorted.y) < .5;
+    
+    distortedUV = float4(distorted.x + .5, distorted.y + .5, uV.z, uV.w);
+}
+
 //TODO save the last variable values so we can use that to show the last drawn wave
 
 void IsInWave_float(float4 uV, int3 waveTypes, float3 variableValues, float distortionPercent, float noise, float timeValue, out float Out)
 {
     // Get the coordinate x:[0, 2pi] y:[-1, 1]
-    float2 coordinate = ConvertUVToCoordinate(uV.xy);    
+    float2 coordinate = ConvertUVToCoordinate(uV.xy);
     
     // Expand the y range by a bit so we don't cutoff the tip of the waves
     coordinate.y *= 1.25;
