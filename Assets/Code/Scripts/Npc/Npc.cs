@@ -10,6 +10,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
     {
         NavMeshAgent agent;
         Animator anim;
+        NpcManager npcManager;
 
         public NpcTarget currentTarget;
 
@@ -26,7 +27,8 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             WalkWithPhone,
             Pockets,
             Fat,
-            Fishy
+            Fishy,
+            Drunk
 
         }
 
@@ -43,11 +45,13 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public bool male = true;
 
         public List<Material> fabricMaterials;
+        public List<Material> brandedClothingMaterials;
 
         public SkinnedMeshRenderer cellphone;
 
         //mens
         public List<Material> M_skinMaterials;
+        public SkinnedMeshRenderer M_shirtless;
         public List<SkinnedMeshRenderer> M_longSleeveTops;
         public List<SkinnedMeshRenderer> M_shortSleeveTops;
         public List<SkinnedMeshRenderer> M_pants;
@@ -108,8 +112,8 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         {
             agent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
+            npcManager = FindObjectOfType<NpcManager>();
 
-            //TODO: random skin if not unique
             SkinSetup();
 
             switch (animationType)
@@ -120,6 +124,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     anim.SetBool("walkingWithPhone", false);
                     anim.SetBool("handsInPockets", false);
                     anim.SetBool("isFish", false);
+                    anim.SetBool("isDrunk", false);
                     break;
                 case AnimationType.Lean:
                     anim.SetBool("isFat", false);
@@ -127,6 +132,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     anim.SetBool("walkingWithPhone", false);
                     anim.SetBool("handsInPockets", false);
                     anim.SetBool("isFish", false);
+                    anim.SetBool("isDrunk", false);
                     break;
                 case AnimationType.WalkWithPhone:
                     anim.SetBool("isFat", false);
@@ -134,6 +140,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     anim.SetBool("walkingWithPhone", true);
                     anim.SetBool("handsInPockets", false);
                     anim.SetBool("isFish", false);
+                    anim.SetBool("isDrunk", false);
                     cellphone.enabled = true;
                     break;
                 case AnimationType.Pockets:
@@ -142,6 +149,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     anim.SetBool("walkingWithPhone", false);
                     anim.SetBool("handsInPockets", true);
                     anim.SetBool("isFish", false);
+                    anim.SetBool("isDrunk", false);
                     break;
                 case AnimationType.Fat:
                     anim.SetBool("isFat", true);
@@ -149,6 +157,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     anim.SetBool("walkingWithPhone", false);
                     anim.SetBool("handsInPockets", false);
                     anim.SetBool("isFish", false);
+                    anim.SetBool("isDrunk", false);
                     break;
                 case AnimationType.Fishy:
                     anim.SetBool("isFat", false);
@@ -156,13 +165,24 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     anim.SetBool("walkingWithPhone", false);
                     anim.SetBool("handsInPockets", false);
                     anim.SetBool("isFish", true);
+                    anim.SetBool("isDrunk", false);
                     ApplyFishyChanges();
+                    break;
+                case AnimationType.Drunk:
+                    anim.SetBool("isFat", false);
+                    anim.SetBool("leaning", false);
+                    anim.SetBool("walkingWithPhone", false);
+                    anim.SetBool("handsInPockets", false);
+                    anim.SetBool("isFish", false);
+                    anim.SetBool("isDrunk", true);
                     break;
                 default:
                     anim.SetBool("isFat", false);
                     anim.SetBool("leaning", false);
                     anim.SetBool("walkingWithPhone", false);
                     anim.SetBool("handsInPockets", false);
+                    anim.SetBool("isFish", false);
+                    anim.SetBool("isDrunk", false);
                     break;
             }
         }
@@ -256,32 +276,66 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             }
 
         }
+        private void SetRandomAnimationState()
+        {
+
+                animationType = AnimationType.Normal;
+                float random = UnityEngine.Random.value;
+
+                if(random < npcManager.amorphousChance)
+                {
+                    //TODO: blob them.
+                    return;
+                }
+                random = UnityEngine.Random.value;
+                if(random < npcManager.fishyChance)
+                {
+                    animationType = AnimationType.Fishy;
+                    return;
+                }
+                random = UnityEngine.Random.value;
+                if (random < npcManager.drunkennessChance)
+            {
+                animationType = AnimationType.Drunk;
+                return;
+            }
+            random = UnityEngine.Random.value;
+            if(random < npcManager.fatChance)
+            {
+                animationType = AnimationType.Fat;
+                return;
+            }
+            random = UnityEngine.Random.value;
+            if(random < npcManager.phoneChance)
+            {
+                animationType = AnimationType.WalkWithPhone;
+                return;
+            }
+
+            //if we still dont have any, random between normal, lean, pockets
+            int animType = Random.Range(0, 3);
+            switch (animType)
+            {
+                case 0:
+                    animationType = AnimationType.Normal;
+                    break;
+                case 1:
+                    animationType = AnimationType.Lean;
+                    break;
+                case 2:
+                    animationType = AnimationType.Pockets;
+                    break;
+                default:
+                    animationType = AnimationType.Normal;
+                    break;
+            }
+        }
         private void CreateRandomNpc()
         {
             // Randomly choose gender
             male = Random.value > 0.5f;
 
-            //animation type can be anything but fat.
-            //if anim type is fishy, dont randomize this
-            if (animationType != AnimationType.Fishy)
-            {
-                int animType = Random.Range(0, 3);
-                switch (animType)
-                {
-                    case 0:
-                        animationType = AnimationType.Normal;
-                        break;
-                    case 1:
-                        animationType = AnimationType.Lean;
-                        break;
-                    case 2:
-                        animationType = AnimationType.WalkWithPhone;
-                        break;
-                    default:
-                        animationType = AnimationType.Normal;
-                        break;
-                }
-            }
+            SetRandomAnimationState();
 
             if (male)
             {
@@ -308,15 +362,39 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     selectedTop = M_shortSleeveTops[Random.Range(0, M_shortSleeveTops.Count)];
                     M_arms.enabled = true;
                 }
+                float shirtlessRandom = Random.value;
+                if (shirtlessRandom < npcManager.shirtlessChance)
+                {
+                    M_arms.enabled = false;
+                    selectedTop = M_shirtless;
+                }
                 selectedTop.enabled = true;
 
                 // Randomly choose pants
                 SkinnedMeshRenderer selectedPants = M_pants[Random.Range(0, M_pants.Count)];
                 selectedPants.enabled = true;
 
+
+                bool shirtBranded = Random.value < npcManager.brandedClothesChance;
+                bool pantsBranded = Random.value < npcManager.brandedClothesChance;
+                if (shirtBranded)
+                {
+                    selectedTop.material = brandedClothingMaterials[Random.Range(0, brandedClothingMaterials.Count)];
+                }
+                else
+                {
+                    selectedTop.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
+                }
+                if (pantsBranded)
+                {
+                    selectedPants.material = brandedClothingMaterials[Random.Range(0, brandedClothingMaterials.Count)];
+                }
+                else
+                {
+                    selectedPants.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
+                }
+
                 // Apply random fabric materials to clothing
-                selectedTop.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
-                selectedPants.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
                 M_shoes.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
             }
             else
@@ -351,8 +429,24 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 selectedPants.enabled = true;
 
                 // Apply random fabric materials to clothing
-                selectedTop.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
-                selectedPants.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
+                bool shirtBranded = Random.value < npcManager.brandedClothesChance;
+                bool pantsBranded = Random.value < npcManager.brandedClothesChance;
+                if (shirtBranded)
+                {
+                    selectedTop.material = brandedClothingMaterials[Random.Range(0, brandedClothingMaterials.Count)];
+                }
+                else
+                {
+                    selectedTop.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
+                }
+                if (pantsBranded)
+                {
+                    selectedPants.material = brandedClothingMaterials[Random.Range(0, brandedClothingMaterials.Count)];
+                }
+                else
+                {
+                    selectedPants.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
+                }
                 F_shoes.material = fabricMaterials[Random.Range(0, fabricMaterials.Count)];
             }
         }

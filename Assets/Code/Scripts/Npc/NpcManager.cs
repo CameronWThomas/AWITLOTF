@@ -21,8 +21,20 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public Coroutine dialogueCoroutine;
 
         [Header("World Modifiers")]
+        // Body
+        public float fishyChance = 0;
+        public float gimpyArmChance = 0;
+        public float amorphousChance = 0;
+        // Mind
         public bool rhotacism = false;
+        public bool illiterate = false;
         public bool smoothBrained = false;
+        // Soul
+        public float shirtlessChance = 0;
+        public float phoneChance = .2f;
+        public float fatChance = 0;
+        public float brandedClothesChance = 0;
+        public float drunkennessChance = 0;
 
 
         [Header("Dialogue Stuff")]
@@ -193,7 +205,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             {
                 line = line.Replace("r", "w").Replace("R", "W").Replace("l", "w").Replace("L", "W");
             }
-            if (smoothBrained)
+            if (illiterate)
             {
                 string[] words = line.Split(' ');
                 string newLine = "";
@@ -225,7 +237,26 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                         newLine += " ";
                     }
                 }
-                return newLine.Trim();
+                line = newLine.Trim();
+            }
+            if (smoothBrained)
+            {
+                string[] options = new string[]{
+                    "Uhhhhhh....",
+                    "mmmmm",
+                    "Ghuuummm....",
+                    "Beeeeerrr",
+                    "Hrrrrgh",
+                    "Gun control just doesnt make any sense to me.",
+                    "Shit!",
+                    "Yaaaasss",
+                    "gooogglle",
+                    "Wuh?",
+                    "What?",
+                    "Bruhhh",
+                    "Hmmm?"
+                };
+                line = options[UnityEngine.Random.Range(0, options.Length - 1)];
             }
             return line;
         }
