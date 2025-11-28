@@ -39,9 +39,9 @@ namespace AWITLOTF.Assets.Code.Scripts
         {
             if (BodyPurity < 3)
             {
-                npcManager.fishyChance = 0.2f * (3 - BodyPurity);
-                npcManager.gimpyArmChance = 0.3f * (3 - BodyPurity);
-                npcManager.amorphousChance = 0.1f * (3 - BodyPurity);
+                npcManager.fishyChance = 0.3f * (3 - BodyPurity);
+                npcManager.gimpyArmChance = 0.4f * (3 - BodyPurity);
+                npcManager.amorphousChance = 0.2f * (3 - BodyPurity);
             }
             if (MindPurity < 3)
             {

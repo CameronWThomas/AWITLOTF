@@ -11,12 +11,16 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         NavMeshAgent agent;
         Animator anim;
         NpcManager npcManager;
+        public bool isBlob = false;
+        public GameObject blobInstance;
 
         public NpcTarget currentTarget;
 
         [Header("Face Camera Stuff")]
         public Transform headTransform;
         public Transform camSpotTransform;
+        public Transform blobHeadTransform;
+        public Transform blobCamSpotTransform;
 
         [Header("Animation Settings")]
         public AnimationType animationType = AnimationType.Normal;
@@ -54,6 +58,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         //TSA override skin
         public Material TSA_overrideSkinMaterial;
+        public Material FishySkinMaterial;
 
         //mens
         public List<Material> M_skinMaterials;
@@ -114,7 +119,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         void Awake()
         {
-            
+
             agent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
             npcManager = FindObjectOfType<NpcManager>();
@@ -123,7 +128,6 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         void Start()
         {
-
             SkinSetup();
 
             switch (animationType)
@@ -217,29 +221,37 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             foreach (GameObject calf in calves)
             {
                 calf.transform.localScale = calvesFishyScale;
-            }
-            if (male)
-            {
-                M_shoes.enabled = false;
-                M_shoesFishy.enabled = true;
-                M_head.enabled = false;
-                M_headFishy.enabled = true;
-                M_hands.enabled = false;
-                M_handsFishy.enabled = true;
-                M_arms.enabled = false;
-                M_armsFishy.enabled = true;
-            }
-            else
-            {
-                F_shoes.enabled = false;
-                F_shoesFishy.enabled = true;
-                F_head.enabled = false;
-                F_headFishy.enabled = true;
-                F_hands.enabled = false;
-                F_handsFishy.enabled = true;
-                F_arms.enabled = false;
-                F_armsFishy.enabled = true;
+                if (male)
+                {
+                    M_shoes.enabled = false;
+                    M_shoesFishy.enabled = true;
+                    M_shoesFishy.material = FishySkinMaterial;
+                    M_head.enabled = false;
+                    M_headFishy.enabled = true;
+                    M_headFishy.material = FishySkinMaterial;
+                    M_hands.enabled = false;
+                    M_handsFishy.enabled = true;
+                    M_handsFishy.material = FishySkinMaterial;
+                    M_arms.enabled = false;
+                    M_armsFishy.enabled = true;
+                    M_armsFishy.material = FishySkinMaterial;
+                }
+                else
+                {
+                    F_shoes.enabled = false;
+                    M_shoesFishy.enabled = true;
+                    M_shoesFishy.material = FishySkinMaterial;
+                    F_head.enabled = false;
+                    M_headFishy.enabled = true;
+                    M_headFishy.material = FishySkinMaterial;
+                    F_hands.enabled = false;
+                    M_handsFishy.enabled = true;
+                    M_handsFishy.material = FishySkinMaterial;
+                    F_arms.enabled = false;
+                    F_armsFishy.enabled = true;
+                    M_armsFishy.material = FishySkinMaterial;
 
+                }
             }
         }
 
@@ -291,16 +303,38 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             }
 
         }
+        private void InstantiateBlob()
+        {
+            isBlob = true;
+            blobInstance.gameObject.SetActive(true);
+            anim = blobInstance.GetComponent<Animator>();
+
+            SkinnedMeshRenderer[] renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (SkinnedMeshRenderer smr in renderers)
+            {
+                smr.enabled = false;
+            }
+            headTransform = blobHeadTransform;
+            camSpotTransform = blobCamSpotTransform;
+
+            SkinnedMeshRenderer[] blobRenderers = blobInstance.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (SkinnedMeshRenderer smr in blobRenderers)
+            {
+                smr.enabled = true;
+
+            }
+        }
         private void SetRandomAnimationState()
         {
 
             animationType = AnimationType.Normal;
             float random = UnityEngine.Random.value;
-            randomGenLogs += "Amorphous Roll: " + random.ToString("F2") + ". Amourphous Chance : " + npcManager.amorphousChance+ "\n";
+            randomGenLogs += "Amorphous Roll: " + random.ToString("F2") + ". Amourphous Chance : " + npcManager.amorphousChance + "\n";
 
             if (random < npcManager.amorphousChance)
             {
                 //TODO: blob them.
+                InstantiateBlob();
                 return;
             }
             random = UnityEngine.Random.value;
@@ -324,7 +358,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             //     animationType = AnimationType.Fat;
             //     return;
             // }
-        
+
             random = UnityEngine.Random.value;
             randomGenLogs += "Phone Roll: " + random.ToString("F2") + ". Phone Chance : " + npcManager.phoneChance + "\n";
             if (random < npcManager.phoneChance)
@@ -353,12 +387,17 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     break;
             }
         }
+
         private void CreateRandomNpc()
         {
             // Randomly choose gender
             male = Random.value > 0.5f;
 
             SetRandomAnimationState();
+            if (isBlob)
+            {
+                return;
+            }
 
             if (male)
             {
