@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AWITLOTF.Assets.Code.Scripts.Npc
@@ -77,17 +78,25 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         }
 
-        public void AdvanceQueue()
+        /// <summary>
+        /// Advances the queue and returns whether there are any more pedestrians in the queue
+        /// </summary>
+        /// <returns></returns>
+        public bool AdvanceQueue()
         {
             //destroy the old pedestrian
             if (currentPedestrianIndex != 0)
             {
-                GameObject currentPedestrian = pedestrians[currentPedestrianIndex - 1].gameObject;
-                if (currentPedestrian != null)
-                    Destroy(currentPedestrian, 0.1f); //delay destroy to allow any final animations to
+                var npc = pedestrians[currentPedestrianIndex - 1];
+                if (!npc.IsDestroyed())
+                {
+                    if (npc.gameObject != null)
+                        Destroy(npc.gameObject, 0.1f); //delay destroy to allow any final animations to
 
-                teleporterSphere.ActivateTeleporter();
+                    teleporterSphere.ActivateTeleporter();
+                }
             }
+
             if (currentPedestrianIndex < pedestrians.Count)
             {
                 pedestrians[currentPedestrianIndex].SetTarget(teleporterPosition);
@@ -106,7 +115,10 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 }
                 dialogueCoroutine = StartCoroutine(WaitAndAdvanceDialogue(-1f));
 
+                return true;
             }
+
+            return false;
         }
 
         public IEnumerator WaitAndAdvanceDialogue(float waitTime)

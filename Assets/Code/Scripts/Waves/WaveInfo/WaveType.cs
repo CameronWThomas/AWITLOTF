@@ -14,7 +14,7 @@ public delegate float WaveFunctionDelegate(float x, float variableValue);
 
 public static class WaveTypeExtensions
 {
-    public static WaveTrait ToWaveType(this WaveType waveType)
+    public static WaveTrait ToWaveTrait(this WaveType waveType)
     {
         return waveType switch
         {

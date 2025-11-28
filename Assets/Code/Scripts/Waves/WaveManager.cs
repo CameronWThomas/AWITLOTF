@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using AWITLOTF.Assets.Code.Scripts;
 using AWITLOTF.Assets.Code.Scripts.Npc;
 using UnityEditor;
 using UnityEngine;
@@ -51,9 +52,6 @@ public class WaveManager : MonoBehaviour
         // For now, just pressing space submits the waves
         if (Input.GetKeyDown(KeyCode.Space))
             OnWaveSubmit();
-            // GetComponent<WaveSuccessChecker>().CheckWaveSuccess(GoalWave, CombinedWave);
-        if (Input.GetKeyDown(KeyCode.R))
-            ReinitializeWaves();
 
         if (time < 0f)
             time = Time.time;
@@ -63,13 +61,31 @@ public class WaveManager : MonoBehaviour
 
         var percentage = GetPercentageChange() / PercentageChangeMaxDistoration;
         SetDistortionPercentage(Mathf.Clamp01(percentage));
-    }    
+    }
+    
     private void OnWaveSubmit()
     {
-        GetComponent<WaveSuccessChecker>().CheckWaveSuccess(GoalWave, CombinedWave);
-        _npcManager.AdvanceQueue();
-        ReinitializeWaves();
+        var waveSuccessChecker = GetComponent<WaveSuccessChecker>();
+        waveSuccessChecker.RecordWaveSuccess(GoalWave, CombinedWave);
 
+        if (_npcManager.AdvanceQueue())
+        {
+            ReinitializeWaves();
+        }
+        else
+        {
+            var criticallyBadWaveTraits = waveSuccessChecker.GetCriticallyBadWaveTraits();
+
+            var worldStateManager = FindFirstObjectByType<WorldStateManager>();
+            if (criticallyBadWaveTraits.Contains(WaveTrait.Body))
+                worldStateManager.AdjustBodyPurity(1);
+            if (criticallyBadWaveTraits.Contains(WaveTrait.Mind))
+                worldStateManager.AdjustMindPurity(1);
+            if (criticallyBadWaveTraits.Contains(WaveTrait.Spirit))
+                worldStateManager.AdjustSoulPurity(1);
+
+            waveSuccessChecker.ResetFailureCount();
+        }
     }
 
     private void ReinitializeWaves()

@@ -12,4 +12,10 @@ public static class WaveInfoHelper
 
         return value / waveInfosArray.Length;
     }
+
+    public static TWaveInfo FirstWaveTrait<TWaveInfo>(this IEnumerable<TWaveInfo> waveInfos, WaveTrait waveTrait)
+        where TWaveInfo : WaveInfo
+    {
+        return waveInfos.First(x => x.WaveType.ToWaveTrait() == waveTrait);
+    }
 }
