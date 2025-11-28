@@ -48,6 +48,10 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public List<Material> brandedClothingMaterials;
 
         public SkinnedMeshRenderer cellphone;
+        public SkinnedMeshRenderer bottle;
+
+        //TSA override skin
+        public Material TSA_overrideSkinMaterial;
 
         //mens
         public List<Material> M_skinMaterials;
@@ -67,6 +71,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         // womens
         public List<Material> F_skinMaterials;
+        public List<SkinnedMeshRenderer> F_hairs;
         public List<SkinnedMeshRenderer> F_longSleeveTops;
         public List<SkinnedMeshRenderer> F_shortSleeveTops;
         public List<SkinnedMeshRenderer> F_pants;
@@ -175,6 +180,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     anim.SetBool("handsInPockets", false);
                     anim.SetBool("isFish", false);
                     anim.SetBool("isDrunk", true);
+                    bottle.enabled = true;
                     break;
                 default:
                     anim.SetBool("isFat", false);
@@ -269,6 +275,10 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     {
                         smr.enabled = true;
                     }
+
+                    M_head.material = TSA_overrideSkinMaterial;
+                    M_hands.material = TSA_overrideSkinMaterial;
+                    M_arms.material = TSA_overrideSkinMaterial;
                     break;
                 default:
                     break;
@@ -279,34 +289,34 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         private void SetRandomAnimationState()
         {
 
-                animationType = AnimationType.Normal;
-                float random = UnityEngine.Random.value;
+            animationType = AnimationType.Normal;
+            float random = UnityEngine.Random.value;
 
-                if(random < npcManager.amorphousChance)
-                {
-                    //TODO: blob them.
-                    return;
-                }
-                random = UnityEngine.Random.value;
-                if(random < npcManager.fishyChance)
-                {
-                    animationType = AnimationType.Fishy;
-                    return;
-                }
-                random = UnityEngine.Random.value;
-                if (random < npcManager.drunkennessChance)
+            if (random < npcManager.amorphousChance)
+            {
+                //TODO: blob them.
+                return;
+            }
+            random = UnityEngine.Random.value;
+            if (random < npcManager.fishyChance)
+            {
+                animationType = AnimationType.Fishy;
+                return;
+            }
+            random = UnityEngine.Random.value;
+            if (random < npcManager.drunkennessChance)
             {
                 animationType = AnimationType.Drunk;
                 return;
             }
             random = UnityEngine.Random.value;
-            if(random < npcManager.fatChance)
+            if (random < npcManager.fatChance)
             {
                 animationType = AnimationType.Fat;
                 return;
             }
             random = UnityEngine.Random.value;
-            if(random < npcManager.phoneChance)
+            if (random < npcManager.phoneChance)
             {
                 animationType = AnimationType.WalkWithPhone;
                 return;
@@ -404,6 +414,9 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 F_hands.enabled = true;
                 F_shoes.enabled = true;
 
+                SkinnedMeshRenderer hair = F_hairs[Random.Range(0, F_hairs.Count)];
+                hair.enabled = true;
+
                 // Randomly choose skin material
                 Material skinMat = F_skinMaterials[Random.Range(0, F_skinMaterials.Count)];
                 F_head.material = skinMat;
@@ -475,7 +488,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         public void SetTalking(bool isTalking)
         {
-            anim.SetBool("talking", isTalking);   
+            anim.SetBool("talking", isTalking);
         }
 
     }

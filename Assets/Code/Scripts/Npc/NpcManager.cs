@@ -58,6 +58,9 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             dialogueText.text = "";
             speakingFaceRenderer.enabled = false;
 
+            //advance queue on start
+            AdvanceQueue();
+
         }
 
         public void SetUpInitialTargets()

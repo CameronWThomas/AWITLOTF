@@ -4742,6 +4742,10 @@ PrefabInstance:
       propertyPath: npcType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3580913648538430129, guid: 365d974038b920c4b850297f3cf71bdc, type: 3}
+      propertyPath: TSA_overrideSkinMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 80c5636f64eec9f41bda891360858ed8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5594,6 +5598,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!137 &364113580 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5678788897538614896, guid: 365d974038b920c4b850297f3cf71bdc, type: 3}
+  m_PrefabInstance: {fileID: 571863759}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -14860,6 +14869,14 @@ PrefabInstance:
       propertyPath: npcType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3580913648538430129, guid: 365d974038b920c4b850297f3cf71bdc, type: 3}
+      propertyPath: 'TSA_Skins.Array.data[0]'
+      value: 
+      objectReference: {fileID: 668193870}
+    - target: {fileID: 3580913648538430129, guid: 365d974038b920c4b850297f3cf71bdc, type: 3}
+      propertyPath: 'TSA_Skins.Array.data[4]'
+      value: 
+      objectReference: {fileID: 364113580}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14965,6 +14982,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574921273}
   m_Mesh: {fileID: 4328021508853119319, guid: 8e14a749dd22d5b40b25d6e634e17c32, type: 3}
+--- !u!137 &668193870 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5751190085459832304, guid: 365d974038b920c4b850297f3cf71bdc, type: 3}
+  m_PrefabInstance: {fileID: 571863759}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &685150795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16644,17 +16666,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 1584058810}
   m_VersionIndex: 3023
   m_IsSelectable: 1
-  m_SelectedFaces: 0d000000
-  m_SelectedEdges:
-  - a: 52
-    b: 53
-  - a: 54
-    b: 52
-  - a: 53
-    b: 55
-  - a: 55
-    b: 54
-  m_SelectedVertices: 34000000350000003600000037000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!4 &823345228
 Transform:
   m_ObjectHideFlags: 0
@@ -19725,6 +19739,10 @@ PrefabInstance:
       propertyPath: npcType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3580913648538430129, guid: 365d974038b920c4b850297f3cf71bdc, type: 3}
+      propertyPath: TSA_overrideSkinMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: c130e258c7d53ff45ba8a3c45d4fe6cd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19741,6 +19759,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0c096e6a93585478f4d433fd22de4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1240760516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1240760518}
+  - component: {fileID: 1240760517}
+  m_Layer: 0
+  m_Name: MGT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1240760517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240760516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0a683cea6f33343b487dd017cea27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BodyPurity: 1
+  MindPurity: 2
+  SoulPurity: 2
+--- !u!4 &1240760518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240760516}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.809784, y: 3.94472, z: 10.880927}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1258160974
 GameObject:
   m_ObjectHideFlags: 0
@@ -22120,8 +22185,17 @@ MonoBehaviour:
   - {fileID: 79740091}
   - {fileID: 1957945891}
   teleporterSphere: {fileID: 2139296436}
+  fishyChance: 0
+  gimpyArmChance: 0
+  amorphousChance: 0
   rhotacism: 0
+  illiterate: 0
   smoothBrained: 0
+  shirtlessChance: 0
+  phoneChance: 0.2
+  fatChance: 0
+  brandedClothesChance: 0
+  drunkennessChance: 0
   dialogueText: {fileID: 2044109338}
   speakingFaceRenderer: {fileID: 146643574}
   NpcFaceCamera: {fileID: 1258160977}
@@ -33424,3 +33498,4 @@ SceneRoots:
   - {fileID: 1375871613}
   - {fileID: 44128418}
   - {fileID: 1468574958}
+  - {fileID: 1240760518}
