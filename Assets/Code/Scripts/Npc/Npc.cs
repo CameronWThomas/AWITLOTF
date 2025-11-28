@@ -44,6 +44,8 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         }
         public bool male = true;
 
+        public string randomGenLogs = "";
+
         public List<Material> fabricMaterials;
         public List<Material> brandedClothingMaterials;
 
@@ -110,14 +112,17 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public Vector3 calvesFishyScale = new Vector3(0.9f, 0.6f, 0.9f);
 
 
-
-
-
         void Awake()
         {
+            
             agent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
             npcManager = FindObjectOfType<NpcManager>();
+        }
+
+
+        void Start()
+        {
 
             SkinSetup();
 
@@ -291,6 +296,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
             animationType = AnimationType.Normal;
             float random = UnityEngine.Random.value;
+            randomGenLogs += "Amorphous Roll: " + random.ToString("F2") + ". Amourphous Chance : " + npcManager.amorphousChance+ "\n";
 
             if (random < npcManager.amorphousChance)
             {
@@ -298,29 +304,36 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 return;
             }
             random = UnityEngine.Random.value;
+            randomGenLogs += "Fishy Roll: " + random.ToString("F2") + ". Fishy Chance : " + npcManager.fishyChance + "\n";
             if (random < npcManager.fishyChance)
             {
                 animationType = AnimationType.Fishy;
                 return;
             }
             random = UnityEngine.Random.value;
+            randomGenLogs += "Drunkenness Roll: " + random.ToString("F2") + ". Drunkenness Chance : " + npcManager.drunkennessChance + "\n";
             if (random < npcManager.drunkennessChance)
             {
                 animationType = AnimationType.Drunk;
                 return;
             }
+            // random = UnityEngine.Random.value;
+            // randomGenLogs += "Fatness Roll: " + random.ToString("F2") + ". Fatness Chance : " + npcManager.fatChance + "\n";
+            // if (random < npcManager.fatChance)
+            // {
+            //     animationType = AnimationType.Fat;
+            //     return;
+            // }
+        
             random = UnityEngine.Random.value;
-            if (random < npcManager.fatChance)
-            {
-                animationType = AnimationType.Fat;
-                return;
-            }
-            random = UnityEngine.Random.value;
+            randomGenLogs += "Phone Roll: " + random.ToString("F2") + ". Phone Chance : " + npcManager.phoneChance + "\n";
             if (random < npcManager.phoneChance)
             {
                 animationType = AnimationType.WalkWithPhone;
                 return;
             }
+
+            randomGenLogs += "None of the above rolls succeeded. Rolling for normal animations.\n";
 
             //if we still dont have any, random between normal, lean, pockets
             int animType = Random.Range(0, 3);

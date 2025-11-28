@@ -819,6 +819,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isFish
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isDrunk
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8456903748477098452}
   m_Solo: 0

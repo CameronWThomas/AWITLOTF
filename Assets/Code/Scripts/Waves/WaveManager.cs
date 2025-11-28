@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using AWITLOTF.Assets.Code.Scripts.Npc;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class WaveManager : MonoBehaviour
 {
     private const string DistortionFactor = "_DistortionFactor";
     private const string TimeValueName = "_TimeValue";
+    NpcManager _npcManager;
 
     [Header("Wave Objects")]
     public ComponentWave ComponentWave1;
@@ -30,6 +32,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        _npcManager = FindObjectOfType<NpcManager>();
         ReinitializeWaves();
     }
 
@@ -47,7 +50,8 @@ public class WaveManager : MonoBehaviour
     {
         // For now, just pressing space submits the waves
         if (Input.GetKeyDown(KeyCode.Space))
-            GetComponent<WaveSuccessChecker>().CheckWaveSuccess(GoalWave, CombinedWave);
+            OnWaveSubmit();
+            // GetComponent<WaveSuccessChecker>().CheckWaveSuccess(GoalWave, CombinedWave);
         if (Input.GetKeyDown(KeyCode.R))
             ReinitializeWaves();
 
@@ -60,6 +64,13 @@ public class WaveManager : MonoBehaviour
         var percentage = GetPercentageChange() / PercentageChangeMaxDistoration;
         SetDistortionPercentage(Mathf.Clamp01(percentage));
     }    
+    private void OnWaveSubmit()
+    {
+        GetComponent<WaveSuccessChecker>().CheckWaveSuccess(GoalWave, CombinedWave);
+        _npcManager.AdvanceQueue();
+        ReinitializeWaves();
+
+    }
 
     private void ReinitializeWaves()
     {

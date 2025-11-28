@@ -505,6 +505,11 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7124358916929597778, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
   m_PrefabInstance: {fileID: 4308031479948934784}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &2919849037627461564 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1390575396369690940, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+  m_PrefabInstance: {fileID: 4308031479948934784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &3143829194709707078 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1182243489717606342, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
@@ -600,6 +605,7 @@ MonoBehaviour:
   animationType: 0
   npcType: 0
   male: 1
+  randomGenLogs: 
   fabricMaterials:
   - {fileID: 2100000, guid: cf2660d307eda99409a8841ab8216be3, type: 2}
   - {fileID: 2100000, guid: 7e9c8566f865e774aab2955bcc08f229, type: 2}
@@ -610,7 +616,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 0ae68147a03e72648a0c41ad4084b73b, type: 2}
   - {fileID: 2100000, guid: ffcec318b6d75f845bdc7586bc662b15, type: 2}
   - {fileID: 2100000, guid: 9ec70eb7c0901134d808f8493422bd3a, type: 2}
-  brandedClothingMaterials: []
+  brandedClothingMaterials:
+  - {fileID: 2100000, guid: 7e9c8566f865e774aab2955bcc08f229, type: 2}
   cellphone: {fileID: 3723946198942335957}
   bottle: {fileID: 4728552240513269382}
   TSA_overrideSkinMaterial: {fileID: 2100000, guid: 8641a7c5db48fda42a7f940ba46be99f, type: 2}
@@ -637,6 +644,10 @@ MonoBehaviour:
   M_armsFishy: {fileID: 5204357712261365149}
   F_skinMaterials:
   - {fileID: 2100000, guid: 8641a7c5db48fda42a7f940ba46be99f, type: 2}
+  F_hairs:
+  - {fileID: 2919849037627461564}
+  - {fileID: 6528800006614789078}
+  - {fileID: 5533966146213218766}
   F_longSleeveTops:
   - {fileID: 173269016524423207}
   F_shortSleeveTops:
@@ -748,6 +759,11 @@ SkinnedMeshRenderer:
 --- !u!137 &5211015666225291474 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -893950309895446958, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+  m_PrefabInstance: {fileID: 4308031479948934784}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5533966146213218766 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8576449277635458894, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
   m_PrefabInstance: {fileID: 4308031479948934784}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &5604006197219343287 stripped

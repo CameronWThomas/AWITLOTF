@@ -10,10 +10,14 @@ namespace AWITLOTF.Assets.Code.Scripts
         public int BodyPurity = 3;
         public int MindPurity = 3;
         public int SoulPurity = 3;
-
+        void Awake()
+        {
+            
+            npcManager = GetComponent<NpcManager>();
+            AdjustNpcManagerToWorldState();
+        }
         void Start()
         {
-            npcManager = FindObjectOfType<NpcManager>();
         }
         public void AdjustBodyPurity(int amount)
         {
