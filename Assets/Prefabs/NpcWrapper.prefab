@@ -624,7 +624,14 @@ MonoBehaviour:
   - {fileID: 2100000, guid: ffcec318b6d75f845bdc7586bc662b15, type: 2}
   - {fileID: 2100000, guid: 9ec70eb7c0901134d808f8493422bd3a, type: 2}
   brandedClothingMaterials:
-  - {fileID: 2100000, guid: 7e9c8566f865e774aab2955bcc08f229, type: 2}
+  - {fileID: 2100000, guid: b23a57ce7648a4244b361b2247696c25, type: 2}
+  - {fileID: 2100000, guid: 2233ad02c0e50804499ca63edf8b666e, type: 2}
+  - {fileID: 2100000, guid: 87a19f8343a47a84d9af09ecd15653f2, type: 2}
+  - {fileID: 2100000, guid: 96536c665d485624e844645c2be753a5, type: 2}
+  - {fileID: 2100000, guid: d44f334b96d004a4e8bc8dcf3d1ea489, type: 2}
+  - {fileID: 2100000, guid: b71c7b6fbb2216f4ab6bb5b8ac0905c8, type: 2}
+  - {fileID: 2100000, guid: b57fc51879cf8344d8df306217e8eb3d, type: 2}
+  - {fileID: 2100000, guid: bc783116b5ba49447aa107aaef411668, type: 2}
   cellphone: {fileID: 3723946198942335957}
   bottle: {fileID: 4728552240513269382}
   TSA_overrideSkinMaterial: {fileID: 2100000, guid: 8641a7c5db48fda42a7f940ba46be99f, type: 2}
