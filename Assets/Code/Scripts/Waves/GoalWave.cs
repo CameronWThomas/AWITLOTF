@@ -9,8 +9,13 @@ public class GoalWave : Wave
 
     private readonly WaveInfo[] _goalWaveInfos = new WaveInfo[ComponentWavesCount] { null, null, null };
 
+    public WaveInfo[] WaveInfos => _goalWaveInfos.ToArray();
+
     public override IEnumerable<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
     {
+        if (IsHidden)
+            yield break;
+
         foreach (var waveInfo in _goalWaveInfos)
             yield return (waveInfo, waveInfo.VariableValue);
     }

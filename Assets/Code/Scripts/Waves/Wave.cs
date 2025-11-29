@@ -10,6 +10,8 @@ public class Wave : MonoBehaviour
     [Header("Display Attributes")]
     [Range(.1f, 2f)] public float WaveUpdateDuration = .25f;
 
+    public bool IsHidden { get; set; } = false;
+
     public virtual IEnumerable<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues() => Array.Empty<(WaveInfo, float)>();
 
     public string GetWaveInfoString()

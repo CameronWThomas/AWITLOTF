@@ -18,6 +18,9 @@ public class ComponentWave : Wave
 
     public override IEnumerable<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
     {
+        if (IsHidden)
+            yield break;
+
         var variableValue = WaveInfo.VariableValue;
         if (WaveInfo is DiscreteWaveInfo && _isDiscreteWaveUpdating)
             variableValue = _discreteDisplayVariableValue;

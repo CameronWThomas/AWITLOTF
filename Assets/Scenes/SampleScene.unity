@@ -20964,7 +20964,7 @@ PrefabInstance:
       objectReference: {fileID: 2138474655}
     - target: {fileID: 7166356535139056983, guid: c8cb9fd7077f4ff4dae48fb1d18bfebe, type: 3}
       propertyPath: m_VersionIndex
-      value: 1904
+      value: 1907
       objectReference: {fileID: 0}
     - target: {fileID: 7166356535139056983, guid: c8cb9fd7077f4ff4dae48fb1d18bfebe, type: 3}
       propertyPath: m_SelectedEdges.Array.size
@@ -24134,6 +24134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546159812}
+  - component: {fileID: 1546159815}
   - component: {fileID: 1546159811}
   - component: {fileID: 1546159814}
   - component: {fileID: 1546159813}
@@ -24335,9 +24336,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0a683cea6f33343b487dd017cea27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BodyPurity: 1
-  MindPurity: 1
-  SoulPurity: 1
+  BodyPurity: 3
+  MindPurity: 3
+  SoulPurity: 3
+--- !u!114 &1546159815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546159810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509311db5990bf641b390a2a74d845c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PurityChangePerFailure: 0.34
+  AllowTeleportAtAnyTime: 0
 --- !u!4 &1555253442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2889014677651137972, guid: 365d974038b920c4b850297f3cf71bdc, type: 3}
@@ -33890,7 +33905,7 @@ Mesh:
   m_SubMeshes:
   - serializedVersion: 2
     firstByte: 0
-    indexCount: 30
+    indexCount: 36
     topology: 0
     baseVertex: 0
     firstVertex: 0
@@ -33898,16 +33913,6 @@ Mesh:
     localAABB:
       m_Center: {x: 1.1656375, y: 1.5, z: 0}
       m_Extent: {x: 3.0782962, y: 2, z: 0.5}
-  - serializedVersion: 2
-    firstByte: 60
-    indexCount: 6
-    topology: 0
-    baseVertex: 0
-    firstVertex: 4
-    vertexCount: 4
-    localAABB:
-      m_Center: {x: 4.2439337, y: 1.5, z: 0}
-      m_Extent: {x: 0, y: 2, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -33924,7 +33929,7 @@ Mesh:
   m_KeepVertices: 1
   m_KeepIndices: 1
   m_IndexFormat: 0
-  m_IndexBuffer: 000001000200010003000200080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600040005000600050007000600
+  m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
   m_VertexData:
     serializedVersion: 3
     m_VertexCount: 24
