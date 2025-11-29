@@ -112,12 +112,14 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public Vector3 calvesFishyScale = new Vector3(0.9f, 0.6f, 0.9f);
 
 
+        public float AgentSpeed => agent.velocity.magnitude;
+
         void Awake()
         {
             
             agent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
-            npcManager = FindObjectOfType<NpcManager>();
+            npcManager = FindFirstObjectByType<NpcManager>();
         }
 
 
@@ -485,7 +487,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         void Update()
         {
-            anim.SetFloat("moveSpeed", agent.velocity.magnitude);
+            anim.SetFloat("moveSpeed", AgentSpeed);
             //face direction of target- lookAtTarget
             if (currentTarget != null && currentTarget.lookAtTarget != null)
             {

@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using System.Linq.Expressions;
-using AWITLOTF.Assets.Code.Scripts;
 using AWITLOTF.Assets.Code.Scripts.Npc;
 using UnityEditor;
 using UnityEngine;
@@ -27,15 +25,27 @@ public class WaveManager : MonoBehaviour
     [Header("Moving wave stuff")]
     [Range(0f, 50f)] public float WaveSpeedModifier = .5f;
 
-    
+    private float time = -1f;
 
     private ContinuousWaveInfo[] _continuousWaveInfos = new ContinuousWaveInfo[3];
 
     private void Start()
     {
-        _npcManager = FindObjectOfType<NpcManager>();
-        ReinitializeWaves();
+        _npcManager = FindFirstObjectByType<NpcManager>();
+        ReinitializeWave();
+        HideWaves();
     }
+
+    public bool WasWaveSuccessful(out WaveTrait worstWaveTrait)
+    {
+        var waveSuccessChecker = GetComponent<WaveSuccessChecker>();
+        return waveSuccessChecker.CheckSuccess(GoalWave, CombinedWave, out worstWaveTrait);
+    }
+
+    public void HideWaves() => ChangeWaveIsHidden(true);
+    public void ShowWaves() => ChangeWaveIsHidden(false);
+
+    public void ReinitializeWave() => ReinitializeWavesInternal();
 
     public float GetPercentageChange()
     {
@@ -46,13 +56,8 @@ public class WaveManager : MonoBehaviour
         return change;
     }
 
-    private float time = -1f;
     private void Update()
     {
-        // For now, just pressing space submits the waves
-        if (Input.GetKeyDown(KeyCode.Space))
-            OnWaveSubmit();
-
         if (time < 0f)
             time = Time.time;
 
@@ -62,33 +67,8 @@ public class WaveManager : MonoBehaviour
         var percentage = GetPercentageChange() / PercentageChangeMaxDistoration;
         SetDistortionPercentage(Mathf.Clamp01(percentage));
     }
-    
-    private void OnWaveSubmit()
-    {
-        var waveSuccessChecker = GetComponent<WaveSuccessChecker>();
-        waveSuccessChecker.RecordWaveSuccess(GoalWave, CombinedWave);
 
-        if (_npcManager.AdvanceQueue())
-        {
-            ReinitializeWaves();
-        }
-        else
-        {
-            var criticallyBadWaveTraits = waveSuccessChecker.GetCriticallyBadWaveTraits();
-
-            var worldStateManager = FindFirstObjectByType<WorldStateManager>();
-            if (criticallyBadWaveTraits.Contains(WaveTrait.Body))
-                worldStateManager.AdjustBodyPurity(1);
-            if (criticallyBadWaveTraits.Contains(WaveTrait.Mind))
-                worldStateManager.AdjustMindPurity(1);
-            if (criticallyBadWaveTraits.Contains(WaveTrait.Spirit))
-                worldStateManager.AdjustSoulPurity(1);
-
-            waveSuccessChecker.ResetFailureCount();
-        }
-    }
-
-    private void ReinitializeWaves()
+    private void ReinitializeWavesInternal()
     {
         var waveInfos = ContinuousWaveInfo.Create(ComponentWave1.WaveType, ComponentWave2.WaveType, ComponentWave3.WaveType);
 
@@ -108,6 +88,15 @@ public class WaveManager : MonoBehaviour
             GoalWave.Initialize(ComponentWave1, ComponentWave2, ComponentWave3);
 
         SetDistortionPercentage(0f);
+    }
+
+    private void ChangeWaveIsHidden(bool isHidden)
+    {
+        ComponentWave1.IsHidden = isHidden;
+        ComponentWave2.IsHidden = isHidden;
+        ComponentWave3.IsHidden = isHidden;
+        CombinedWave.IsHidden = isHidden;
+        GoalWave.IsHidden = isHidden;
     }
 
     private void SetDistortionPercentage(float percentage)

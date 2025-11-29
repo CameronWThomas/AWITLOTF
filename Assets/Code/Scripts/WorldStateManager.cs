@@ -7,35 +7,53 @@ namespace AWITLOTF.Assets.Code.Scripts
     {
         NpcManager npcManager;
 
-        public int BodyPurity = 3;
-        public int MindPurity = 3;
-        public int SoulPurity = 3;
+        [Range(1f, 3f)] public float BodyPurity = 3f;
+        [Range(1f, 3f)] public float MindPurity = 3f;
+        [Range(1f, 3f)] public float SoulPurity = 3f;
         void Awake()
         {
-            
+            GlobalStateManager globalStateManager = GetGlobalStateManager();
+            BodyPurity = globalStateManager.BodyPurity;
+            MindPurity = globalStateManager.MindPurity;
+            SoulPurity = globalStateManager.SoulPurity;
+
             npcManager = GetComponent<NpcManager>();
             AdjustNpcManagerToWorldState();
         }
-        void Start()
-        {
-        }
-        public void AdjustBodyPurity(int amount)
+
+        public void AdjustBodyPurity(float amount)
         {
             BodyPurity += amount;
-            BodyPurity = Mathf.Clamp(BodyPurity, 1, 3);
-        }
-        public void AdjustMindPurity(int amount)
-        {
-            MindPurity += amount;
-            MindPurity = Mathf.Clamp(MindPurity, 1, 3);
-        }
-        public void AdjustSoulPurity(int amount)
-        {
-            SoulPurity += amount;
-            SoulPurity = Mathf.Clamp(SoulPurity, 1, 3);
+            BodyPurity = Mathf.Clamp(BodyPurity, 1f, 3f);
         }
 
-        public void AdjustNpcManagerToWorldState()
+        public void AdjustMindPurity(float amount)
+        {
+            MindPurity += amount;
+            MindPurity = Mathf.Clamp(MindPurity, 1f, 3f);
+        }
+
+        public void AdjustSoulPurity(float amount)
+        {
+            SoulPurity += amount;
+            SoulPurity = Mathf.Clamp(SoulPurity, 1f, 3f);
+        }
+
+        /// <summary>
+        /// Handles saving state about the world. Returns whether this run was the final one
+        /// </summary>
+        public bool OnRunEnd()
+        {
+            GlobalStateManager globalStateManager = GetGlobalStateManager();
+            var wasFinalRun = globalStateManager.IsFinalRun;
+
+            globalStateManager.SaveState(this);
+            globalStateManager.IncrementRun();
+
+            return wasFinalRun;
+        }
+
+        private void AdjustNpcManagerToWorldState()
         {
             if (BodyPurity < 3)
             {
@@ -59,5 +77,17 @@ namespace AWITLOTF.Assets.Code.Scripts
             }
         }
 
+        private GlobalStateManager GetGlobalStateManager()
+        {
+            var globalStateManager = FindFirstObjectByType<GlobalStateManager>();
+            if (globalStateManager != null)
+                return globalStateManager;
+
+            var newGameObject = new GameObject("GLOBAL STATE MANAGER INSTANCE");
+            globalStateManager = newGameObject.AddComponent<GlobalStateManager>();
+            globalStateManager.SaveState(this);
+
+            return globalStateManager;
+        }
     }
 }

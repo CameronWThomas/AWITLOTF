@@ -2,14 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
-using UnityEngine;
 
 public class CombinedWave : Wave
 {
     private readonly ComponentWave[] _componentWaves = new ComponentWave[3] { null, null, null };
 
+    public WaveInfo[] WaveInfos => _componentWaves.Select(x => x.WaveInfo).ToArray();
+
     public override IEnumerable<(WaveInfo, float)> GetWaveInfosAndDisplayVariableValues()
     {
+        if (IsHidden)
+            return Array.Empty<(WaveInfo, float)>();
+
         return _componentWaves
             .Where(x => x != null)
             .SelectMany(x => x.GetWaveInfosAndDisplayVariableValues());

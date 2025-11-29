@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TMPro;
-using Unity.Properties;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class WaveSuccessChecker : MonoBehaviour
 {
@@ -18,52 +14,30 @@ public class WaveSuccessChecker : MonoBehaviour
     [Header("Debug")]
     public bool ShowIntevals = false;
 
-    private Dictionary<WaveTrait, int> _failedWaveTraitCounts = new Dictionary<WaveTrait, int>();
     private StringBuilder _resultOutputBuilder = new StringBuilder();
 
     private float SuccessDistance => SuccessPecentage * 2f;
-
-    private void Start()
-    {
-        ResetFailureCount();
-    }
 
     private void Update()
     {
         Shader.SetGlobalFloat("_IntervalCount", SuccessIntervals);
     }
 
-    public void ResetFailureCount()
+    public bool CheckSuccess(GoalWave goalWave, CombinedWave combinedWave, out WaveTrait worstTrait)
     {
-        _failedWaveTraitCounts = GetWaveFailureCountDictionary();
-    }
-
-    public void RecordWaveSuccess(GoalWave goalWave, CombinedWave combinedWave)
-    {
-        var goalWaveInfos = goalWave.GetWaveInfosAndDisplayVariableValues()
-            .Select(x => x.Item1)
+        var goalWaveInfos = goalWave.WaveInfos
             .OfType<ContinuousWaveInfo>()
             .ToArray();
 
         // Copy them so no more adjustments can be made
-        var combinedWaveInfos = combinedWave.GetWaveInfosAndDisplayVariableValues()
-            .Select(x => x.Item1.Copy())
+        var combinedWaveInfos = combinedWave.WaveInfos
             .OfType<ContinuousWaveInfo>()
             .ToArray();
 
-        RecordResults(goalWaveInfos, combinedWaveInfos);
+        return CheckWave(goalWaveInfos, combinedWaveInfos, out worstTrait);
     }
 
-    public IEnumerable<WaveTrait> GetCriticallyBadWaveTraits()
-    {
-        foreach (var keyValue in _failedWaveTraitCounts)
-        {
-            if (keyValue.Value >= CriticallyBadCount)
-                yield return keyValue.Key;
-        }
-    }
-
-    private void RecordResults(ContinuousWaveInfo[] goalWaveInfos, ContinuousWaveInfo[] combinedWaveInfos)
+    private bool CheckWave(ContinuousWaveInfo[] goalWaveInfos, ContinuousWaveInfo[] combinedWaveInfos, out WaveTrait worstTrait)
     {
         var intervalPoints = GetIntervalPoint().ToArray();
         ResetResultOutputBuilder(goalWaveInfos, combinedWaveInfos, intervalPoints);
@@ -83,14 +57,11 @@ public class WaveSuccessChecker : MonoBehaviour
         var overallSuccesssString = isOverallSuccessful ? "SUCCESS" : "FAILURE";
         _resultOutputBuilder.AppendLine($"({overallSuccesssString}: {successCount}/{intervalPoints.Length}");
 
-        if (!isOverallSuccessful)
-        {
-            // Figure out which wave was the furthest away from the percentage we found with the goals. This will be the wave we mark as being the worst
-            var worstTrait = FindWorstTrait(goalWaveInfos, combinedWaveInfos);
-            _failedWaveTraitCounts[worstTrait]++;
-        }
+        worstTrait = FindWorstTrait(goalWaveInfos, combinedWaveInfos);
 
         Debug.Log(_resultOutputBuilder.ToString());
+
+        return isOverallSuccessful;
     }
 
     private bool IsPointSuccessful(ContinuousWaveInfo[] goalWaveInfos, ContinuousWaveInfo[] combinedWaveInfos, float intervalPoint)
@@ -144,60 +115,6 @@ public class WaveSuccessChecker : MonoBehaviour
         _resultOutputBuilder.AppendLine();
     }
 
-    private void GetResults_old(WaveInfo[] goalWaveInfos, WaveInfo[] combinedWaveInfos)
-    {
-        var intervalPoints = GetIntervalPoint().ToArray();
-
-        var resultOutput = new StringBuilder();
-        resultOutput.AppendLine($"Checking at {intervalPoints.Length} points of waves...");
-        resultOutput.AppendLine($"goal variable values: {string.Join(", ", goalWaveInfos.Select(x => x.VariableValue.ToString("F2")))}");
-        resultOutput.AppendLine($"user variable values: {string.Join(", ", combinedWaveInfos.Select(x => x.VariableValue.ToString("F2")))}");
-        resultOutput.AppendLine();
-        
-        var waveTraitFailureCountDict = GetWaveFailureCountDictionary();
-        var successCount = 0;
-        foreach (var intervalPoint in intervalPoints)
-        {
-            var goalValue = goalWaveInfos.Calculate(intervalPoint);
-            var userValue = combinedWaveInfos.Calculate(intervalPoint);
-            var diff = goalValue - userValue;
-
-            var isSuccess = Mathf.Abs(diff) <= SuccessDistance;            
-            var successChar = isSuccess ? '+' : '-';
-
-            resultOutput.AppendLine($"({successChar})|{intervalPoint:F2}: g={goalValue:F2} u={userValue:F2} ({Mathf.Abs(diff):F2})");
-            if (isSuccess)
-            {
-                successCount++;
-                continue;
-            }
-
-            var worstWaveTrait = GetWorstWaveTrait(goalWaveInfos, combinedWaveInfos, intervalPoint);
-            waveTraitFailureCountDict[worstWaveTrait]++;
-        }
-
-        Debug.Log(resultOutput.ToString());
-        resultOutput.Clear();
-
-        var overallSuccess = successCount >= intervalPoints.Length * NeededSuccessPercentage;
-        var overallSuccessChar = overallSuccess ? '+' : '-';
-        resultOutput.AppendLine($"({overallSuccessChar})|Successes: {successCount}/{intervalPoints.Length}");
-
-        if (!overallSuccess)
-        {
-            var worstOverallTrait = waveTraitFailureCountDict
-                .First(x => waveTraitFailureCountDict.All(y => x.Value >= y.Value))
-                .Key;
-            _failedWaveTraitCounts[worstOverallTrait]++;
-
-            resultOutput.AppendLine($"Worst wave trait: {worstOverallTrait}");
-            foreach (var keyValue in waveTraitFailureCountDict)
-                resultOutput.AppendLine($"\t({keyValue.Value}) {keyValue.Key}");
-        }
-
-        Debug.Log(resultOutput.ToString());
-    }
-
     private IEnumerable<float> GetIntervalPoint()
     {
         var intervalSize = (2f * Mathf.PI) / (SuccessIntervals - 1);
@@ -206,6 +123,62 @@ public class WaveSuccessChecker : MonoBehaviour
         for (var i = 0; i < steps; i++)
             yield return i * intervalSize;
     }
+
+    //private void GetResults_old(WaveInfo[] goalWaveInfos, WaveInfo[] combinedWaveInfos)
+    //{
+    //    var intervalPoints = GetIntervalPoint().ToArray();
+
+    //    var resultOutput = new StringBuilder();
+    //    resultOutput.AppendLine($"Checking at {intervalPoints.Length} points of waves...");
+    //    resultOutput.AppendLine($"goal variable values: {string.Join(", ", goalWaveInfos.Select(x => x.VariableValue.ToString("F2")))}");
+    //    resultOutput.AppendLine($"user variable values: {string.Join(", ", combinedWaveInfos.Select(x => x.VariableValue.ToString("F2")))}");
+    //    resultOutput.AppendLine();
+
+    //    var waveTraitFailureCountDict = GetWaveFailureCountDictionary();
+    //    var successCount = 0;
+    //    foreach (var intervalPoint in intervalPoints)
+    //    {
+    //        var goalValue = goalWaveInfos.Calculate(intervalPoint);
+    //        var userValue = combinedWaveInfos.Calculate(intervalPoint);
+    //        var diff = goalValue - userValue;
+
+    //        var isSuccess = Mathf.Abs(diff) <= SuccessDistance;            
+    //        var successChar = isSuccess ? '+' : '-';
+
+    //        resultOutput.AppendLine($"({successChar})|{intervalPoint:F2}: g={goalValue:F2} u={userValue:F2} ({Mathf.Abs(diff):F2})");
+    //        if (isSuccess)
+    //        {
+    //            successCount++;
+    //            continue;
+    //        }
+
+    //        var worstWaveTrait = GetWorstWaveTrait(goalWaveInfos, combinedWaveInfos, intervalPoint);
+    //        waveTraitFailureCountDict[worstWaveTrait]++;
+    //    }
+
+    //    Debug.Log(resultOutput.ToString());
+    //    resultOutput.Clear();
+
+    //    var overallSuccess = successCount >= intervalPoints.Length * NeededSuccessPercentage;
+    //    var overallSuccessChar = overallSuccess ? '+' : '-';
+    //    resultOutput.AppendLine($"({overallSuccessChar})|Successes: {successCount}/{intervalPoints.Length}");
+
+    //    if (!overallSuccess)
+    //    {
+    //        var worstOverallTrait = waveTraitFailureCountDict
+    //            .First(x => waveTraitFailureCountDict.All(y => x.Value >= y.Value))
+    //            .Key;
+    //        _failedWaveTraitCounts[worstOverallTrait]++;
+
+    //        resultOutput.AppendLine($"Worst wave trait: {worstOverallTrait}");
+    //        foreach (var keyValue in waveTraitFailureCountDict)
+    //            resultOutput.AppendLine($"\t({keyValue.Value}) {keyValue.Key}");
+    //    }
+
+    //    Debug.Log(resultOutput.ToString());
+    //}
+
+
 
     private WaveTrait GetWorstWaveTrait(WaveInfo[] goalWaveInfos, WaveInfo[] combinedWaveInfos, float intervalPoint)
     {

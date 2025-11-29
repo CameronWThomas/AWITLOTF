@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -64,6 +65,12 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         }
 
+        public bool AreThereRemainingPedestrians()
+        {
+            var lastPedestrians = pedestrians.LastOrDefault();
+            return lastPedestrians != null && !lastPedestrians.IsDestroyed();
+        }
+
         public void SetUpInitialTargets()
         {
             for (int i = 0; i < pedestrians.Count; i++)
@@ -75,13 +82,24 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             {
                 tsa[i].SetTarget(tsaPositions[i]);
             }
+        }
 
+        public bool IsCurrentPedestrianReadyToTeleport()
+        {
+            var currentPedestrian = pedestrians[currentPedestrianIndex - 1];
+            if (currentPedestrian.IsDestroyed())
+                return false;
+
+            var distance = (currentPedestrian.transform.position - teleporterPosition.transform.position).magnitude;
+            if (distance > .5f)
+                return false;
+
+            return currentPedestrian.AgentSpeed < .05f;
         }
 
         /// <summary>
         /// Advances the queue and returns whether there are any more pedestrians in the queue
         /// </summary>
-        /// <returns></returns>
         public bool AdvanceQueue()
         {
             //destroy the old pedestrian
