@@ -47,6 +47,9 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         public List<TextAsset> randomDialogueAssets;
 
+        public List<TextAsset> dirtbag3Assets;
+        public List<TextAsset> dirtbag2Assets;
+
 
         public Npc currentSpeaker;
         public String dialogueString;
@@ -106,7 +109,8 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             if (currentPedestrianIndex != 0)
             {
                 Npc currentPedestrian = pedestrians[currentPedestrianIndex - 1];
-                if (currentPedestrian != null){
+                if (currentPedestrian != null)
+                {
                     Destroy(currentPedestrian.gameObject, 0.1f); //delay destroy to allow any final animations to
                     dialogueText.text = "";
                     // GameObject blob = currentPedestrian.blobInstance;
@@ -217,7 +221,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 else
                 {
                     speakingFaceRenderer.enabled = false;
-                    
+
                 }
 
                 dialogueText.text = ApplyWorldModifiersToDialogue(currentDialogueLine);
