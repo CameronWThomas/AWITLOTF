@@ -28,7 +28,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public float gimpyArmChance = 0;
         public float amorphousChance = 0;
         // Mind
-        public bool rhotacism = false;
+        public bool lisp = false;
         public bool illiterate = false;
         public bool smoothBrained = false;
         // Soul
@@ -108,6 +108,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 Npc currentPedestrian = pedestrians[currentPedestrianIndex - 1];
                 if (currentPedestrian != null){
                     Destroy(currentPedestrian.gameObject, 0.1f); //delay destroy to allow any final animations to
+                    dialogueText.text = "";
                     // GameObject blob = currentPedestrian.blobInstance;
                     // if (blob != null)
                     // {
@@ -216,6 +217,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 else
                 {
                     speakingFaceRenderer.enabled = false;
+                    
                 }
 
                 dialogueText.text = ApplyWorldModifiersToDialogue(currentDialogueLine);
@@ -235,9 +237,9 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         public string ApplyWorldModifiersToDialogue(string line)
         {
-            if (rhotacism)
+            if (lisp)
             {
-                line = line.Replace("r", "w").Replace("R", "W").Replace("l", "w").Replace("L", "W");
+                line = line.Replace("s", "th").Replace("T", "Th");
             }
             if (illiterate)
             {
@@ -247,7 +249,8 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 {
 
                     // swap 2 random letters in the word
-                    if (words[i].Length > 5)
+                    bool halfOds = UnityEngine.Random.value < 0.5f;
+                    if (words[i].Length > 5 && halfOds)
                     {
                         char[] charArray = words[i].ToCharArray();
                         int index1 = UnityEngine.Random.Range(0, charArray.Length);

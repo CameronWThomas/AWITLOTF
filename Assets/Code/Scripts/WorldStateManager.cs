@@ -10,12 +10,20 @@ namespace AWITLOTF.Assets.Code.Scripts
         [Range(1f, 3f)] public float BodyPurity = 3f;
         [Range(1f, 3f)] public float MindPurity = 3f;
         [Range(1f, 3f)] public float SoulPurity = 3f;
+
+        public GameObject badSoulDecals1;
+        public GameObject badSoulDecals2;
+        public GameObject badSoulDecals3;
         void Awake()
         {
             GlobalStateManager globalStateManager = GetGlobalStateManager();
             BodyPurity = globalStateManager.BodyPurity;
             MindPurity = globalStateManager.MindPurity;
             SoulPurity = globalStateManager.SoulPurity;
+            
+            badSoulDecals1.SetActive(SoulPurity < 2.8f);
+            badSoulDecals2.SetActive(SoulPurity < 2f);
+            badSoulDecals3.SetActive(SoulPurity < 1.2f);
 
             npcManager = GetComponent<NpcManager>();
             AdjustNpcManagerToWorldState();
@@ -63,9 +71,9 @@ namespace AWITLOTF.Assets.Code.Scripts
             }
             if (MindPurity < 3)
             {
-                npcManager.rhotacism = MindPurity <= 2;
-                npcManager.illiterate = MindPurity <= 1;
-                npcManager.smoothBrained = MindPurity <= 0;
+                npcManager.lisp = MindPurity <= 2.8f;
+                npcManager.illiterate = MindPurity <= 2f;
+                npcManager.smoothBrained = MindPurity <= 1.2f;
             }
             if (SoulPurity < 3)
             {
