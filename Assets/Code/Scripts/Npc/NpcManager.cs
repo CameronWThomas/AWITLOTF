@@ -105,16 +105,17 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             //destroy the old pedestrian
             if (currentPedestrianIndex != 0)
             {
-                var npc = pedestrians[currentPedestrianIndex - 1];
-                if (!npc.IsDestroyed())
-                {
-                    if (npc.gameObject != null)
-                        Destroy(npc.gameObject, 0.1f); //delay destroy to allow any final animations to
-
-                    teleporterSphere.ActivateTeleporter();
+                Npc currentPedestrian = pedestrians[currentPedestrianIndex - 1];
+                if (currentPedestrian != null){
+                    Destroy(currentPedestrian.gameObject, 0.1f); //delay destroy to allow any final animations to
+                    // GameObject blob = currentPedestrian.blobInstance;
+                    // if (blob != null)
+                    // {
+                    //     Destroy(blob, 0.1f);
+                    // }
                 }
+                teleporterSphere.ActivateTeleporter();
             }
-
             if (currentPedestrianIndex < pedestrians.Count)
             {
                 pedestrians[currentPedestrianIndex].SetTarget(teleporterPosition);
