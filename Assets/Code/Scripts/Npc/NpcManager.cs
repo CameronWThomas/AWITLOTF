@@ -47,8 +47,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         public List<TextAsset> randomDialogueAssets;
 
-        public List<TextAsset> dirtbag3Assets;
-        public List<TextAsset> dirtbag2Assets;
+        public TextAsset phase1_dirtbag3Asset;
+        public TextAsset phase1_dirtbag2Asset;
+
+        public TextAsset phase2_dirtbag3Asset;
+        public TextAsset phase2_dirtbag2Asset;
 
 
         public Npc currentSpeaker;
@@ -131,7 +134,21 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 {
                     pedestrians[i].SetTarget(pedestrianQueues[i - currentPedestrianIndex]);
                 }
-                LoadRandomDialogueAsset();
+                string pedName = pedestrians[currentPedestrianIndex - 1].name;
+
+                bool db1 = pedName.Contains("dirtbag1");
+                bool db2 = pedName.Contains("dirtbag2");
+                if (db1)
+                {
+                    LoadDirtbagAsset(false);
+                }
+                else if (db2)
+                {
+                    LoadDirtbagAsset(true);
+                }
+                else
+                    LoadRandomDialogueAsset();
+
 
                 if (dialogueCoroutine != null)
                 {
@@ -179,6 +196,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     {
 
                         currentSpeaker = pedestrians[currentPedestrianIndex - 1];
+                    }
+                    else if (speakerTag.Contains("dirtbag"))
+                    {
+                        //loop pedestrians and match gameobject name
+                        currentSpeaker = pedestrians.FirstOrDefault(p => p != null && p.name.ToLower().Contains(speakerTag.ToLower()));
                     }
                     else if (speakerTag.StartsWith("tsa"))
                     {
@@ -309,7 +331,37 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             dialogueString = selectedDialogue.text;
             currentDialogueLineIndex = 0;
             speakingFaceRenderer.enabled = false;
-
+        }
+        public void LoadDirtbagAsset(bool twoLeft = false)
+        {
+            GlobalStateManager gsm = FindAnyObjectByType<GlobalStateManager>();
+            if (gsm == null)
+            {
+                LoadRandomDialogueAsset();
+                return;
+            }
+            if (gsm.CurrentRunCount == 1)
+            {
+                TextAsset selectedDialogue = phase1_dirtbag3Asset;
+                if (twoLeft)
+                {
+                    selectedDialogue = phase1_dirtbag2Asset;
+                }
+                dialogueString = selectedDialogue.text;
+                currentDialogueLineIndex = 0;
+                speakingFaceRenderer.enabled = false;
+            }
+            else
+            {
+                TextAsset selectedDialogue = phase2_dirtbag3Asset;
+                if (twoLeft)
+                {
+                    selectedDialogue = phase2_dirtbag2Asset;
+                }
+                dialogueString = selectedDialogue.text;
+                currentDialogueLineIndex = 0;
+                speakingFaceRenderer.enabled = false;
+            }
 
         }
 

@@ -1,0 +1,10 @@
+current:Do you all serve alchohol on the flight?
+tsa1:This is a teleporter sir.
+current:So no?
+tsa1:No. You'll be instantaneously transmitted to your destination.
+current:Yeah, but im a nervous flyer.
+tsa1:Just get a drink when you get to your destination.
+current:Come on, you must have something.
+tsa2:Well... I do have something here... for special occasions.
+tsa1:PUT THAT AWAY
+
