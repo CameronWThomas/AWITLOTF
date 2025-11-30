@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AWITLOTF.Assets.Code.Scripts.Interface;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public List<NpcTarget> tsaPositions;
 
         public TeleporterSphere teleporterSphere;
+        public Lever teleporterLever;
         public Coroutine dialogueCoroutine;
 
         [Header("World Modifiers")]
@@ -62,6 +64,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            teleporterLever = FindFirstObjectByType<Lever>();
             SetUpInitialTargets();
             dialogueText.text = "";
             speakingFaceRenderer.enabled = false;
@@ -123,6 +126,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     // }
                 }
                 teleporterSphere.ActivateTeleporter();
+                teleporterLever.ThrowLever();
             }
             if (currentPedestrianIndex < pedestrians.Count)
             {
@@ -174,7 +178,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         public void AdvanceDialogueLine()
         {
-            string[] dialogueLines = dialogueString.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string[] dialogueLines = dialogueString.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             if (currentDialogueLineIndex < dialogueLines.Length)
             {
                 currentDialogueLine = dialogueLines[currentDialogueLineIndex];

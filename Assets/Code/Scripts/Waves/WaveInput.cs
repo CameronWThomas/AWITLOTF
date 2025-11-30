@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AWITLOTF.Assets.Code.Scripts.Interface;
 using UnityEngine;
 
 public class WaveInput : MonoBehaviour
@@ -18,7 +19,8 @@ public class WaveInput : MonoBehaviour
     public float PercentChange { get; private set; }
     public int InputChange { get; private set; }
 
-
+    [SerializeField]
+    private Knob knob;
     private ComponentWave ComponentWave => GetComponent<ComponentWave>();
     private float WavePercentChangeSpeed => FindFirstObjectByType<GlobalWaveProperties>().WavePercentChangeSpeed;
 
@@ -36,6 +38,14 @@ public class WaveInput : MonoBehaviour
 
         var sign = inputChange > 0f ? 1f : -1f;
         PercentChange = sign * Time.deltaTime * WavePercentChangeSpeed;
+
+        if(knob != null)
+        {
+            // set knob value
+            //min max
+            float pct = ComponentWave.GetCurrentVariableValueNormalized();
+            knob.TurnToPercent(pct);
+        }
     }
 
     private bool TryGetInputChange(ComponentWave componentWave, out int inputChange)

@@ -276,18 +276,22 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     {
                         smr.enabled = true;
                     }
+
+                    SetRandomAnimationState();
                     break;
                 case NpcType.Dirtbag2:
                     foreach (SkinnedMeshRenderer smr in Dirtbag2_Skins)
                     {
                         smr.enabled = true;
                     }
+                    SetRandomAnimationState();
                     break;
                 case NpcType.Dirtbag3:
                     foreach (SkinnedMeshRenderer smr in Dirtbag3_Skins)
                     {
                         smr.enabled = true;
                     }
+                    SetRandomAnimationState();
                     break;
                 case NpcType.TSA:
                     foreach (SkinnedMeshRenderer smr in TSA_Skins)
