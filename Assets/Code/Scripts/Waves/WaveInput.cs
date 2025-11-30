@@ -6,7 +6,7 @@ public class WaveInput : MonoBehaviour
 {
     
 
-
+GlobalStateManager globalStateManager;
     // Right now it does it by keys out of simplicity
     private static readonly Dictionary<int, (KeyCode, KeyCode)> InputDict = new Dictionary<int, (KeyCode, KeyCode)>()
     {
@@ -24,12 +24,27 @@ public class WaveInput : MonoBehaviour
     private ComponentWave ComponentWave => GetComponent<ComponentWave>();
     private float WavePercentChangeSpeed => FindFirstObjectByType<GlobalWaveProperties>().WavePercentChangeSpeed;
 
+    void Start()
+    {
+        
+        globalStateManager = FindFirstObjectByType<GlobalStateManager>();
+    }
     // Update is called once per frame
     void Update()
     {
         InputChange = 0;
         PercentChange = 0f;
         HasInput = TryGetInputChange(ComponentWave, out var inputChange);
+
+        if(globalStateManager == null)
+            globalStateManager = FindFirstObjectByType<GlobalStateManager>();
+        if(globalStateManager != null)
+        {
+            if(Input.GetKey(KeyCode.Q) && globalStateManager.IsCredits)
+            {
+                Application.Quit(); 
+            }
+        }
 
         if (!HasInput)
             return;

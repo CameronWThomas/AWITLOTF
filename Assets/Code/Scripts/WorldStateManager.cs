@@ -24,6 +24,15 @@ namespace AWITLOTF.Assets.Code.Scripts
         void Awake()
         {
             GlobalStateManager globalStateManager = GetGlobalStateManager();
+            BodyPurity = globalStateManager.BodyPurity;
+            MindPurity = globalStateManager.MindPurity;
+            SoulPurity = globalStateManager.SoulPurity;
+            
+            badSoulDecals1.SetActive(SoulPurity < 2.8f);
+            badSoulDecals2.SetActive(SoulPurity < 2f);
+            badSoulDecals3.SetActive(SoulPurity < 1.2f);
+            npcManager = GetComponent<NpcManager>();
+            AdjustNpcManagerToWorldState();
             if(globalStateManager && globalStateManager.IsCredits)
             {
                 MachineCamera.gameObject.SetActive(false);
@@ -33,16 +42,7 @@ namespace AWITLOTF.Assets.Code.Scripts
                 audioSource.Play();
                 return;
             }
-            BodyPurity = globalStateManager.BodyPurity;
-            MindPurity = globalStateManager.MindPurity;
-            SoulPurity = globalStateManager.SoulPurity;
-            
-            badSoulDecals1.SetActive(SoulPurity < 2.8f);
-            badSoulDecals2.SetActive(SoulPurity < 2f);
-            badSoulDecals3.SetActive(SoulPurity < 1.2f);
 
-            npcManager = GetComponent<NpcManager>();
-            AdjustNpcManagerToWorldState();
         }
 
         public void AdjustBodyPurity(float amount)

@@ -62,6 +62,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public int currentDialogueLineIndex = 0;
         public string currentDialogueLine;
 
+
+        [Header("Credits Specific")]
+        public GameObject personPrefab;
+        public Transform spawnPoint;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -78,6 +83,8 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 //set world modifiers
                 if (worldStateManager.IsCreditsRun())
                 {
+                    SetUpCreditsPedestrians();
+                    SetUpInitialTargets();
                     StartCoroutine(AdvanceQueueAutomatically());
                 }
                 else
@@ -99,7 +106,26 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             var lastPedestrians = pedestrians.LastOrDefault();
             return lastPedestrians != null && !lastPedestrians.IsDestroyed();
         }
+        public void SetUpCreditsPedestrians()
+        {
+            // Destroy existing pedestrians
+            foreach (var ped in pedestrians)
+            {
+                if (ped != null)
+                {
+                    Destroy(ped.gameObject);
+                }
+            }
+            pedestrians.Clear();
+            // Create new pedestrians for credits
+            for (int i = 0; i < 30; i++){
+                // GameObject newPedObj = Instantiate(personPrefab, spawnPoint.position + new Vector3(0, 0, i * 2f), Quaternion.identity);
+                GameObject newPedObj = Instantiate(personPrefab, spawnPoint.position + new Vector3(0, 0, 0), Quaternion.identity);
+                Npc newPed = newPedObj.GetComponentInChildren<Npc>();
+                pedestrians.Add(newPed);
+            }
 
+        }
         public void SetUpInitialTargets()
         {
             for (int i = 0; i < pedestrians.Count; i++)
@@ -406,7 +432,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     yield return null;
                 }
 
-                float seconds = UnityEngine.Random.Range(2f, 10f);
+                float seconds = UnityEngine.Random.Range(2f, 17f);
                 yield return new WaitForSeconds(seconds);
             }
         }
