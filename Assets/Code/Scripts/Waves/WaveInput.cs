@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using AWITLOTF.Assets.Code.Scripts.Interface;
 using UnityEngine;
 
 public class WaveInput : MonoBehaviour
 {
     
 
-
+GlobalStateManager globalStateManager;
     // Right now it does it by keys out of simplicity
     private static readonly Dictionary<int, (KeyCode, KeyCode)> InputDict = new Dictionary<int, (KeyCode, KeyCode)>()
     {
@@ -18,16 +19,32 @@ public class WaveInput : MonoBehaviour
     public float PercentChange { get; private set; }
     public int InputChange { get; private set; }
 
-
+    [SerializeField]
+    private Knob knob;
     private ComponentWave ComponentWave => GetComponent<ComponentWave>();
     private float WavePercentChangeSpeed => FindFirstObjectByType<GlobalWaveProperties>().WavePercentChangeSpeed;
 
+    void Start()
+    {
+        
+        globalStateManager = FindFirstObjectByType<GlobalStateManager>();
+    }
     // Update is called once per frame
     void Update()
     {
         InputChange = 0;
         PercentChange = 0f;
         HasInput = TryGetInputChange(ComponentWave, out var inputChange);
+
+        if(globalStateManager == null)
+            globalStateManager = FindFirstObjectByType<GlobalStateManager>();
+        if(globalStateManager != null)
+        {
+            if(Input.GetKey(KeyCode.Q) && globalStateManager.IsCredits)
+            {
+                Application.Quit(); 
+            }
+        }
 
         if (!HasInput)
             return;
@@ -36,6 +53,14 @@ public class WaveInput : MonoBehaviour
 
         var sign = inputChange > 0f ? 1f : -1f;
         PercentChange = sign * Time.deltaTime * WavePercentChangeSpeed;
+
+        if(knob != null)
+        {
+            // set knob value
+            //min max
+            float pct = ComponentWave.GetCurrentVariableValueNormalized();
+            knob.TurnToPercent(pct);
+        }
     }
 
     private bool TryGetInputChange(ComponentWave componentWave, out int inputChange)

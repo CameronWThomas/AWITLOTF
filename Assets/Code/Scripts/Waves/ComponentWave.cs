@@ -33,6 +33,11 @@ public class ComponentWave : Wave
         WaveInfo = waveInfo;
         _discreteDisplayVariableValue = waveInfo.VariableValue;
     }
+    public float GetCurrentVariableValueNormalized()
+    {
+        var minMax = WaveType.GetVariableValueMinMax();
+        return (WaveInfo.VariableValue - minMax.x) / (minMax.y - minMax.x);
+    }
 
     protected override IEnumerable<WaveInfo> GetWaveInfos()
     {

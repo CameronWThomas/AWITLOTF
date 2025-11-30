@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AWITLOTF.Assets.Code.Scripts.Interface;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,7 +21,9 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public List<NpcTarget> tsaPositions;
 
         public TeleporterSphere teleporterSphere;
+        public Lever teleporterLever;
         public Coroutine dialogueCoroutine;
+        WorldStateManager worldStateManager;
 
         [Header("World Modifiers")]
         // Body
@@ -47,21 +50,54 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         public List<TextAsset> randomDialogueAssets;
 
+        public TextAsset phase1_dirtbag3Asset;
+        public TextAsset phase1_dirtbag2Asset;
+
+        public TextAsset phase2_dirtbag3Asset;
+        public TextAsset phase2_dirtbag2Asset;
+
 
         public Npc currentSpeaker;
         public String dialogueString;
         public int currentDialogueLineIndex = 0;
         public string currentDialogueLine;
 
+
+        [Header("Credits Specific")]
+        public GameObject personPrefab;
+        public Transform spawnPoint;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            teleporterLever = FindFirstObjectByType<Lever>();
             SetUpInitialTargets();
             dialogueText.text = "";
             speakingFaceRenderer.enabled = false;
+            WorldStateManager worldStateManager = FindAnyObjectByType<WorldStateManager>();
 
             //advance queue on start
-            AdvanceQueue();
+
+            if (worldStateManager != null)
+            {
+                //set world modifiers
+                if (worldStateManager.IsCreditsRun())
+                {
+                    SetUpCreditsPedestrians();
+                    SetUpInitialTargets();
+                    StartCoroutine(AdvanceQueueAutomatically());
+                }
+                else
+                {
+
+                    AdvanceQueue();
+                }
+            }
+            else
+            {
+
+                AdvanceQueue();
+            }
 
         }
 
@@ -70,7 +106,26 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             var lastPedestrians = pedestrians.LastOrDefault();
             return lastPedestrians != null && !lastPedestrians.IsDestroyed();
         }
+        public void SetUpCreditsPedestrians()
+        {
+            // Destroy existing pedestrians
+            foreach (var ped in pedestrians)
+            {
+                if (ped != null)
+                {
+                    Destroy(ped.gameObject);
+                }
+            }
+            pedestrians.Clear();
+            // Create new pedestrians for credits
+            for (int i = 0; i < 30; i++){
+                // GameObject newPedObj = Instantiate(personPrefab, spawnPoint.position + new Vector3(0, 0, i * 2f), Quaternion.identity);
+                GameObject newPedObj = Instantiate(personPrefab, spawnPoint.position + new Vector3(0, 0, 0), Quaternion.identity);
+                Npc newPed = newPedObj.GetComponentInChildren<Npc>();
+                pedestrians.Add(newPed);
+            }
 
+        }
         public void SetUpInitialTargets()
         {
             for (int i = 0; i < pedestrians.Count; i++)
@@ -106,7 +161,8 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             if (currentPedestrianIndex != 0)
             {
                 Npc currentPedestrian = pedestrians[currentPedestrianIndex - 1];
-                if (currentPedestrian != null){
+                if (currentPedestrian != null)
+                {
                     Destroy(currentPedestrian.gameObject, 0.1f); //delay destroy to allow any final animations to
                     dialogueText.text = "";
                     // GameObject blob = currentPedestrian.blobInstance;
@@ -116,6 +172,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     // }
                 }
                 teleporterSphere.ActivateTeleporter();
+                teleporterLever.ThrowLever();
             }
             if (currentPedestrianIndex < pedestrians.Count)
             {
@@ -127,7 +184,21 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 {
                     pedestrians[i].SetTarget(pedestrianQueues[i - currentPedestrianIndex]);
                 }
-                LoadRandomDialogueAsset();
+                string pedName = pedestrians[currentPedestrianIndex - 1].name;
+
+                bool db1 = pedName.Contains("dirtbag1");
+                bool db2 = pedName.Contains("dirtbag2");
+                if (db1)
+                {
+                    LoadDirtbagAsset(false);
+                }
+                else if (db2)
+                {
+                    LoadDirtbagAsset(true);
+                }
+                else
+                    LoadRandomDialogueAsset();
+
 
                 if (dialogueCoroutine != null)
                 {
@@ -153,7 +224,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
 
         public void AdvanceDialogueLine()
         {
-            string[] dialogueLines = dialogueString.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string[] dialogueLines = dialogueString.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             if (currentDialogueLineIndex < dialogueLines.Length)
             {
                 currentDialogueLine = dialogueLines[currentDialogueLineIndex];
@@ -175,6 +246,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     {
 
                         currentSpeaker = pedestrians[currentPedestrianIndex - 1];
+                    }
+                    else if (speakerTag.Contains("dirtbag"))
+                    {
+                        //loop pedestrians and match gameobject name
+                        currentSpeaker = pedestrians.FirstOrDefault(p => p != null && p.name.ToLower().Contains(speakerTag.ToLower()));
                     }
                     else if (speakerTag.StartsWith("tsa"))
                     {
@@ -217,7 +293,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 else
                 {
                     speakingFaceRenderer.enabled = false;
-                    
+
                 }
 
                 dialogueText.text = ApplyWorldModifiersToDialogue(currentDialogueLine);
@@ -269,7 +345,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     {
                         if (UnityEngine.Random.value < 0.2f)
                         {
-                            newLine += " uh";
+                            bool halfOds2 = UnityEngine.Random.value < 0.5f;
+                            if (halfOds2)
+                                newLine += " uh";
+                            else
+                                newLine += " ...uh...";
                         }
                         newLine += " ";
                     }
@@ -305,8 +385,56 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             dialogueString = selectedDialogue.text;
             currentDialogueLineIndex = 0;
             speakingFaceRenderer.enabled = false;
+        }
+        public void LoadDirtbagAsset(bool twoLeft = false)
+        {
+            GlobalStateManager gsm = FindAnyObjectByType<GlobalStateManager>();
+            if (gsm == null)
+            {
+                LoadRandomDialogueAsset();
+                return;
+            }
+            if (gsm.CurrentRunCount == 1)
+            {
+                TextAsset selectedDialogue = phase1_dirtbag3Asset;
+                if (twoLeft)
+                {
+                    selectedDialogue = phase1_dirtbag2Asset;
+                }
+                dialogueString = selectedDialogue.text;
+                currentDialogueLineIndex = 0;
+                speakingFaceRenderer.enabled = false;
+            }
+            else
+            {
+                TextAsset selectedDialogue = phase2_dirtbag3Asset;
+                if (twoLeft)
+                {
+                    selectedDialogue = phase2_dirtbag2Asset;
+                }
+                dialogueString = selectedDialogue.text;
+                currentDialogueLineIndex = 0;
+                speakingFaceRenderer.enabled = false;
+            }
 
+        }
 
+        public IEnumerator AdvanceQueueAutomatically()
+        {
+            while (AreThereRemainingPedestrians())
+            {
+                bool advanced = AdvanceQueue();
+                if (!advanced)
+                    yield break;
+
+                while (!IsCurrentPedestrianReadyToTeleport())
+                {
+                    yield return null;
+                }
+
+                float seconds = UnityEngine.Random.Range(2f, 17f);
+                yield return new WaitForSeconds(seconds);
+            }
         }
 
 
