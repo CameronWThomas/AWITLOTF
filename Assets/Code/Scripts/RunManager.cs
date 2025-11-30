@@ -35,7 +35,7 @@ public class RunManager : MonoBehaviour
         _worldStateManager = FindFirstObjectByType<WorldStateManager>();
         _npcManager = FindFirstObjectByType<NpcManager>();
         _waveManager = FindFirstObjectByType<WaveManager>();
-        
+
         _waitingForNextPedestrian = true;
         _noMorePedestrians = false;
         _runEnding = false;
