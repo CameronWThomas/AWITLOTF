@@ -10,7 +10,7 @@ public class GlobalStateManager : MonoBehaviour
 
     [Header("Run Counts")]
     public int CurrentRunCount = 1;
-    public int MaxRuns = 1;
+    public int MaxRuns = 3;
 
     private void Start()
     {

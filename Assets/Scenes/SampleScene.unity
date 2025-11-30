@@ -30187,7 +30187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509311db5990bf641b390a2a74d845c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PurityChangePerFailure: 0.68
+  PurityChangePerFailure: 0.17
   AllowTeleportAtAnyTime: 0
 --- !u!4 &1555253442 stripped
 Transform:
