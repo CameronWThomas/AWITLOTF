@@ -4,7 +4,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Interface
 {
     public class Lever:MonoBehaviour
     {
-        Animator animator;
+        public Animator animator;
         void Start()
         {
             animator = GetComponent<Animator>();

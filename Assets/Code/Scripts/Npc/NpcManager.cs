@@ -23,6 +23,7 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public TeleporterSphere teleporterSphere;
         public Lever teleporterLever;
         public Coroutine dialogueCoroutine;
+        WorldStateManager worldStateManager;
 
         [Header("World Modifiers")]
         // Body
@@ -68,9 +69,28 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
             SetUpInitialTargets();
             dialogueText.text = "";
             speakingFaceRenderer.enabled = false;
+            WorldStateManager worldStateManager = FindAnyObjectByType<WorldStateManager>();
 
             //advance queue on start
-            AdvanceQueue();
+
+            if (worldStateManager != null)
+            {
+                //set world modifiers
+                if (worldStateManager.IsCreditsRun())
+                {
+                    StartCoroutine(AdvanceQueueAutomatically());
+                }
+                else
+                {
+
+                    AdvanceQueue();
+                }
+            }
+            else
+            {
+
+                AdvanceQueue();
+            }
 
         }
 
@@ -299,7 +319,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     {
                         if (UnityEngine.Random.value < 0.2f)
                         {
-                            newLine += " uh";
+                            bool halfOds2 = UnityEngine.Random.value < 0.5f;
+                            if (halfOds2)
+                                newLine += " uh";
+                            else
+                                newLine += " ...uh...";
                         }
                         newLine += " ";
                     }
@@ -367,6 +391,24 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 speakingFaceRenderer.enabled = false;
             }
 
+        }
+
+        public IEnumerator AdvanceQueueAutomatically()
+        {
+            while (AreThereRemainingPedestrians())
+            {
+                bool advanced = AdvanceQueue();
+                if (!advanced)
+                    yield break;
+
+                while (!IsCurrentPedestrianReadyToTeleport())
+                {
+                    yield return null;
+                }
+
+                float seconds = UnityEngine.Random.Range(2f, 10f);
+                yield return new WaitForSeconds(seconds);
+            }
         }
 
 

@@ -10,14 +10,15 @@ public class GlobalStateManager : MonoBehaviour
 
     [Header("Run Counts")]
     public int CurrentRunCount = 1;
-    public int MaxRuns = 3;
+    public int MaxRuns = 1;
 
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
     }
 
-    public bool IsFinalRun => CurrentRunCount >= MaxRuns;
+    public bool IsFinalRun => CurrentRunCount == MaxRuns;
+    public bool IsCredits => CurrentRunCount > MaxRuns;
 
     public void SaveState(WorldStateManager worldStateManager)
     {
@@ -29,6 +30,6 @@ public class GlobalStateManager : MonoBehaviour
     public void IncrementRun()
     {
         CurrentRunCount++;
-        CurrentRunCount = Mathf.Clamp(CurrentRunCount, 1, MaxRuns);
+        CurrentRunCount = Mathf.Clamp(CurrentRunCount, 1, MaxRuns + 1);
     }
 }

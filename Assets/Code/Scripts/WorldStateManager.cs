@@ -1,5 +1,6 @@
 using AWITLOTF.Assets.Code.Scripts.Npc;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace AWITLOTF.Assets.Code.Scripts
 {
@@ -14,9 +15,24 @@ namespace AWITLOTF.Assets.Code.Scripts
         public GameObject badSoulDecals1;
         public GameObject badSoulDecals2;
         public GameObject badSoulDecals3;
+
+        public Camera MachineCamera;
+        public Camera CreditsCamera;
+
+        public AudioClip standardMusic;
+        public AudioClip creditsMusic;
         void Awake()
         {
             GlobalStateManager globalStateManager = GetGlobalStateManager();
+            if(globalStateManager && globalStateManager.IsCredits)
+            {
+                MachineCamera.gameObject.SetActive(false);
+                CreditsCamera.gameObject.SetActive(true);
+                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource.clip = creditsMusic;
+                audioSource.Play();
+                return;
+            }
             BodyPurity = globalStateManager.BodyPurity;
             MindPurity = globalStateManager.MindPurity;
             SoulPurity = globalStateManager.SoulPurity;
@@ -59,6 +75,11 @@ namespace AWITLOTF.Assets.Code.Scripts
             globalStateManager.IncrementRun();
 
             return wasFinalRun;
+        }
+        public bool IsCreditsRun()
+        {
+            GlobalStateManager globalStateManager = GetGlobalStateManager();
+            return globalStateManager.IsCredits;
         }
 
         private void AdjustNpcManagerToWorldState()

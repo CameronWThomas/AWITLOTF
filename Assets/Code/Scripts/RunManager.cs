@@ -88,6 +88,7 @@ public class RunManager : MonoBehaviour
         _worldStateManager.AdjustBodyPurity(criticallyBadWaveTraits[WaveTrait.Body]);
         _worldStateManager.AdjustMindPurity(criticallyBadWaveTraits[WaveTrait.Mind]);
         _worldStateManager.AdjustSoulPurity(criticallyBadWaveTraits[WaveTrait.Spirit]);
+        bool wasCreditsRun = _worldStateManager.IsCreditsRun();
         var wasFinalRun = _worldStateManager.OnRunEnd();
 
         Debug.Log(stringBuilder.ToString());
@@ -98,7 +99,7 @@ public class RunManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // reload the scene if we have another run
-        if (!wasFinalRun)
+        if (!wasCreditsRun)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         yield return null;
