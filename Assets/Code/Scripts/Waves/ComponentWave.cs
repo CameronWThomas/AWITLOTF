@@ -116,5 +116,5 @@ public class ComponentWave : Wave
     }
 }
 
-[CustomEditor(typeof(ComponentWave))]
-public class ComponentWaveEditor : WaveEditor { }
+// [CustomEditor(typeof(ComponentWave))]
+// public class ComponentWaveEditor : WaveEditor { }

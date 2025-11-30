@@ -39,18 +39,18 @@ public class Wave : MonoBehaviour
     }
 }
 
-[CustomEditor(typeof(Wave))]
-public class WaveEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+// [CustomEditor(typeof(Wave))]
+// public class WaveEditor : Editor
+// {
+//     public override void OnInspectorGUI()
+//     {
+//         DrawDefaultInspector();
 
-        if (target is Wave wave)
-        {
-            var waveInfoString = wave.GetWaveInfoString();
-            foreach (var line in waveInfoString.Split(Environment.NewLine))
-                EditorGUILayout.LabelField(line);
-        }
-    }
-}
+//         if (target is Wave wave)
+//         {
+//             var waveInfoString = wave.GetWaveInfoString();
+//             foreach (var line in waveInfoString.Split(Environment.NewLine))
+//                 EditorGUILayout.LabelField(line);
+//         }
+//     }
+// }

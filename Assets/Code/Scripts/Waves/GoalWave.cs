@@ -36,5 +36,5 @@ public class GoalWave : Wave
     }
 }
 
-[CustomEditor(typeof(GoalWave))]
-public class GoalWaveEditor : WaveEditor { }
+// [CustomEditor(typeof(GoalWave))]
+// public class GoalWaveEditor : WaveEditor { }

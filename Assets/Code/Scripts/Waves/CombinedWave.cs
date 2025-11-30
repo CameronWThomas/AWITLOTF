@@ -33,5 +33,5 @@ public class CombinedWave : Wave
     }
 }
 
-[CustomEditor(typeof(CombinedWave))]
-public class CombinedWaveEditor : WaveEditor { }
+// [CustomEditor(typeof(CombinedWave))]
+// public class CombinedWaveEditor : WaveEditor { }

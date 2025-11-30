@@ -106,17 +106,17 @@ public class WaveManager : MonoBehaviour
         Shader.SetGlobalFloat(DistortionFactor, percentage);
     }
 
-[CustomEditor(typeof(WaveManager))]
-public class WaveManagerEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+// [CustomEditor(typeof(WaveManager))]
+// public class WaveManagerEditor : Editor
+// {
+//     public override void OnInspectorGUI()
+//     {
+//         DrawDefaultInspector();
 
-        if (target is WaveManager waveManager)
-        {
-            EditorGUILayout.LabelField($"Percenteage of max distoration: {waveManager.GetPercentageChange()}/{waveManager.PercentageChangeMaxDistoration}");
-        }
-    }
-}
+//         if (target is WaveManager waveManager)
+//         {
+//             EditorGUILayout.LabelField($"Percenteage of max distoration: {waveManager.GetPercentageChange()}/{waveManager.PercentageChangeMaxDistoration}");
+//         }
+//     }
+// }
 }
