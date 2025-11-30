@@ -1,43 +1,68 @@
 using System;
 using System.Collections;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class IntroScene : MonoBehaviour
 {
-    [Header("Title card stuff")]
-    public RawImage title1;
-    public RawImage title2;
-    [Range(0f, 10f)] public float hold1Duration = 5f;
-    [Range(0f, 10f)] public float fade1Duration = 5f;
-    [Range(0f, 10f)] public float hold2Duration = 5f;
-    [Range(0f, 10f)] public float fade2Duration = 5f;
-    [Range(0f, 10f)] public float hold3Duration = 5f;
-    [Range(0f, 10f)] public float fade3Duration = 5f;
+    
+
+    [Header("Newspaper")]
+    public Newspaper Newspaper;
+
+    [Header("Opening Cards")]
+    public GameObject TitleParent;
+    public GameObject SeriousQuoteParent;
+    public GameObject GoofQuoteParent;
+    [Range(0f, 10f)] public float quoteHoldDuration = 3.5f;
+    [Range(0f, 10f)] public float quoteFadeDuration = 4f;
+    [Range(0f, 10f)] public float titleHoldDuration = 3.5f;
+    [Range(0f, 10f)] public float titleFadeDuration = 3.5f;
+
+    [Header("Newspaper")]
+    [Range(0f, 10f)] public float ShowIntroAndOutroDuration = 2f;
+
+    [Header("Debug")]
+    public bool SkipOpeningCards = false;
 
     Coroutine introCoroutine = null;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Initialize();
+
         introCoroutine = StartCoroutine(IntroRoutine());
+    }
+
+    private void Initialize()
+    {
+        TitleParent.SetActive(true);
+        SeriousQuoteParent.SetActive(true);
+        GoofQuoteParent.SetActive(true);
+
+        Newspaper.Hide();
+        HideAllIntroCards();
     }
 
     private IEnumerator IntroRoutine()
     {
-        SetAlpha(title1, 0f);
-        SetAlpha(title2, 0f);
+        if (!SkipOpeningCards)
+        {
+            yield return FadeBothTitles(SeriousQuoteParent, quoteHoldDuration, quoteFadeDuration);
+            yield return FadeBothTitles(GoofQuoteParent, quoteHoldDuration, quoteFadeDuration);
+            yield return FadeBothTitles(TitleParent, titleHoldDuration, titleFadeDuration);
+        }
 
-        yield return new WaitForSeconds(hold1Duration);
-        yield return Fade(title1, fade1Duration, 0f, 1f);
-        yield return new WaitForSeconds(hold2Duration);
+        HideAllIntroCards();
 
-        yield return Fade(title2, fade2Duration, 0f, 1f);
-        yield return new WaitForSeconds(hold3Duration);
+        var articleWriter = Newspaper.GetComponent<ArticleWriter>();
+        articleWriter.ApplyMainArticle(articleWriter.PopeArticle);
+        articleWriter.ApplyRandomSideArticles();
 
-        SetAlpha(title1, 0f);
-        yield return Fade(title2, fade3Duration, 1f, 0f);
+        yield return ShowNewspaper(Newspaper);
 
         // Just temp 
         if (Application.isEditor)
@@ -47,34 +72,99 @@ public class IntroScene : MonoBehaviour
         }
     }
 
-    private IEnumerator Fade(RawImage image, float duration, float startAlpha, float endAlpha)
+    private IEnumerator ShowNewspaper(Newspaper newspaper)
     {
-        var time = Time.time;
+        newspaper.SetPositionAndRotation(0f);
+        newspaper.Show();
 
-        var startColor = image.color;
-        startColor.a = startAlpha;
+        yield return NewspaperDisplay(newspaper, 0f, 1f, ShowIntroAndOutroDuration);
 
-        var endColor = image.color;
-        endColor.a = endAlpha;
+        yield return new WaitForSeconds(.25f);
+        yield return newspaper.WaitForInputRoutine();
+        yield return new WaitForSeconds(.25f);
 
-        while (Time.time - time < duration)
+        yield return NewspaperDisplay(newspaper, 1f, 0f, ShowIntroAndOutroDuration);
+
+        newspaper.Hide();
+
+        yield return new WaitForSeconds(5f);
+
+    }
+
+    private static IEnumerator NewspaperDisplay(Newspaper newspaper, float t_0, float t_end, float duration)
+    {
+        var startTime = Time.time;
+        while (Time.time - startTime < duration)
+        {
+            var t = (Time.time - startTime) / duration;
+
+            var newsPaperT = Mathf.Lerp(t_0, t_end, t);
+
+            newspaper.SetPositionAndRotation(newsPaperT);
+            yield return null;
+        }
+
+        newspaper.SetPositionAndRotation(t_end);
+        yield return null;
+    }
+
+
+    private static IEnumerator FadeBothTitles(GameObject parent, float holdDuration, float fadeDuration)
+    {
+        yield return Fade(Image1(parent), fadeDuration, 0f, 1f);
+
+        yield return new WaitForSeconds(holdDuration);
+
+        yield return Fade(Image2(parent), fadeDuration, 0f, 1f);
+        SetAlpha(Image1(parent), 0f);
+
+        yield return new WaitForSeconds(holdDuration);
+
+        yield return Fade(Image2(parent), fadeDuration, 1f, 0f);
+
+        yield return new WaitForSeconds(holdDuration);
+    }
+
+    private static IEnumerator Fade(RawImage image, float duration, float startAlpha, float endAlpha)
+    {
+        var startTime = Time.time;
+        while (Time.time - startTime < duration)
         {
 
-            var t = (Time.time - time) / duration;
-            //var alpha = Mathf.Lerp(startAlpha, endAlpha, t);
+            var t = (Time.time - startTime) / duration;
             var alpha = Mathf.SmoothStep(startAlpha, endAlpha, t);
             
             SetAlpha(image, alpha);
-            //image.color = Color.Lerp(startColor, endColor, t);
 
             yield return null;
         }
 
-        image.color = endColor;
+        SetAlpha(image, endAlpha);
+
         yield return null;
     }
 
-    private void SetAlpha(RawImage image, float alpha)
+    private void HideAllIntroCards()
+    {
+        SetAlpha(Image1(TitleParent), 0f);
+        SetAlpha(Image2(TitleParent), 0f);
+
+        SetAlpha(Image1(SeriousQuoteParent), 0f);
+        SetAlpha(Image2(SeriousQuoteParent), 0f);
+
+        SetAlpha(Image1(GoofQuoteParent), 0f);
+        SetAlpha(Image2(GoofQuoteParent), 0f);
+    }
+
+    private static RawImage Image1(GameObject parent) => Image(parent, 0);
+    private static RawImage Image2(GameObject parent) => Image(parent, 1);
+
+    private static RawImage Image(GameObject parent, int index)
+    {
+        return parent.transform.GetChild(index).GetComponent<RawImage>();
+    }
+
+    private static void SetAlpha(RawImage image, float alpha)
     {
         var color = image.color;
         color.a = alpha;
