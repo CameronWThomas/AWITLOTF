@@ -84,6 +84,7 @@ public class WaveSuccessChecker : MonoBehaviour
         var largestPercentageDiff = float.MinValue;
 
         _resultOutputBuilder.AppendLine("Trait percentage diffs:");
+        Debug.Log("FWDT: Starting...");
 
         foreach (var waveTrait in EnumHelper.GetValues<WaveTrait>())
         {
@@ -93,6 +94,7 @@ public class WaveSuccessChecker : MonoBehaviour
             var percentageDiff = Mathf.Abs(goalPercentage - userPercentage);
 
             _resultOutputBuilder.AppendLine($"\t{waveTrait}: {percentageDiff:F2}");
+            Debug.Log($"FWDT: {waveTrait} diff={percentageDiff:F2}");
 
             if (percentageDiff > largestPercentageDiff)
             {
@@ -100,6 +102,8 @@ public class WaveSuccessChecker : MonoBehaviour
                 largestPercentageDiff = percentageDiff;
             }
         }
+        Debug.Log("FWDT: WorstTrait: " + worstWaveTrait + " Diff: " + largestPercentageDiff);
+        Debug.Log("FWDT: Ending...");
 
         _resultOutputBuilder.AppendLine($"Worst trait: {worstWaveTrait}");
         _resultOutputBuilder.AppendLine();

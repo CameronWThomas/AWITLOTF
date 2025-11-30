@@ -1,8 +1,8 @@
 public enum WaveTrait
 {
-    Body = 1,
-    Mind = 2,
-    Spirit = 3
+    Mind = 1,
+    Spirit = 2,
+    Body = 3
 }
 
 public static class WaveTraitExtensions
@@ -11,9 +11,9 @@ public static class WaveTraitExtensions
     {
         return waveTrait switch
         {
-            WaveTrait.Body => WaveType.Wave1,
-            WaveTrait.Mind => WaveType.Wave2,
-            WaveTrait.Spirit => WaveType.Wave3,
+            WaveTrait.Mind => WaveType.Wave1,
+            WaveTrait.Spirit => WaveType.Wave2,
+            WaveTrait.Body => WaveType.Wave3,
             _ => throw new System.NotImplementedException()
         };
     }
