@@ -1,18 +1,12 @@
 using System;
 using System.Collections;
-using System.Linq;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class IntroScene : MonoBehaviour
 {
-    
-
-    [Header("Newspaper")]
-    public Newspaper Newspaper;
-
     [Header("Opening Cards")]
     public GameObject TitleParent;
     public GameObject SeriousQuoteParent;
@@ -23,15 +17,20 @@ public class IntroScene : MonoBehaviour
     [Range(0f, 10f)] public float titleFadeDuration = 3.5f;
 
     [Header("Newspaper")]
+    public Newspaper Newspaper;
+    public TMP_Text SpaceButtonIndicator;
     [Range(0f, 10f)] public float ShowIntroAndOutroDuration = 2f;
+    [Range(0f, 10f)] public float SpaceIndicatorFadeTime = 1f;
 
     [Header("Debug")]
     public bool SkipOpeningCards = false;
 
     Coroutine introCoroutine = null;
+    private float spaceAlpha;
 
     void Start()
     {
+        spaceAlpha = SpaceButtonIndicator.color.a;
         Initialize();
 
         introCoroutine = StartCoroutine(IntroRoutine());
@@ -42,6 +41,7 @@ public class IntroScene : MonoBehaviour
         TitleParent.SetActive(true);
         SeriousQuoteParent.SetActive(true);
         GoofQuoteParent.SetActive(true);
+        SpaceButtonIndicator.gameObject.SetActive(false);
 
         Newspaper.Hide();
         HideAllIntroCards();
@@ -59,9 +59,11 @@ public class IntroScene : MonoBehaviour
         HideAllIntroCards();
 
         var articleWriter = Newspaper.GetComponent<ArticleWriter>();
-        articleWriter.ApplyMainArticle(articleWriter.PopeArticle);
-        articleWriter.ApplyRandomSideArticles();
+        
+        articleWriter.ApplyPopeArticle();
+        yield return ShowNewspaper(Newspaper);
 
+        articleWriter.ApplyDickArticle();
         yield return ShowNewspaper(Newspaper);
 
         // Just temp 
@@ -80,15 +82,43 @@ public class IntroScene : MonoBehaviour
         yield return NewspaperDisplay(newspaper, 0f, 1f, ShowIntroAndOutroDuration);
 
         yield return new WaitForSeconds(.25f);
+
+        yield return ShowSpaceButton(SpaceButtonIndicator, SpaceIndicatorFadeTime, 0f, spaceAlpha);
         yield return newspaper.WaitForInputRoutine();
+        yield return ShowSpaceButton(SpaceButtonIndicator, SpaceIndicatorFadeTime / 2f, spaceAlpha, 0f);
+
         yield return new WaitForSeconds(.25f);
 
         yield return NewspaperDisplay(newspaper, 1f, 0f, ShowIntroAndOutroDuration);
 
         newspaper.Hide();
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
+    }
 
+    private IEnumerator ShowSpaceButton(TMP_Text text, float duration, float startAlpha, float endAlpha)
+    {
+        var color = text.color;
+
+        text.gameObject.SetActive(true);
+        color.a = startAlpha;
+        text.color = color;
+
+        var startTime = Time.time;
+        while (Time.time - startTime < duration)
+        {
+            var t = (Time.time - startTime) / duration;
+
+            var alpha = Mathf.Lerp(startAlpha, endAlpha, t);
+
+            color.a = alpha;
+            text.color = color;
+
+            yield return null;
+        }
+
+        color.a = endAlpha;
+        text.color = color;
     }
 
     private static IEnumerator NewspaperDisplay(Newspaper newspaper, float t_0, float t_end, float duration)

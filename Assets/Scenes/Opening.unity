@@ -578,6 +578,142 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &638337970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 638337971}
+  - component: {fileID: 638337973}
+  - component: {fileID: 638337972}
+  m_Layer: 5
+  m_Name: SpacePress
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &638337971
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638337970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1158689759}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 30.53003}
+  m_SizeDelta: {x: 0, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &638337972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638337970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Press 'Space' to continue
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 1677721599
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.3882353}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &638337973
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638337970}
+  m_CullTransparentMesh: 1
 --- !u!1 &663308104
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,22 +771,25 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'After attending a war summit in Dover, Delaware on Tuesday evening, Pontiff
-    Lasagna Everett died due to what appears to be a malfunctioning SR-90 Transporter. 
-    His eminence went to New Croakton International Causeway to travel to St. Bartleby
-    Holy Seminary where he would reconsecrate the grounds. Visitors of the seminary
-    waited outside the destination SR-90 to welcome the Pontiff.
+  m_text: 'During the cataloging process of the estate of the late inventor of the
+    SR-90, Croak Grimbo, a letter was found indicating that his nephew, Dick Grimbo,
+    has been specially trained in calibrating SR-90s.
 
 
-    Witnesses
-    stated there was a buzz in the air shortly before the flash of the destination
-    SR-90. After the flash, what was left was described by one witness as "bones
-    and blood and meat and stuff".
+    The letter is as follows:
 
 
-    Initial assumptions appear to be the long
-    thought theoretical phenomenon of Eversion, when an SR-90 reconsititutes users
-    inside out. Recently deceased creator, Croak Grimbo, warned of such a possiblilty'
+    "My
+    dear sweet boy, Dick. You may not know, but I have been covertly teaching you
+    all the secrets of the SR-90. You know its ways. You can feel its energies. It
+    all relates to the THREE COMPONENTS of a human: the BODY, the MIND, and the SPIRIT.
+
+
+    A
+    time will come where the SR-90s will begin to fail and Evergency will begin.
+    At such a time, you need begin the calibration process. This calibration process
+    will require you to show the machines how to take the THREE COMPONENTS and combine
+    them to an optimal form needed for transportation. This'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_sharedMaterial: {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
@@ -1178,7 +1317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: POPE DEAD DUE TO A MALFUNCTIONING SR-90
+  m_text: SR-90S FIXABLE! DISCOVERED CROAK GRIMBO LETTER NAMES WHO CAN FIX THE SR-90S
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
   m_sharedMaterial: {fileID: 6728418632865394542, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
@@ -1205,7 +1344,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4.2
+  m_fontSize: 3
   m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1782,7 +1921,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1803,6 +1942,7 @@ RectTransform:
   - {fileID: 1561245347}
   - {fileID: 886485886}
   - {fileID: 1193139387}
+  - {fileID: 638337971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1822,7 +1962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a41a100396070541b96bac0464d74fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Newspaper: {fileID: 1530248820}
   TitleParent: {fileID: 1650341651}
   SeriousQuoteParent: {fileID: 1561245344}
   GoofQuoteParent: {fileID: 886485883}
@@ -1830,8 +1969,11 @@ MonoBehaviour:
   quoteFadeDuration: 4
   titleHoldDuration: 5
   titleFadeDuration: 3.5
+  Newspaper: {fileID: 1530248820}
+  SpaceButtonIndicator: {fileID: 638337972}
   ShowIntroAndOutroDuration: 1
-  SkipOpeningCards: 0
+  SpaceIndicatorFadeTime: 1
+  SkipOpeningCards: 1
 --- !u!82 &1158689761
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2096,28 +2238,28 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' in the final years of his life.
+  m_text: 'process will need to be repeated every 10 years for 30 years.
 
 
-    His eminence was an outspoken supporter
-    of the SR-90s, often referring to them as a "divine tool". He played a vital
-    role towards the Keen''s Initiative, a $315 trillion investment in replacing
-    air based commercial travel with SR-90s. This support drew controversy due to
-    his personal connection Grimbo.
-
-    
-
-    World travel officials have begun
-    an inquiry into what caused this disaster and have placed a halt on all SR-90s
-    based travel. Due to the lack of SR-90 experts, officials have stated there is
-    little hope in a full understanding.
+    Be
+    careful, my dearest Dick, for you are teaching the machines, and the machines
+    must know how to reform the THREE COMPONENTS. If you teach them wrong, the purity
+    of the THREE COMPONENTS, will be corrupted.
 
 
-    It is unknown how long the halt on
-    SR-90 based travel will last, but one insider told The Scrimbo Times, "I doubt
-    the SR-90s will be down for long".
+    I''m counting on you,
 
-'
+    Uncle
+    Croak"
+
+
+    Travel officials have informed us that Dick has been discovered
+    on the Galapagos islands and will return to calibrate the machines.
+
+
+    If
+    you are reading this, Dick, we at the Scrimbo times are rooting for you. We can''t
+    go back to planes. Theyre lame. Save the SR-90s! Save the dream!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_sharedMaterial: {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
@@ -2270,7 +2412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 10}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1193139388
@@ -2464,6 +2606,7 @@ MonoBehaviour:
   RightTitle: {fileID: 811651167}
   RightText: {fileID: 468648136}
   PopeArticle: {fileID: 4900000, guid: da83f9e3a472c3b4f81698fb431b8603, type: 3}
+  DickArticle: {fileID: 4900000, guid: c4d36c890e409fd43bdb777940c0e343, type: 3}
   MainArticles:
   - {fileID: 4900000, guid: 2c080f45226caea4a8bbfa058ff83788, type: 3}
   SideArticles:
@@ -2888,25 +3031,21 @@ MonoBehaviour:
   m_text: 'This just in, monkeys have escaped the zoo. They''re causing a ruckuss
     in downtown Pocopson.
 
-    
 
-    Residents have been told to try and appease
-    them with locally grown fruits and vegetables. Store bought vegetables will be
-    seen as a sign of aggression by the apes. Store bought fruit will cause other
-    far more dangerous emotions to arrise.
+    Residents have been told to try and appease them
+    with locally grown fruits and vegetables. Store bought vegetables will be seen
+    as a sign of aggression by the apes. Store bought fruit will cause other far
+    more dangerous emotions to arrise.
 
-    
 
-    Please help all elderly in
-    their encounters with the creatures. Old people have been known to be the targets
-    of the apes.
+    Please help all elderly in their encounters
+    with the creatures. Old people have been known to be the targets of the apes.
 
-    
 
-    We at The Scrimbo Times have recently bought a gun
-    and intend to use it if any of the primates decide to enter our office. We also
-    extend this warning to all local residents. You WILL be shot upon entry to our
-    office as this situation is active.'
+    We
+    at The Scrimbo Times have recently bought a gun and intend to use it if any of
+    the primates decide to enter our office. We also extend this warning to all local
+    residents. You WILL be shot upon entry to our office as this situation is active.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_sharedMaterial: {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}

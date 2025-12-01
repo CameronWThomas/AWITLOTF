@@ -18,19 +18,25 @@ public class ArticleWriter : MonoBehaviour
 
     [Header("Articles")]
     public TextAsset PopeArticle;
+    public TextAsset DickArticle;
     public TextAsset[] MainArticles;
     public TextAsset[] SideArticles;
 
-    public void ApplyMainArticle(TextAsset article)
+    public void ApplyPopeArticle() => ApplyMainArticle(PopeArticle);
+    public void ApplyDickArticle() => ApplyMainArticle(DickArticle);
+
+    private void ApplyMainArticle(TextAsset article)
     {
         GetArticleContent(article, out var title, out var text1, out var text2);
 
         MainTitle.text = title;
         MainText1.text = text1;
         MainText2.text = text2;
+
+        ApplyRandomSideArticles();
     }
 
-    public void ApplyRandomSideArticles()
+    private void ApplyRandomSideArticles()
     {
         var articles = SideArticles.Randomize().Take(2);
         ApplyLeftArticle(articles.First());
