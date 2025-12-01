@@ -30739,10 +30739,15 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 486e3603db45c7e4190d9b700835dbfa, type: 3}
   - {fileID: 4900000, guid: c4b8795e39b80564d8d157fd978e0e2c, type: 3}
   - {fileID: 4900000, guid: 1e3016d51a47fe941bf18cf66d467bc3, type: 3}
+  - {fileID: 4900000, guid: 076ca896f702aca44a0c224c157cd674, type: 3}
+  - {fileID: 4900000, guid: 2feb1e4223cbd0b42aa96f4bccfff76d, type: 3}
+  - {fileID: 4900000, guid: 9e320f90b16e1664e9925fc0ae0777d5, type: 3}
   phase1_dirtbag3Asset: {fileID: 4900000, guid: bb1b658a4e161f84d86585d2da9c8467, type: 3}
   phase1_dirtbag2Asset: {fileID: 4900000, guid: 2bac02e49f9f35f4d9357783586474b9, type: 3}
   phase2_dirtbag3Asset: {fileID: 4900000, guid: 828025cc97672254bb85355a9e35b011, type: 3}
   phase2_dirtbag2Asset: {fileID: 4900000, guid: 8c1bd9956ded74942ab67630efe27bd4, type: 3}
+  phase3_dirtbag3Asset: {fileID: 4900000, guid: 65dc4992dd032bd47a8453979407ce34, type: 3}
+  phase3_dirtbag2Asset: {fileID: 4900000, guid: a504791699afeff48a0920f566882d02, type: 3}
   currentSpeaker: {fileID: 0}
   dialogueString: 
   currentDialogueLineIndex: 0

@@ -57,6 +57,10 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
         public TextAsset phase2_dirtbag2Asset;
 
 
+        public TextAsset phase3_dirtbag3Asset;
+        public TextAsset phase3_dirtbag2Asset;
+
+
         public Npc currentSpeaker;
         public String dialogueString;
         public int currentDialogueLineIndex = 0;
@@ -394,29 +398,35 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                 LoadRandomDialogueAsset();
                 return;
             }
+            TextAsset selectedDialogue;
             if (gsm.CurrentRunCount == 1)
             {
-                TextAsset selectedDialogue = phase1_dirtbag3Asset;
+                selectedDialogue = phase1_dirtbag3Asset;
                 if (twoLeft)
                 {
                     selectedDialogue = phase1_dirtbag2Asset;
                 }
-                dialogueString = selectedDialogue.text;
-                currentDialogueLineIndex = 0;
-                speakingFaceRenderer.enabled = false;
             }
-            else
+            else if(gsm.CurrentRunCount == 2)
             {
-                TextAsset selectedDialogue = phase2_dirtbag3Asset;
+                selectedDialogue = phase2_dirtbag3Asset;
                 if (twoLeft)
                 {
                     selectedDialogue = phase2_dirtbag2Asset;
                 }
+            }
+            else //run 3
+            {
+                selectedDialogue = phase3_dirtbag3Asset;
+                if (twoLeft)
+                {
+                    selectedDialogue = phase3_dirtbag2Asset;
+                }
+            }
+
                 dialogueString = selectedDialogue.text;
                 currentDialogueLineIndex = 0;
                 speakingFaceRenderer.enabled = false;
-            }
-
         }
 
         public IEnumerator AdvanceQueueAutomatically()
