@@ -19,7 +19,6 @@ public class IntroScene : ScenePlayer
     public bool SkipOpeningCards = false;
 
     Coroutine introCoroutine = null;
-    private float spaceAlpha;
 
     protected override void Start()
     {
