@@ -64,8 +64,14 @@ public class WaveInput : MonoBehaviour
     private bool TryGetInputChange(ComponentWave componentWave, out int inputChange)
     {
         inputChange = 0;
-        if (componentWave == null)
+        if (componentWave == null || componentWave.IsHidden)
             return false;
+
+        if (knob != null && knob.IsSelected)
+        {
+            inputChange = knob.InputChange;
+            return inputChange != 0;
+        }
 
         if (!InputDict.ContainsKey((int)componentWave.WaveTrait))
         {
