@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class WaveInput : MonoBehaviour
 {
-    
-
-GlobalStateManager globalStateManager;
+    GlobalStateManager globalStateManager;
     // Right now it does it by keys out of simplicity
     private static readonly Dictionary<int, (KeyCode, KeyCode)> InputDict = new Dictionary<int, (KeyCode, KeyCode)>()
     {
-        { 1, (KeyCode.Q, KeyCode.A) },
-        { 2, (KeyCode.W, KeyCode.S) },
-        { 3, (KeyCode.E, KeyCode.D) },
+        { 1, (KeyCode.W, KeyCode.Q) },
+        { 2, (KeyCode.S, KeyCode.A) },
+        { 3, (KeyCode.X, KeyCode.Z) },
     };
 
     public bool HasInput { get; private set; } = false;
@@ -66,8 +64,19 @@ GlobalStateManager globalStateManager;
     private bool TryGetInputChange(ComponentWave componentWave, out int inputChange)
     {
         inputChange = 0;
-        if (componentWave == null)
+
+        var tutorial = FindFirstObjectByType<Tutorial>();
+        if (tutorial != null && tutorial.IsTutorialOpen)
             return false;
+
+        if (componentWave == null || componentWave.IsHidden)
+            return false;
+
+        if (knob != null && knob.IsSelected)
+        {
+            inputChange = knob.InputChange;
+            return inputChange != 0;
+        }
 
         if (!InputDict.ContainsKey((int)componentWave.WaveTrait))
         {
