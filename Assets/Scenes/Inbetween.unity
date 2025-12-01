@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_text: 10 Years Later...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
-  m_sharedMaterial: {fileID: 6728418632865394542, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
+  m_sharedMaterial: {fileID: -4258170062080728130, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

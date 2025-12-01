@@ -129,7 +129,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
+  - {fileID: -862305694691834246, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
     them to an optimal form needed for transportation. This'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
-  m_sharedMaterial: {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
+  m_sharedMaterial: {fileID: -862305694691834246, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -323,7 +323,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
+  - {fileID: -862305694691834246, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
     will hear all complaints and joys.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
-  m_sharedMaterial: {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
+  m_sharedMaterial: {fileID: -862305694691834246, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -517,7 +517,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6728418632865394542, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
+  - {fileID: -4258170062080728130, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -562,7 +562,7 @@ MonoBehaviour:
   m_text: New school initiative to end lunch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
-  m_sharedMaterial: {fileID: 6728418632865394542, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
+  m_sharedMaterial: {fileID: -4258170062080728130, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.4
+  m_fontSize: 0.1
   m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -693,7 +693,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6728418632865394542, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
+  - {fileID: -4258170062080728130, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -738,7 +738,7 @@ MonoBehaviour:
   m_text: SR-90S FIXABLE! DISCOVERED CROAK GRIMBO LETTER NAMES WHO CAN FIX THE SR-90S
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
-  m_sharedMaterial: {fileID: 6728418632865394542, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
+  m_sharedMaterial: {fileID: -4258170062080728130, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 3
+  m_fontSize: 0.3
   m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -869,7 +869,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6728418632865394542, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
+  - {fileID: -4258170062080728130, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_text: MONKEYS LOOSE FROM ZOO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
-  m_sharedMaterial: {fileID: 6728418632865394542, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
+  m_sharedMaterial: {fileID: -4258170062080728130, guid: f919fd2231d4c0b47a6c12d8672df846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.4
+  m_fontSize: 0.1
   m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1078,7 +1078,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
+  - {fileID: -862305694691834246, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1144,7 +1144,7 @@ MonoBehaviour:
     go back to planes. Theyre lame. Save the SR-90s! Save the dream!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
-  m_sharedMaterial: {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
+  m_sharedMaterial: {fileID: -862305694691834246, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1275,7 +1275,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
+  - {fileID: -862305694691834246, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1337,7 +1337,7 @@ MonoBehaviour:
     residents. You WILL be shot upon entry to our office as this situation is active.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
-  m_sharedMaterial: {fileID: -7750494576270758531, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
+  m_sharedMaterial: {fileID: -862305694691834246, guid: e6fb35d56b23e72448edc509e20aceb8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
