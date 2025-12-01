@@ -21,6 +21,7 @@ public class ArticleWriter : MonoBehaviour
     [Header("Articles")]
     public TextAsset PopeArticle;
     public TextAsset DickArticle;
+    public TextAsset[] MainArticles;
     public TextAsset[] MindArticles;
     public TextAsset[] BodyArticles;
     public TextAsset[] SpiritArticles;
@@ -31,22 +32,28 @@ public class ArticleWriter : MonoBehaviour
 
     public void ApplyRandomArticle(GlobalStateManager globalStateManager)
     {
-        //TODO write some base articles so if its not high enough, there is still something
-        var articles = new List<TextAsset>();
-        if (globalStateManager.BodyPurity <= 2.5f)
-            articles.AddRange(BodyArticles);
-        if (globalStateManager.MindPurity <= 2.5f)
-            articles.AddRange(MindArticles);
-        if (globalStateManager.SoulPurity <= 2.5f)
-            articles.AddRange(SpiritArticles);
+        // Get the first main article that hasn't been read
+        var mainArticles = MainArticles.Where(x => !globalStateManager.SeenMainArticles.Contains(x))
+            .ToList();
+        if (mainArticles.Any())
+            mainArticles = mainArticles.Take(1).ToList();
 
-        var article = articles.Randomize().FirstOrDefault();
+        if (globalStateManager.BodyPurity <= 2.5f)
+            mainArticles.AddRange(BodyArticles);
+        if (globalStateManager.MindPurity <= 2.5f)
+            mainArticles.AddRange(MindArticles);
+        if (globalStateManager.SoulPurity <= 2.5f)
+            mainArticles.AddRange(SpiritArticles);
+
+        var article = mainArticles.Randomize().FirstOrDefault(x => !globalStateManager.SeenMainArticles.Contains(x));
         if (article != null)
+        {
+            globalStateManager.SeenMainArticles.Add(article);
             ApplyMainArticle(article);
+        }
         else
             Debug.LogWarning("No article found. Uh oh.");
     }
-
     private void ApplyMainArticle(TextAsset article)
     {
         GetArticleContent(article, out var title, out var text1, out var text2);

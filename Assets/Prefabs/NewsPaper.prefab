@@ -586,7 +586,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.1
+  m_fontSize: 1.4
   m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.3
+  m_fontSize: 3
   m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.1
+  m_fontSize: 1.4
   m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1480,6 +1480,10 @@ MonoBehaviour:
   RightText: {fileID: 6478026522416918187}
   PopeArticle: {fileID: 4900000, guid: da83f9e3a472c3b4f81698fb431b8603, type: 3}
   DickArticle: {fileID: 4900000, guid: c4d36c890e409fd43bdb777940c0e343, type: 3}
+  MainArticles:
+  - {fileID: 4900000, guid: 82a160ac8bc050f4782a2c4b14e01dc8, type: 3}
+  - {fileID: 4900000, guid: 933b01057032ef24fa57b3ee56582aac, type: 3}
+  - {fileID: 4900000, guid: 6ba34464ed5ddd04eaa89d3935a877c0, type: 3}
   MindArticles:
   - {fileID: 4900000, guid: d62b53d7bde32c74f99206b8b5896500, type: 3}
   - {fileID: 4900000, guid: dfcd2a54e00603e40af3ecd62e546fac, type: 3}

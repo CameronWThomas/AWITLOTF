@@ -1,4 +1,5 @@
 using AWITLOTF.Assets.Code.Scripts;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobalStateManager : MonoBehaviour
@@ -11,6 +12,9 @@ public class GlobalStateManager : MonoBehaviour
     [Header("Run Counts")]
     public int CurrentRunCount = 1;
     public int MaxRuns = 3;
+
+    public List<TextAsset> SeenMainArticles { get; } = new();
+    public List<TextAsset> SeenSideArticles { get; } = new();
 
     private void Start()
     {
