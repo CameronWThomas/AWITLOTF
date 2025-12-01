@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class WaveInput : MonoBehaviour
 {
-    
-
-GlobalStateManager globalStateManager;
+    GlobalStateManager globalStateManager;
     // Right now it does it by keys out of simplicity
     private static readonly Dictionary<int, (KeyCode, KeyCode)> InputDict = new Dictionary<int, (KeyCode, KeyCode)>()
     {
-        { 1, (KeyCode.Q, KeyCode.A) },
-        { 2, (KeyCode.W, KeyCode.S) },
-        { 3, (KeyCode.E, KeyCode.D) },
+        { 1, (KeyCode.W, KeyCode.Q) },
+        { 2, (KeyCode.S, KeyCode.A) },
+        { 3, (KeyCode.X, KeyCode.Z) },
     };
 
     public bool HasInput { get; private set; } = false;
