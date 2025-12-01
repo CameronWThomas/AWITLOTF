@@ -25,6 +25,14 @@ public class ArticleWriter : MonoBehaviour
     public void ApplyPopeArticle() => ApplyMainArticle(PopeArticle);
     public void ApplyDickArticle() => ApplyMainArticle(DickArticle);
 
+    public void ApplyRandomArticle(GlobalStateManager globalStateManager)
+    {
+        //TODO get purities to determine which article to use
+
+        var article = MainArticles.Randomize().First();
+        ApplyMainArticle(article);
+    }
+
     private void ApplyMainArticle(TextAsset article)
     {
         GetArticleContent(article, out var title, out var text1, out var text2);

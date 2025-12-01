@@ -98,9 +98,9 @@ public class RunManager : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        // reload the scene if we have another run
+        // Load the inbetween scene if we have another run
         if (!wasCreditsRun)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(2);
 
         yield return null;
     }

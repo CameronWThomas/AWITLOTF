@@ -1,6 +1,5 @@
 using AWITLOTF.Assets.Code.Scripts.Npc;
 using UnityEngine;
-using UnityEngine.Audio;
 
 namespace AWITLOTF.Assets.Code.Scripts
 {
