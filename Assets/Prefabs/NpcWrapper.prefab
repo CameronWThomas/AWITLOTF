@@ -119,6 +119,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8617868130689893035, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8536150876523937969, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -175,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5994354374586599549, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5799866051561776147, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -223,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3574083778315504783, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -3345624618265608871, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -246,6 +258,14 @@ PrefabInstance:
     - target: {fileID: -1620936106187196106, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1530483720224940930, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -893950309895446958, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -869014349507116259, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Enabled
@@ -291,6 +311,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1390575396369690940, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1754207690766939229, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -318,6 +342,10 @@ PrefabInstance:
     - target: {fileID: 3164941677280206254, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182992089264664728, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.488
       objectReference: {fileID: 0}
     - target: {fileID: 3318704716545510791, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Enabled
@@ -399,6 +427,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8576449277635458894, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8647683537649491349, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -406,6 +438,14 @@ PrefabInstance:
     - target: {fileID: 8740666436448613364, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767250359092368350, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8815236601679822854, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8924031036067963496, guid: 61b0efd1a49170740b3f25fcc8f34ca7, type: 3}
       propertyPath: m_Layer

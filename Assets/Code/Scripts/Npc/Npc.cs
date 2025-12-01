@@ -430,10 +430,11 @@ namespace AWITLOTF.Assets.Code.Scripts.Npc
                     selectedTop = M_shortSleeveTops[Random.Range(0, M_shortSleeveTops.Count)];
                     M_arms.enabled = true;
                 }
+
                 float shirtlessRandom = Random.value;
                 if (shirtlessRandom < npcManager.shirtlessChance)
                 {
-                    M_arms.enabled = false;
+                    // M_arms.enabled = false;
                     selectedTop = M_shirtless;
                 }
                 selectedTop.enabled = true;
