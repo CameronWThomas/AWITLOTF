@@ -1597,6 +1597,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2761237337667583988, guid: 591c50b1a68921f4ea8422a6a37a15ab, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102478424161969494, guid: 591c50b1a68921f4ea8422a6a37a15ab, type: 3}
+      propertyPath: m_text
+      value: 'Dear readers,
+
+
+        We greatly appreciate your continued support
+        throughout the years, but the Scrimbo Times is ready to turn off the printing
+        press, lock the doors, and burn the building.
+
+
+        As we change, the
+        written word becomes less and less of a useful medium. Our ability to convey
+        meaning through writing has stagnated. Our links between each other, and
+        the new psychic dimensions have shown us that words lack truth.
+
+
+        Worry
+        not though, the Scrimbo Times lives on in your hearts, literally. We have
+        recently.. idk where this is going to go...'
+      objectReference: {fileID: 0}
     - target: {fileID: 5638228300051079988, guid: 591c50b1a68921f4ea8422a6a37a15ab, type: 3}
       propertyPath: NewspaperCamera
       value: 
@@ -1604,6 +1628,14 @@ PrefabInstance:
     - target: {fileID: 6889100290060700444, guid: 591c50b1a68921f4ea8422a6a37a15ab, type: 3}
       propertyPath: m_Name
       value: NewsPaper
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535130864381331668, guid: 591c50b1a68921f4ea8422a6a37a15ab, type: 3}
+      propertyPath: m_text
+      value: The end of the scrimbo Times
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535130864381331668, guid: 591c50b1a68921f4ea8422a6a37a15ab, type: 3}
+      propertyPath: m_fontSize
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TMPro;
@@ -19,7 +21,9 @@ public class ArticleWriter : MonoBehaviour
     [Header("Articles")]
     public TextAsset PopeArticle;
     public TextAsset DickArticle;
-    public TextAsset[] MainArticles;
+    public TextAsset[] MindArticles;
+    public TextAsset[] BodyArticles;
+    public TextAsset[] SpiritArticles;
     public TextAsset[] SideArticles;
 
     public void ApplyPopeArticle() => ApplyMainArticle(PopeArticle);
@@ -27,10 +31,20 @@ public class ArticleWriter : MonoBehaviour
 
     public void ApplyRandomArticle(GlobalStateManager globalStateManager)
     {
-        //TODO get purities to determine which article to use
+        //TODO write some base articles so if its not high enough, there is still something
+        var articles = new List<TextAsset>();
+        if (globalStateManager.BodyPurity > 2f)
+            articles.AddRange(BodyArticles);
+        if (globalStateManager.MindPurity > 2f)
+            articles.AddRange(MindArticles);
+        if (globalStateManager.SoulPurity > 2f)
+            articles.AddRange(SpiritArticles);
 
-        var article = MainArticles.Randomize().First();
-        ApplyMainArticle(article);
+        var article = articles.Randomize().FirstOrDefault();
+        if (article != null)
+            ApplyMainArticle(article);
+        else
+            Debug.LogWarning("No article found. Uh oh.");
     }
 
     private void ApplyMainArticle(TextAsset article)
@@ -91,7 +105,7 @@ public class ArticleWriter : MonoBehaviour
             var textBuilder = new StringBuilder();
             foreach (var line in articleLines.Skip(1))
             {
-                if (line.Contains("<NEWCOLUMN>"))
+                if (line.ToLower().Contains("<newcolumn>"))
                 {
                     text1 = textBuilder.ToString();
                     textBuilder.Clear();

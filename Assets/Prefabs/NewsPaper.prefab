@@ -1480,8 +1480,14 @@ MonoBehaviour:
   RightText: {fileID: 6478026522416918187}
   PopeArticle: {fileID: 4900000, guid: da83f9e3a472c3b4f81698fb431b8603, type: 3}
   DickArticle: {fileID: 4900000, guid: c4d36c890e409fd43bdb777940c0e343, type: 3}
-  MainArticles:
-  - {fileID: 4900000, guid: 2c080f45226caea4a8bbfa058ff83788, type: 3}
+  MindArticles:
+  - {fileID: 4900000, guid: d62b53d7bde32c74f99206b8b5896500, type: 3}
+  - {fileID: 4900000, guid: dfcd2a54e00603e40af3ecd62e546fac, type: 3}
+  BodyArticles:
+  - {fileID: 4900000, guid: 1e9af38a1912ef744a654d9684277d45, type: 3}
+  SpiritArticles:
+  - {fileID: 4900000, guid: 461815ddf87be8b4ba2f8145c7aead80, type: 3}
+  - {fileID: 4900000, guid: 92433633e0448ad45af1dcdffd5971d7, type: 3}
   SideArticles:
   - {fileID: 4900000, guid: 120d3c91eb14a9044845069f75ec1a24, type: 3}
   - {fileID: 4900000, guid: 6eeb5a95397df1a4c8b5d0bf96ce7316, type: 3}
