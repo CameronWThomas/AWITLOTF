@@ -64,6 +64,11 @@ public class WaveInput : MonoBehaviour
     private bool TryGetInputChange(ComponentWave componentWave, out int inputChange)
     {
         inputChange = 0;
+
+        var tutorial = FindFirstObjectByType<Tutorial>();
+        if (tutorial != null && tutorial.IsTutorialOpen)
+            return false;
+
         if (componentWave == null || componentWave.IsHidden)
             return false;
 
