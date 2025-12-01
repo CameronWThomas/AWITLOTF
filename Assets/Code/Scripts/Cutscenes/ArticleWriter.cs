@@ -33,11 +33,11 @@ public class ArticleWriter : MonoBehaviour
     {
         //TODO write some base articles so if its not high enough, there is still something
         var articles = new List<TextAsset>();
-        if (globalStateManager.BodyPurity > 2f)
+        if (globalStateManager.BodyPurity < 2f)
             articles.AddRange(BodyArticles);
-        if (globalStateManager.MindPurity > 2f)
+        if (globalStateManager.MindPurity < 2f)
             articles.AddRange(MindArticles);
-        if (globalStateManager.SoulPurity > 2f)
+        if (globalStateManager.SoulPurity < 2f)
             articles.AddRange(SpiritArticles);
 
         var article = articles.Randomize().FirstOrDefault();
